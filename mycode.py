@@ -134,4 +134,6 @@ try:
         time.sleep(1)
 
 except KeyboardInterrupt:
+    GPIO.cleanup()
     sys.exit(0)
+    
