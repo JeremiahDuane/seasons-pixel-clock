@@ -39,7 +39,7 @@ def loop():
     strDate = getDateString(now[0],now[1],now[2],now[6])
     strTime = getTimeString(now[3],now[4],now[5])
     strPeriod = getPeriodString(now[3])
-    scene = getDateString(now[0],now[1],now[2],now[6])
+    scene = getScene(now[0],now[1],now[2],now[6])
 
     offscreen_canvas = matrix.CreateFrameCanvas()
 
