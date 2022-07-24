@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
 from scene import Scene
+from rgb import RGB
 
 #---------------- START: GLOBALS ----------------#
 MATRIX = None
@@ -12,13 +13,6 @@ FONT_TITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE = graphics.Font()
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
-
-SCENES = [
-    Scene(0xFFFFFF, 0xFFFFFF, "/bmps/blank.bmp", "/bmps/blank.bmp"),                 # -0-  Notification 
-    Scene(0xFFFFFF, 0x40FFFF, "/bmps/snowman_1.bmp", "/bmps/snowman_2.bmp"),         # -1-  January Snowman
-    Scene(0xFF9000, 0x856035, "/bmps/sunflower_1.bmp", "/bmps/sunflower_2.bmp"),     # -8-  August Sunflowers
-    Scene(0xFFFFFF, 0x40FFFF, "/bmps/wreath_1.bmp", "/bmps/wreath_2.bmp")            # -12- December Wreath
-]
 #------ START: Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -36,35 +30,34 @@ options.brightness = 100
 #  options.pwm_lsb_nanoseconds = 130
 options.led_rgb_sequence = 'RGB'
 #  options.pixel_mapper_config = ''
-options.gpio_slowdown = 3
+options.gpio_slowdown = 2
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
 def loop():  
     now = time.localtime() 
-    strDate = parseDateString(now[0],now[1],now[2],now[6])
-    strTime, strPeriod = parseTimeString(now[3],now[4],now[5])
+    strDate = getDateString(now[0],now[1],now[2],now[6])
+    strTime = getTimeString(now[3],now[4],now[5])
+    strPeriod = getPeriodString(now[3])
+    scene = getDateString(now[0],now[1],now[2],now[6])
 
     offscreen_canvas = matrix.CreateFrameCanvas()
-    clrCurrentPrimary = graphics.Color(200, 160, 15)
-    clrCurrentSecondary = graphics.Color(240, 120, 15)
-    strImagePath = "./bmps/sunflower_1.bmp"
-    image = Image.open(strImagePath)
+
+    image = Image.open(scene.getBMP1()) if now[5] % 2 == 0 else scene.getBMP1()
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
     offscreen_canvas.SetImage(image.convert('RGB'))  
-
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, clrCurrentPrimary , strDate)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, clrCurrentPrimary , strPeriod)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, scene.getSecondaryColor() , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, scene.getPrimaryColor() , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, scene.getSecondaryColor() , "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, scene.getPrimaryColor() , "___")
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, scene.getPrimaryColor() , strDate)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, scene.getPrimaryColor() , strPeriod)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
     offscreen_canvas.Clear()
 
-def parseDateString(year, month, day, weekday, showDayOfWeek=False):
+def getDateString(year, month, day, weekday, showDayOfWeek=False):
     dateLabel = None
     if showDayOfWeek: 
         dateLabel =  "{dayOfWeek}. {zero}{day}-{zero1}{month}".format(
@@ -80,15 +73,38 @@ def parseDateString(year, month, day, weekday, showDayOfWeek=False):
         )
         return dateLabel
     
-def parseTimeString(hours, minutes, seconds):
-    periodLabel = "AM" if hours <= 11 else "PM"
+def getTimeString(hours, minutes, seconds):
     hours = hours - 12 if hours > 12 else hours 
     timeLabel =  "{zero}{hours}{colon}{minutes:02d}".format(
         zero="0" if hours < 10 else "", 
         hours=hours, minutes=minutes,
         colon=" " if seconds % 2 == 0 else ":"
     )
-    return timeLabel, periodLabel
+    return timeLabel
+
+def getPeriodString(hours):
+    periodLabel = "AM" if hours <= 11 else "PM"
+    return periodLabel
+
+def getScene(year, month, day, weekday):
+    scenes = [
+        Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                 # -0-  Notification 
+        Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"),         # -1-  January Snowman
+        Scene(RGB(255,190,0), RGB(255,150,0), "./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"),     # -8-  August Sunflowers
+        Scene(RGB(255,190,0), RGB(255,150,0), "./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp")            # -12- December Wreath
+    ]
+    
+    IsSpring = False
+    IsSummer = True
+    IsFall = False
+    IsWinter = False
+
+    if IsSummer == 0:
+        scene = scenes[2]
+    else: 
+        scene = scenes[3]
+
+    return scene
 
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
