@@ -56,8 +56,8 @@ def loop():
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentPrimary , strTime)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentSecondary , "___")
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentPrimary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 2, 25, clrCurrentPrimary , strDate)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 19, clrCurrentPrimary , strPeriod)
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 27, clrCurrentPrimary , strDate)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 16, clrCurrentPrimary , strPeriod)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
@@ -95,7 +95,7 @@ try:
     print("Press CTRL-C to stop.")
     while True:
         loop()
-        time.sleep(1000)
+        time.sleep(1)
 
 except KeyboardInterrupt:
     sys.exit(0)
