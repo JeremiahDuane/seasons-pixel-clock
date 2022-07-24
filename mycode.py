@@ -48,8 +48,10 @@ def loop():
 
     offscreen_canvas = matrix.CreateFrameCanvas()
     clrCurrentPrimary = graphics.Color(200, 160, 15)
+    clrCurrentSecondary = graphics.Color(280, 80, 15)
 
-    graphics.DrawText(offscreen_canvas, FONT_CLOCKFACE, 1, 19, clrCurrentPrimary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_CLOCKFACE, 2, 15, clrCurrentSecondary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_CLOCKFACE, 2, 16, clrCurrentPrimary , strTime)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
