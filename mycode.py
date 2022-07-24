@@ -43,7 +43,7 @@ def loop():
 
     offscreen_canvas = matrix.CreateFrameCanvas()
 
-    image = Image.open(scene.getBMP1() if now[5] % 2 == 0 else scene.getBMP1())
+    image = Image.open(scene.getBMP1() if now[5] % 2 == 0 else scene.getBMP2())
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
     offscreen_canvas.SetImage(image.convert('RGB'))  
 
