@@ -6,12 +6,6 @@ from datetime import datetime, timedelta
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
 
-if len(sys.argv) < 2:
-    sys.exit("Require an image argument")
-else:
-    image_file = sys.argv[1]
-
-image = Image.open(image_file)
 #---------------- START: GLOBALS ----------------#
 MATRIX = None
 FONT_TITLE = graphics.Font()
@@ -39,10 +33,6 @@ options.gpio_slowdown = 3
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
-# Make image fit our screen.
-image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
-matrix.SetImage(image.convert('RGB'))  
-
 def loop():  
     now = time.localtime() 
     strDate = parseDateString(now[0],now[1],now[2],now[6])
@@ -51,6 +41,9 @@ def loop():
     offscreen_canvas = matrix.CreateFrameCanvas()
     clrCurrentPrimary = graphics.Color(200, 160, 15)
     clrCurrentSecondary = graphics.Color(240, 120, 15)
+    strImagePath = "/home/jgage/code/seasons-pixel-clock/bmps/sunflower_1.bmp"
+    image = Image.open(strImagePath)
+    image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
 
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , strTime)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary , strTime)
@@ -59,6 +52,7 @@ def loop():
     graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, clrCurrentPrimary , strDate)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, clrCurrentPrimary , strPeriod)
 
+    offscreen_canvas.SetImage(image.convert('RGB'))  
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
     offscreen_canvas.Clear()
