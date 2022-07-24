@@ -20,6 +20,7 @@ options.cols =  64
 options.chain_length = 1
 options.parallel = 1
 options.hardware_mapping = 'adafruit-hat-pwm'  # If you have an Adafruit HAT: 'adafruit-hat'
+options.pwm_lsb_nanoseconds = 1300
 
 matrix = RGBMatrix(options = options)
 
@@ -30,10 +31,10 @@ matrix.SetImage(image.convert('RGB'))
 offscreen_canvas = matrix.CreateFrameCanvas()
 
 font = graphics.Font()
-font.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
+font.LoadFont("/home/jgage/code/rpi-rgb-led-matrix/fonts/5x8.bdf") 
 current_time = "12:00pm"
 color_time = graphics.Color(200, 160, 15)
-graphics.DrawText(offscreen_canvas, font, 1, 7, color_time ,current_time)
+graphics.DrawText(offscreen_canvas, font, 1, 19, color_time ,current_time)
 
 
 offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
