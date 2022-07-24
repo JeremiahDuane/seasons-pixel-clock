@@ -47,8 +47,8 @@ def loop():
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
     offscreen_canvas.SetImage(image.convert('RGB'))  
 
-    clrCurrentPrimary = graphics.Color(scene.getPrimaryColor().RGB()) 
-    clrCurrentSecondary = graphics.Color(scene.getSecondaryColor().RGB()) 
+    clrCurrentPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
+    clrCurrentSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
 
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary, strTime)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary, strTime)
