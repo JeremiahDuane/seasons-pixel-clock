@@ -54,10 +54,10 @@ def loop():
 
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 15, clrCurrentSecondary , strTime)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentPrimary , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 15, clrCurrentSecondary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentPrimary , "___")
     graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 2, 26, clrCurrentPrimary , strDate)
-    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 48, 6, clrCurrentPrimary , strPeriod)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 7, clrCurrentPrimary , strPeriod)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
