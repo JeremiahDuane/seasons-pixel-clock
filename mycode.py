@@ -52,12 +52,12 @@ def loop():
     clrCurrentPrimary = graphics.Color(200, 160, 15)
     clrCurrentSecondary = graphics.Color(240, 120, 15)
 
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 15, clrCurrentSecondary , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentPrimary , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 15, clrCurrentSecondary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentPrimary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 2, 26, clrCurrentPrimary , strDate)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 7, clrCurrentPrimary , strPeriod)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentSecondary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentPrimary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentSecondary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentPrimary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 2, 25, clrCurrentPrimary , strDate)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 19, clrCurrentPrimary , strPeriod)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
