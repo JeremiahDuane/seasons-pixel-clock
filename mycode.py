@@ -14,8 +14,10 @@ else:
 image = Image.open(image_file)
 #---------------- START: GLOBALS ----------------#
 MATRIX = None
-FONT_CLOCKFACE = graphics.Font()
-FONT_CLOCKFACE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
+FONT_TITLE = graphics.Font()
+FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
+FONT_SUBTITLE = graphics.Font()
+FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 #------ START: Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -50,8 +52,12 @@ def loop():
     clrCurrentPrimary = graphics.Color(200, 160, 15)
     clrCurrentSecondary = graphics.Color(240, 120, 15)
 
-    graphics.DrawText(offscreen_canvas, FONT_CLOCKFACE, 2, 15, clrCurrentSecondary , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_CLOCKFACE, 2, 16, clrCurrentPrimary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 15, clrCurrentSecondary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 16, clrCurrentPrimary , strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 19, clrCurrentSecondary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 20, clrCurrentPrimary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 2, 20, clrCurrentPrimary , strDate)
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 2, 8, clrCurrentPrimary , strPeriod)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
