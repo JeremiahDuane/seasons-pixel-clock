@@ -30,7 +30,7 @@ options.brightness = 100
 #  options.pwm_lsb_nanoseconds = 130
 options.led_rgb_sequence = 'RGB'
 #  options.pixel_mapper_config = ''
-# options.gpio_slowdown = 4
+options.gpio_slowdown = 4
 options.drop_privileges = False
 
 matrix = RGBMatrix(options = options)
