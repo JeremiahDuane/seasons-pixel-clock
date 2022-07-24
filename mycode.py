@@ -14,7 +14,7 @@ else:
 image = Image.open(image_file)
 #---------------- START: GLOBALS ----------------#
 MATRIX = None
-FONT_CLOCKFACE = graphics.font()
+FONT_CLOCKFACE = graphics.Font()
 FONT_CLOCKFACE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 #------ START: Configuration for the matrix -----#
 options = RGBMatrixOptions()
