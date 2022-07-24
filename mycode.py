@@ -20,14 +20,14 @@ options.cols =  64
 options.chain_length = 1
 options.parallel = 1
 options.hardware_mapping = 'adafruit-hat-pwm'  # If you have an Adafruit HAT: 'adafruit-hat'
-options.pwm_lsb_nanoseconds = 1300
+options.pwm_lsb_nanoseconds = 130
 
 matrix = RGBMatrix(options = options)
 
 # Make image fit our screen.
 image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
 
-matrix.SetImage(image.convert('RGB'))
+matrix.SetImage(image.convert('RGB'))  
 offscreen_canvas = matrix.CreateFrameCanvas()
 
 font = graphics.Font()
