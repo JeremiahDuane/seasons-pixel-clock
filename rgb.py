@@ -9,3 +9,5 @@ class RGB:
         return self.G     
     def B(self):
         return self.B
+    def RGB(self):
+        return self.R, self.G, self.B

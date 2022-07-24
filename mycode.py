@@ -46,12 +46,16 @@ def loop():
     image = Image.open(scene.getBMP1()) if now[5] % 2 == 0 else scene.getBMP1()
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
     offscreen_canvas.SetImage(image.convert('RGB'))  
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, scene.getSecondaryColor() , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, scene.getPrimaryColor() , strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, scene.getSecondaryColor() , "___")
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, scene.getPrimaryColor() , "___")
-    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, scene.getPrimaryColor() , strDate)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, scene.getPrimaryColor() , strPeriod)
+
+    clrCurrentPrimary = graphics.Color(scene.getPrimaryColor().RGB()) 
+    clrCurrentSecondary = graphics.Color(scene.getSecondaryColor().RGB()) 
+
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary, strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary, strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary, "___")
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, clrCurrentPrimary, strDate)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, clrCurrentPrimary, strPeriod)
 
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
