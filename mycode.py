@@ -30,7 +30,7 @@ options.brightness = 100
 #  options.pwm_lsb_nanoseconds = 130
 options.led_rgb_sequence = 'RGB'
 #  options.pixel_mapper_config = ''
-options.gpio_slowdown = 2
+options.gpio_slowdown = 3
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
@@ -93,9 +93,9 @@ def getPeriodString(hours):
 def getScene(year, month, day, weekday):
     scenes = [
         Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                 # -0-  Notification 
-        Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"),         # -1-  January Snowman
+        Scene(RGB(255,255,255), RGB(0,255,255), "./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"),         # -1-  January Snowman
         Scene(RGB(255,190,0), RGB(255,150,0), "./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"),     # -8-  August Sunflowers
-        Scene(RGB(255,190,0), RGB(255,150,0), "./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp")            # -12- December Wreath
+        Scene(RGB(255,255,255), RGB(0,255,255), "./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp")            # -12- December Wreath
     ]
     
     IsSpring = False
@@ -103,7 +103,7 @@ def getScene(year, month, day, weekday):
     IsFall = False
     IsWinter = False
 
-    if IsSummer == 0:
+    if IsSummer:
         scene = scenes[2]
     else: 
         scene = scenes[3]
