@@ -30,9 +30,8 @@ matrix.SetImage(image.convert('RGB'))
 offscreen_canvas = matrix.CreateFrameCanvas()
 
 font = graphics.Font()
-font.LoadFont("/fonts/pixelclock-main-24.bdf") 
-now = datetime.now()
-current_time = now.strftime("%H")    
+font.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
+current_time = "12:00pm"
 color_time = graphics.Color(200, 160, 15)
 graphics.DrawText(offscreen_canvas, font, 1, 7, color_time ,current_time)
 
