@@ -4,9 +4,9 @@ class Scene:
         self.secondaryColor = secondaryColor            
         self.bmp = bmp                                  
         self.bmp2 = bmp2        
-    def setBMP(self, bmp):
+    def setBMP1(self, bmp):
         self.bmp = bmp
-    def getBMP(self):    
+    def getBMP1(self):    
         return self.bmp
     def setBMP2(self, bmp2):
         self.bmp = bmp2
