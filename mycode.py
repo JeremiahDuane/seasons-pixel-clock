@@ -44,6 +44,7 @@ def loop():
     strImagePath = "/home/jgage/code/seasons-pixel-clock/bmps/sunflower_1.bmp"
     image = Image.open(strImagePath)
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
+    offscreen_canvas.SetImage(image.convert('RGB'))  
 
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , strTime)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary , strTime)
@@ -52,7 +53,6 @@ def loop():
     graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, clrCurrentPrimary , strDate)
     graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, clrCurrentPrimary , strPeriod)
 
-    offscreen_canvas.SetImage(image.convert('RGB'))  
     offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
     time.sleep(.005)
     offscreen_canvas.Clear()
