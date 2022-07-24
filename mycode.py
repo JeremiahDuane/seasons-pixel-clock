@@ -21,7 +21,8 @@ options.chain_length = 1
 options.parallel = 1
 options.hardware_mapping = 'adafruit-hat-pwm'  # If you have an Adafruit HAT: 'adafruit-hat'
 options.pwm_lsb_nanoseconds = 130
-options.led_slowdown_gpio = 2
+options.slowdown_gpio = 2
+
 
 matrix = RGBMatrix(options = options)
 
