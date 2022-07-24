@@ -12,8 +12,11 @@ else:
     image_file = sys.argv[1]
 
 image = Image.open(image_file)
-
-# Configuration for the matrix
+#---------------- START: GLOBALS ----------------#
+MATRIX = None
+FONT_CLOCKFACE = graphics.font()
+FONT_CLOCKFACE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
+#------ START: Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
 options.cols =  64
@@ -32,29 +35,58 @@ options.led_rgb_sequence = 'RGB'
 #  options.pixel_mapper_config = ''
 options.gpio_slowdown = 3
 options.drop_privileges = False
-
 matrix = RGBMatrix(options = options)
 
 # Make image fit our screen.
 image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
-
 matrix.SetImage(image.convert('RGB'))  
-offscreen_canvas = matrix.CreateFrameCanvas()
 
-font = graphics.Font()
-font.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
-current_time = "12:00pm"
-color_time = graphics.Color(200, 160, 15)
-graphics.DrawText(offscreen_canvas, font, 1, 19, color_time ,current_time)
+def loop():  
+    now = time.localtime() 
+    strDate = parseDateString(now[0],now[1],now[2],now[6])
+    strTime, strPeriod = parseTimeString(now[3],now[4],now[5])
 
+    offscreen_canvas = matrix.CreateFrameCanvas()
+    clrCurrentPrimary = graphics.Color(200, 160, 15)
 
-offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
-time.sleep(.005)
-offscreen_canvas.Clear()
+    graphics.DrawText(offscreen_canvas, FONT_CLOCKFACE, 1, 19, clrCurrentPrimary , strTime)
+
+    offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
+    time.sleep(.005)
+    offscreen_canvas.Clear()
+
+def parseDateString(year, month, day, weekday, showDayOfWeek=False):
+    dateLabel = None
+    if showDayOfWeek: 
+        dateLabel =  "{dayOfWeek}. {zero}{day}-{zero1}{month}".format(
+            zero="0" if day < 10 else "", 
+            zero1="0" if month < 10 else "",
+            month=month,
+            dayOfWeek=["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][weekday],
+            day=day
+        )
+    else:
+        dateLabel =  "{zero}{day}.{zero1}{month}.{year}".format(
+            zero="0" if day < 10 else "", zero1="0" if month < 10 else "", year=year, month=month, day=day
+        )
+        return dateLabel
+    
+def parseTimeString(hours, minutes, seconds):
+    periodLabel = "AM" if hours <= 11 else "PM"
+    hours = hours - 12 if hours > 12 else hours 
+    timeLabel =  "{zero}{hours}{colon}{minutes:02d}".format(
+        zero="0" if hours < 10 else "", 
+        hours=hours, minutes=minutes,
+        colon=" " if seconds % 2 == 0 else ":"
+    )
+    return timeLabel, periodLabel
+
+# -------------------------------------------------- Clock : End -------------------------------------------------  
 
 try:
     print("Press CTRL-C to stop.")
     while True:
+        loop()
         time.sleep(1000)
 
 except KeyboardInterrupt:
