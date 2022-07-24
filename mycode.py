@@ -34,7 +34,7 @@ font = graphics.Font()
 font.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 current_time = "12:00pm"
 color_time = graphics.Color(200, 160, 15)
-graphics.DrawText(offscreen_canvas, font, 1, 9, color_time ,current_time)
+graphics.DrawText(offscreen_canvas, font, 1, 19, color_time ,current_time)
 
 
 offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
@@ -44,7 +44,7 @@ offscreen_canvas.Clear()
 try:
     print("Press CTRL-C to stop.")
     while True:
-        time.sleep(100)
+        time.sleep(1000)
 
 except KeyboardInterrupt:
     sys.exit(0)
