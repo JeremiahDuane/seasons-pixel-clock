@@ -1,19 +1,26 @@
 #!/usr/bin/env python
 import time
 import sys
+import RPi.GPIO as GPIO
 from datetime import datetime, timedelta
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
 from scene import Scene
 from rgb import RGB
 
-#---------------- START: GLOBALS ----------------#
+#---------------- GLOBALS ----------------#
 MATRIX = None
 FONT_TITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE = graphics.Font()
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
-#------ START: Configuration for the matrix -----#
+
+BUTTON_A_PIN = 5
+BUTTON_A_IS_PRESSED = False
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+#------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
 options.cols =  64
@@ -34,7 +41,15 @@ options.gpio_slowdown = 3
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
+
 def loop():  
+    BUTTON_A_IS_PRESSED = GPIO.input(BUTTON_A_PIN)
+    print("button is")
+    if BUTTON_A_IS_PRESSED:
+        print("pressed")
+    else:
+        print("not pressed")
+
     now = time.localtime() 
     strDate = getDateString(now[0],now[1],now[2],now[6])
     strTime = getTimeString(now[3],now[4],now[5])
