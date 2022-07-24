@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import time
 import sys
-
 from datetime import datetime, timedelta
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
+from scene import Scene
 
 #---------------- START: GLOBALS ----------------#
 MATRIX = None
@@ -12,6 +12,13 @@ FONT_TITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE = graphics.Font()
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
+
+SCENES = [
+    Scene(0xFFFFFF, 0xFFFFFF, "/bmps/blank.bmp", "/bmps/blank.bmp"),                 # -0-  Notification 
+    Scene(0xFFFFFF, 0x40FFFF, "/bmps/snowman_1.bmp", "/bmps/snowman_2.bmp"),         # -1-  January Snowman
+    Scene(0xFF9000, 0x856035, "/bmps/sunflower_1.bmp", "/bmps/sunflower_2.bmp"),     # -8-  August Sunflowers
+    Scene(0xFFFFFF, 0x40FFFF, "/bmps/wreath_1.bmp", "/bmps/wreath_2.bmp")            # -12- December Wreath
+]
 #------ START: Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -41,7 +48,7 @@ def loop():
     offscreen_canvas = matrix.CreateFrameCanvas()
     clrCurrentPrimary = graphics.Color(200, 160, 15)
     clrCurrentSecondary = graphics.Color(240, 120, 15)
-    strImagePath = "/home/jgage/code/seasons-pixel-clock/bmps/sunflower_1.bmp"
+    strImagePath = "./bmps/sunflower_1.bmp"
     image = Image.open(strImagePath)
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
     offscreen_canvas.SetImage(image.convert('RGB'))  
