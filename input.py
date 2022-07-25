@@ -16,15 +16,15 @@ GPIO.setup(BUTTON_D_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_E_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def getInputOptions():
-    global SHOW_DAY_OF_WEEK
     
     def handleButton(isPressed, thenDo):
         if isPressed:
             thenDo()
 
     def btnAHandler():
-        print("Button A Pressed")
+        global SHOW_DAY_OF_WEEK
         SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
+        print("Button A Pressed")
     def btnBHandler():
         print("Button B Pressed")
     def btnCHandler():
