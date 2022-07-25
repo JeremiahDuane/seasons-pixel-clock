@@ -51,8 +51,6 @@ matrix = RGBMatrix(options = options)
 
 def loop():  
     handleButton(GPIO.input(BUTTON_A_PIN), btnAHandler)
-    if GPIO.input(BUTTON_A_PIN):
-        print("pressed")
 
     #Clock
     now = time.localtime() 
@@ -169,8 +167,8 @@ def check_notifications():
     
     print(CURRENT_NOTIFICATION.getContent())
 
-def handleButton(isPressed, thenDo):
-    if isPressed:
+def handleButton(isReleased, thenDo):
+    if not isReleased:
         thenDo()
 
 def btnAHandler():
