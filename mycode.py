@@ -92,11 +92,11 @@ def getDateString(year, month, day, weekday, showDayOfWeek=False):
         return dateLabel
     
 def getTimeString(hour, minute, second):
-    hours = hours - 12 if hours > 12 else hours 
-    timeLabel =  "{zero}{hours}{colon}{minutes:02d}".format(
-        zero="0" if hours < 10 else "", 
-        hours=hours, minutes=minutes,
-        colon=" " if seconds % 2 == 0 else ":"
+    hour = hour - 12 if hour > 12 else hours 
+    timeLabel =  "{zero}{hour}{colon}{minutes:02d}".format(
+        zero="0" if hour < 10 else "", 
+        hours=hour, minutes=minute,
+        colon=" " if second % 2 == 0 else ":"
     )
     return timeLabel
 
