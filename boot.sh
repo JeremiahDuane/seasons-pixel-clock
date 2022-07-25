@@ -1,0 +1,1 @@
+cd ~/code/seasons-pixel-clock && git fetch && git pull && sudo python mycode.py
