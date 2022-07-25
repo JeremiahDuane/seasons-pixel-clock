@@ -19,6 +19,7 @@ BUTTON_A_PIN = 5
 BUTTON_A_IS_PRESSED = False
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
@@ -43,9 +44,9 @@ matrix = RGBMatrix(options = options)
 
 
 def loop():  
-    BUTTON_A_IS_PRESSED = GPIO.input(BUTTON_A_PIN)
     print("button is")
-    if BUTTON_A_IS_PRESSED:
+    print(GPIO.input(BUTTON_A_PIN))
+    if GPIO.input(BUTTON_A_PIN):
         print("pressed")
     else:
         print("not pressed")
