@@ -81,7 +81,7 @@ def getDateString(year, month, day, weekday):
     global SHOW_DAY_OF_WEEK
     dateLabel = None
     if SHOW_DAY_OF_WEEK: 
-        dateLabel =  "{dayOfWeek}. {zero}{day}-{zero1}{month}".format(
+        dateLabel =  "{dayOfWeek} {zero}{day}-{zero1}{month}".format(
             zero="0" if day < 10 else "", 
             zero1="0" if month < 10 else "",
             month=month,
