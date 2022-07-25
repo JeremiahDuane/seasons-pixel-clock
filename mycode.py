@@ -120,7 +120,7 @@ def getScene(year, month, day, weekday):
     ]
     
     IsSpring = False
-    IsSummer = False
+    IsSummer = True
     IsFall = False
     IsWinter = False
 
