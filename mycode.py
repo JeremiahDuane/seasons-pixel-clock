@@ -53,6 +53,7 @@ def loop():
         print("pressed")
 
     #Clock
+    now = time.localtime() 
     year = now[0]
     month = now[1]
     day = now[2]
@@ -61,7 +62,6 @@ def loop():
     second =  now[5]
     weekday = now[6]
     
-    now = time.localtime() 
     strDate = getDateString(year, month, day, weekday)
     strTime = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
