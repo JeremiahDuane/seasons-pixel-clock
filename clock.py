@@ -34,7 +34,7 @@ def getClockCanvas(cvsClock, showDayOfWeek=False):
 
     #Draw
     image = Image.open(strImagePath)
-    image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
+    image.thumbnail((matrix["width"], matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
 
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
