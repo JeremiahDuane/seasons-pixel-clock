@@ -1,6 +1,8 @@
 import requests
 from secrets import secrets
 
+NOTIFICATION_IS_NEW = True
+
 class Notification:    
     def __init__(self, id, content, date):      
         self.id = id            
@@ -21,7 +23,6 @@ class Notification:
 
 def getNotification():
     global NOTIFICATION_IS_NEW
-    global CURRENT_NOTIFICATION
 
     if requests != None:
         url = secrets["api_read-unread"]
@@ -32,11 +33,13 @@ def getNotification():
         messages = data['messages']
         if len(messages) > 0:
             for message in messages:
+                currentNotification = None
                 notification = Notification(message["eventId"], message["content"], message["date"])
 
                 # Only store the newest message.
-                if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
-                    CURRENT_NOTIFICATION = notification
+                if currentNotification == None or notification.getDate() > currentNotification.getDate():
+                    currentNotification = notification
                     NOTIFICATION_IS_NEW = True
     
-    print(CURRENT_NOTIFICATION.getContent())
+    print(currentNotification.getContent())
+    return currentNotification
