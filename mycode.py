@@ -5,7 +5,6 @@ import RPi.GPIO as GPIO
 import requests
 
 from datetime import datetime, timedelta
-from code import SHOW_DAY_OF_WEEK
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
 from scene import Scene
