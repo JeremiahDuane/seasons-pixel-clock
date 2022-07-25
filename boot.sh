@@ -1,1 +1,1 @@
-cd /home/jgage/code/seasons-pixel-clock && git fetch && git pull && sudo python mycode.py
+sudo python3 mycode.py
