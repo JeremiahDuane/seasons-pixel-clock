@@ -63,7 +63,6 @@ def loop():
     second =  now[5]
     weekday = now[6]
     
-    print(hour)
     strDate = getDateString(year, month, day, weekday)
     strTime = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
@@ -94,8 +93,10 @@ def getDateString(year, month, day, weekday, showDayOfWeek=False):
         return dateLabel
     
 def getTimeString(hour, minute, second):
-    print(hour)
-    hour = (hour - 12) if hour > 12 else hour 
+    if hour == 0:
+        hour = 12
+    elif hour > 12:
+        hour = hour - 12
     timeLabel =  "{zero}{hour}{colon}{minute:02d}".format(
         zero="0" if hour < 10 else "", 
         hour=hour, minute=minute,
