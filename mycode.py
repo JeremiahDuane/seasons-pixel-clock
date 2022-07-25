@@ -21,6 +21,7 @@ FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-su
 
 BUTTON_A_PIN = 6
 BUTTON_A_IS_PRESSED = False
+
 NOTIFICATION_IS_UNREAD = True
 CURRENT_NOTIFICATION = None
 
@@ -92,7 +93,7 @@ def getDateString(year, month, day, weekday, showDayOfWeek=False):
         return dateLabel
     
 def getTimeString(hour, minute, second):
-    hour = hour - 12 if hour > 12 else hour 
+    hour = (hour - 12) if hour > 12 else hour 
     timeLabel =  "{zero}{hour}{colon}{minute:02d}".format(
         zero="0" if hour < 10 else "", 
         hour=hour, minute=minute,
@@ -101,7 +102,7 @@ def getTimeString(hour, minute, second):
     return timeLabel
 
 def getPeriodString(hours):
-    periodLabel = "AM" if hours <= 11 else "PM"
+    periodLabel = "AM" if hours < 12 else "PM"
     return periodLabel
 
 def getScene(year, month, day, weekday):
