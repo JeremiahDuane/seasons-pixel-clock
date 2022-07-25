@@ -19,7 +19,7 @@ BUTTON_A_PIN = 5
 BUTTON_A_IS_PRESSED = False
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(22, GPIO.OUT, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
