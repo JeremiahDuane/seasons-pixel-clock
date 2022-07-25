@@ -5,6 +5,7 @@ import RPi.GPIO as GPIO
 import requests
 
 from datetime import datetime, timedelta
+from code import SHOW_DAY_OF_WEEK
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
 from scene import Scene
@@ -20,10 +21,11 @@ FONT_SUBTITLE = graphics.Font()
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
 BUTTON_A_PIN = 24
-BUTTON_A_IS_PRESSED = False
 
 NOTIFICATION_IS_UNREAD = True
 CURRENT_NOTIFICATION = None
+
+SHOW_DAY_OF_WEEK = False
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -49,8 +51,9 @@ options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
 
-def loop():  
-    handleButton(GPIO.input(BUTTON_A_PIN), btnAHandler)
+def loop():
+    btnAIsPressed = not GPIO.input(BUTTON_A_PIN)
+    handleButton(btnAIsPressed, btnAHandler)
 
     #Clock
     now = time.localtime() 
@@ -75,9 +78,10 @@ def loop():
     #Draw
     drawToMatrix(clrCurrentPrimary, clrCurrentSecondary, currentImagePath, strTime, strDate, strPeriod)
 
-def getDateString(year, month, day, weekday, showDayOfWeek=False):
+def getDateString(year, month, day, weekday):
+    global SHOW_DAY_OF_WEEK
     dateLabel = None
-    if showDayOfWeek: 
+    if SHOW_DAY_OF_WEEK: 
         dateLabel =  "{dayOfWeek}. {zero}{day}-{zero1}{month}".format(
             zero="0" if day < 10 else "", 
             zero1="0" if month < 10 else "",
@@ -167,11 +171,13 @@ def check_notifications():
     
     print(CURRENT_NOTIFICATION.getContent())
 
-def handleButton(isReleased, thenDo):
-    if not isReleased:
+def handleButton(isPressed, thenDo):
+    if isPressed:
         thenDo()
 
 def btnAHandler():
+    global SHOW_DAY_OF_WEEK
+    SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
     print("Button was pressed")
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
