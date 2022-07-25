@@ -127,7 +127,7 @@ def getScene(year, month, day, weekday):
     if IsSummer:
         scene = scenes[2]
     else: 
-        scene = scenes[3]
+        scene = scenes[1]
 
     return scene
 
