@@ -15,11 +15,10 @@ FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-
 FONT_SUBTITLE = graphics.Font()
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
-BUTTON_A_PIN = 5
+BUTTON_A_PIN = 6
 BUTTON_A_IS_PRESSED = False
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(22, GPIO.OUT)
 GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
