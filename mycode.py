@@ -2,10 +2,14 @@
 import time
 import sys
 import RPi.GPIO as GPIO
+import secrets
+import requests
+
 from datetime import datetime, timedelta
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
 from PIL import Image
 from scene import Scene
+from notification import Notification
 from rgb import RGB
 
 #---------------- GLOBALS ----------------#
@@ -17,6 +21,8 @@ FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-su
 
 BUTTON_A_PIN = 6
 BUTTON_A_IS_PRESSED = False
+NOTIFICATION_IS_UNREAD = True
+CURRENT_NOTIFICATION = None
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -46,31 +52,28 @@ def loop():
     if GPIO.input(BUTTON_A_PIN):
         print("pressed")
 
+    #Clock
+    year = now[0]
+    month = now[1]
+    day = now[2]
+    hour = now[3]
+    minute = now[4]
+    second =  now[5]
+    weekday = now[6]
+    
     now = time.localtime() 
-    strDate = getDateString(now[0],now[1],now[2],now[6])
-    strTime = getTimeString(now[3],now[4],now[5])
-    strPeriod = getPeriodString(now[3])
-    scene = getScene(now[0],now[1],now[2],now[6])
+    strDate = getDateString(year, month, day, weekday)
+    strTime = getTimeString(hour, minute, second)
+    strPeriod = getPeriodString(hour)
+    scene = getScene(year, month, day, weekday)
 
-    offscreen_canvas = matrix.CreateFrameCanvas()
-
-    image = Image.open(scene.getBMP1() if now[5] % 2 == 0 else scene.getBMP2())
-    image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
-    offscreen_canvas.SetImage(image.convert('RGB'))  
-
+    #Scene
     clrCurrentPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrCurrentSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
+    currentImagePath = scene.getBMP1() if now[5] % 2 == 0 else scene.getBMP2()
 
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary, strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary, strTime)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrCurrentSecondary , "___")
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrCurrentPrimary, "___")
-    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, clrCurrentPrimary, strDate)
-    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, clrCurrentPrimary, strPeriod)
-
-    offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
-    time.sleep(.005)
-    offscreen_canvas.Clear()
+    #Draw
+    drawToMatrix(clrCurrentPrimary, clrCurrentSecondary, currentImagePath, strTime, strDate, strPeriod)
 
 def getDateString(year, month, day, weekday, showDayOfWeek=False):
     dateLabel = None
@@ -88,7 +91,7 @@ def getDateString(year, month, day, weekday, showDayOfWeek=False):
         )
         return dateLabel
     
-def getTimeString(hours, minutes, seconds):
+def getTimeString(hour, minute, second):
     hours = hours - 12 if hours > 12 else hours 
     timeLabel =  "{zero}{hours}{colon}{minutes:02d}".format(
         zero="0" if hours < 10 else "", 
@@ -121,14 +124,58 @@ def getScene(year, month, day, weekday):
 
     return scene
 
+def drawToMatrix(clrPrimary, clrSecondary, strImagePath, strTime, strDate, strPeriod):
+    offscreen_canvas = matrix.CreateFrameCanvas()
+
+    image = Image.open(strImagePath)
+    image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
+    offscreen_canvas.SetImage(image.convert('RGB'))  
+
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrSecondary, strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrPrimary, strTime)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 17, clrSecondary, "___")
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 2, 18, clrPrimary, "___")
+    graphics.DrawText(offscreen_canvas, FONT_SUBTITLE, 3, 29, clrPrimary, strDate)
+    graphics.DrawText(offscreen_canvas, FONT_TITLE, 42, 17, clrPrimary, strPeriod)
+
+    offscreen_canvas = matrix.SwapOnVSync(offscreen_canvas)
+    time.sleep(.005)
+    offscreen_canvas.Clear()
+
+def check_notifications():
+    global NOTIFICATION_IS_NEW
+    global CURRENT_NOTIFICATION
+
+    if requests != None:
+        url = secrets["api_read-unread"]
+        r = requests.post(url, data={}, headers={})
+        data = r.json()
+        r.close()
+
+        messages = data['messages']
+        if len(messages) > 0:
+            for message in messages:
+                notification = Notification(message["eventId"], message["content"], message["date"])
+
+                # Only store the newest message.
+                if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
+                    CURRENT_NOTIFICATION = notification
+                    NOTIFICATION_IS_NEW = True
+    
+    print(CURRENT_NOTIFICATION.getContent())
+
+
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
+last_check = None
 try:
     print("Press CTRL-C to stop.")
     while True:
         loop()
         time.sleep(1)
-
+        if last_check is None or time.monotonic() > last_check + 3600:
+            last_check = time.monotonic()
+            check_notifications()
 except KeyboardInterrupt:
     GPIO.cleanup()
     sys.exit(0)
