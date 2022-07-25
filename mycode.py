@@ -120,7 +120,7 @@ def getScene(year, month, day, weekday):
     ]
     
     IsSpring = False
-    IsSummer = True
+    IsSummer = False
     IsFall = False
     IsWinter = False
 
@@ -178,7 +178,6 @@ def handleButton(isPressed, thenDo):
 def btnAHandler():
     global SHOW_DAY_OF_WEEK
     SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
-    print("Button was pressed")
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
