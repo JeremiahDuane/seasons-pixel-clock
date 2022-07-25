@@ -63,6 +63,7 @@ def loop():
     second =  now[5]
     weekday = now[6]
     
+    print(hour)
     strDate = getDateString(year, month, day, weekday)
     strTime = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
