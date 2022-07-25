@@ -2,7 +2,6 @@
 import time
 import sys
 import RPi.GPIO as GPIO
-import secrets
 import requests
 
 from datetime import datetime, timedelta
@@ -11,6 +10,7 @@ from PIL import Image
 from scene import Scene
 from notification import Notification
 from rgb import RGB
+from secrets import secrets
 
 #---------------- GLOBALS ----------------#
 MATRIX = None
