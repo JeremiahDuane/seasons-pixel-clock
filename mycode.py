@@ -179,7 +179,7 @@ try:
         time.sleep(1)
         if last_check is None:
             last_check = time.monotonic()
-        elif time.monotonic() > last_check + 3600:
+        elif time.monotonic() > last_check + 60:
             last_check = time.monotonic()
             check_notifications()
         
