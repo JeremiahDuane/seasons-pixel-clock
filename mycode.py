@@ -177,9 +177,12 @@ try:
     while True:
         loop()
         time.sleep(1)
-        if last_check is None or time.monotonic() > last_check + 3600:
+        if last_check is None:
+            last_check = time.monotonic()
+        elif time.monotonic() > last_check + 3600:
             last_check = time.monotonic()
             check_notifications()
+        
 except KeyboardInterrupt:
     GPIO.cleanup()
     sys.exit(0)
