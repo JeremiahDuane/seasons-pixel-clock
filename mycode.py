@@ -19,7 +19,7 @@ FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-
 FONT_SUBTITLE = graphics.Font()
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
-BUTTON_A_PIN = 6
+BUTTON_A_PIN = 24
 BUTTON_A_IS_PRESSED = False
 
 NOTIFICATION_IS_UNREAD = True
@@ -50,6 +50,7 @@ matrix = RGBMatrix(options = options)
 
 
 def loop():  
+    handleButton(GPIO.input(BUTTON_A_PIN), btnAHandler)
     if GPIO.input(BUTTON_A_PIN):
         print("pressed")
 
@@ -168,7 +169,12 @@ def check_notifications():
     
     print(CURRENT_NOTIFICATION.getContent())
 
+def handleButton(isPressed, thenDo):
+    if isPressed:
+        thenDo()
 
+def btnAHandler():
+    print("Button was pressed")
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
