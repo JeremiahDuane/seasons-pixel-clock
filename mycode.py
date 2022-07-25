@@ -92,7 +92,8 @@ def getDateString(year, month, day, weekday):
         dateLabel =  "{zero}{day}.{zero1}{month}.{year}".format(
             zero="0" if day < 10 else "", zero1="0" if month < 10 else "", year=year, month=month, day=day
         )
-        return dateLabel
+    
+    return dateLabel
     
 def getTimeString(hour, minute, second):
     if hour == 0:
