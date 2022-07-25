@@ -43,12 +43,8 @@ matrix = RGBMatrix(options = options)
 
 
 def loop():  
-    print("button is")
-    print(GPIO.input(BUTTON_A_PIN))
     if GPIO.input(BUTTON_A_PIN):
         print("pressed")
-    else:
-        print("not pressed")
 
     now = time.localtime() 
     strDate = getDateString(now[0],now[1],now[2],now[6])
