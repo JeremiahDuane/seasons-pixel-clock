@@ -34,8 +34,10 @@ options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
 def loop():
+
     showDayOfWeek = getInputOptions()
-    clock = getClockCanvas(showDayOfWeek)
+    
+    clock = getClockCanvas(matrix.CreateFrameCanvas(), showDayOfWeek)
 
     clock = matrix.SwapOnVSync(clock)
     time.sleep(.005)

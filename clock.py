@@ -11,7 +11,7 @@ FONT_SUBTITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
-def getClockCanvas(showDayOfWeek=False):
+def getClockCanvas(cvsClock, showDayOfWeek=False):
     #Clock
     now = time.localtime() 
     year = now[0]
@@ -33,8 +33,6 @@ def getClockCanvas(showDayOfWeek=False):
     strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
 
     #Draw
-    cvsClock = matrix.CreateFrameCanvas()
-
     image = Image.open(strImagePath)
     image.thumbnail((matrix.width, matrix.height), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
