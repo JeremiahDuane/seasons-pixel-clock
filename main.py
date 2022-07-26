@@ -2,8 +2,8 @@
 import time
 import sys
 
-from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
-from notification import fetchNotification, getNotificationCanvas
+from rgbmatrix import RGBMatrix, RGBMatrixOptions
+from notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 import RPi.GPIO as GPIO
 
 from clock import getClockCanvas
