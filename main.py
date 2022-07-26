@@ -53,6 +53,7 @@ def loop():
 
     if cycleUp:
         CURRENT_PAGE+=1
+        ALERT_NOTIFICATION = False
         
     if CURRENT_PAGE == 1:
         canvas = notification
