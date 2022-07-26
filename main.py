@@ -61,7 +61,6 @@ def loop():
         canvas = clock
 
     if ALERT_NOTIFICATION and second % 2 == 0:
-        print("tick")
         canvas = getAlertCanvas(canvas)
 
     display = matrix.SwapOnVSync(canvas)
@@ -70,11 +69,15 @@ def loop():
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
+debug = 0
 try:
     print("Press CTRL-C to stop.")
     while True:
         loop()
         time.sleep(1)
+        debug+=1
+        print(debug)
+
         if last_check is None:
             last_check = time.monotonic()
         elif time.monotonic() > last_check + 60:
