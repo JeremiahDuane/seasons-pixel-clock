@@ -38,9 +38,17 @@ def loop():
     display = None
     canvas = None
 
-    showDayOfWeek, cycleUp = getInputOptions()
+    now = time.localtime() 
+    year = now[0]
+    month = now[1]
+    day = now[2]
+    hour = now[3]
+    minute = now[4]
+    second =  now[5]
+    weekday = now[6]
 
-    clock = getClockCanvas(matrix.CreateFrameCanvas(), showDayOfWeek)
+    showDayOfWeek, cycleUp = getInputOptions()
+    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, showDayOfWeek)
     notification = getNotificationCanvas(matrix.CreateFrameCanvas())
 
     if cycleUp:
@@ -52,7 +60,7 @@ def loop():
         CURRENT_PAGE = 0
         canvas = clock
 
-    if ALERT_NOTIFICATION:
+    if ALERT_NOTIFICATION and second % 2 == 0:
         getAlertCanvas(canvas)
 
     display = matrix.SwapOnVSync(canvas)

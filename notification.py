@@ -113,6 +113,6 @@ def getAlertCanvas(cvsAlert):
     scene = SCENES[0]
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
 
-    graphics.DrawText(cvsAlert, FONT_TITLE, 50, 0, clrPrimary, config_notification["alert_icon"])
+    graphics.DrawText(cvsAlert, FONT_TITLE, 50, 6, clrPrimary, config_notification["alert_icon"])
 
     return cvsAlert

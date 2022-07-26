@@ -1,4 +1,3 @@
-import time
 from rgbmatrix import graphics
 from PIL import Image
 from scene import SCENES
@@ -10,17 +9,8 @@ FONT_SUBTITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
-def getClockCanvas(cvsClock, showDayOfWeek=False):
+def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday, showDayOfWeek=False):
     #Clock
-    now = time.localtime() 
-    year = now[0]
-    month = now[1]
-    day = now[2]
-    hour = now[3]
-    minute = now[4]
-    second =  now[5]
-    weekday = now[6]
-    
     strDate = getDateString(year, month, day, weekday, showDayOfWeek)
     strTime = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
