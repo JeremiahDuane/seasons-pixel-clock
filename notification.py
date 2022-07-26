@@ -32,6 +32,7 @@ class Notification:
 
 def fetchNotification():
     global NOTIFICATION_IS_NEW
+    global CURRENT_NOTIFICATION
 
     if requests != None:
         url = secrets["api_read-unread"]
