@@ -53,7 +53,7 @@ def fetchNotification():
     print(currentNotification.getContent())
 
 def getNotificationCanvas(cvsNotification):
-    strContent = getContentString()
+    arrContent = getContentString()
 
     #Scene
     scene = SCENES[0]
@@ -66,12 +66,16 @@ def getNotificationCanvas(cvsNotification):
     image.thumbnail((matrix["width"], matrix["height"]), Image.ANTIALIAS)
     cvsNotification.SetImage(image.convert('RGB'))  
 
-    graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, 6, clrPrimary, strContent)
+    i = 0
+    for line in arrContent:
+        i+=1
+        graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, i*6, clrPrimary, line)
 
     return cvsNotification
 
 def getContentString():
-    result = "No messages, or \nmessages loading..."
+    contentArr = []
+
     def getBitWidth(char):
         if char in ["M", "W", "^"]:
             return 6
@@ -86,7 +90,6 @@ def getContentString():
     if CURRENT_NOTIFICATION != None:        
         bitCount = 0
         result = ""
-        contentArr = []
         for char in CURRENT_NOTIFICATION.getContent():
             if (bitCount + getBitWidth(char)) <= 64:
                 bitCount += getBitWidth(char)
@@ -96,9 +99,7 @@ def getContentString():
                 bitCount = 0
                 result = char
         contentArr.append(result.strip())
+    else:
+        contentArr = ["No messages, or", "messages loading..."]
 
-        for str in contentArr:
-            result += str + "\n"
-
-    print(result)
-    return result
+    return contentArr
