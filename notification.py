@@ -3,7 +3,7 @@ import requests
 from rgbmatrix import graphics
 from PIL import Image
 from scene import SCENES
-from config import matrix
+from config import config_matrix, config_notification
 from secrets import secrets
 
 NOTIFICATION_IS_NEW = True
@@ -51,6 +51,7 @@ def fetchNotification():
                     NOTIFICATION_IS_NEW = True
     
     print(CURRENT_NOTIFICATION.getContent())
+    return NOTIFICATION_IS_NEW
 
 def getNotificationCanvas(cvsNotification):
     arrContent = getContentString()
@@ -63,13 +64,13 @@ def getNotificationCanvas(cvsNotification):
 
     #Draw
     image = Image.open(strImagePath)
-    image.thumbnail((matrix["width"], matrix["height"]), Image.ANTIALIAS)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsNotification.SetImage(image.convert('RGB'))  
 
     i = 0
     for line in arrContent:
         i+=1
-        graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, i*6, clrPrimary, line)
+        graphics.DrawText(cvsNotification, FONT_SUBTITLE, 0, -1 + i*6, clrPrimary, line)
 
     return cvsNotification
 
@@ -91,7 +92,7 @@ def getContentString():
         bitCount = 0
         result = ""
         for char in CURRENT_NOTIFICATION.getContent():
-            if (bitCount + getBitWidth(char)) <= 64:
+            if (bitCount + getBitWidth(char)) < 63:
                 bitCount += getBitWidth(char)
                 result += char
             else:
@@ -103,3 +104,12 @@ def getContentString():
         contentArr = ["No messages, or", "messages are", "loading..."]
 
     return contentArr
+
+def getAlertCanvas(cvsAlert):
+    #Scene
+    scene = SCENES[0]
+    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
+
+    graphics.DrawText(cvsAlert, FONT_SUBTITLE, 0, 26, clrPrimary, config_notification["alert_char"])
+
+    return cvsAlert

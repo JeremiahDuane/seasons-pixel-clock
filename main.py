@@ -11,7 +11,7 @@ from input import getInputOptions
 
 #---------------- GLOBALS ----------------#
 CURRENT_PAGE = 0
-
+ALERT_NOTIFICATION = False
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -36,6 +36,7 @@ matrix = RGBMatrix(options = options)
 def loop():
     global CURRENT_PAGE
     display = None
+    canvas = None
 
     showDayOfWeek, cycleUp = getInputOptions()
 
@@ -44,13 +45,17 @@ def loop():
 
     if cycleUp:
         CURRENT_PAGE+=1
-
+        
     if CURRENT_PAGE == 1:
-        display = matrix.SwapOnVSync(notification)
+        canvas = notification
     else:
         CURRENT_PAGE = 0
-        display = matrix.SwapOnVSync(clock)
+        canvas = clock
 
+    if ALERT_NOTIFICATION:
+        getAlertCanvas(canvas)
+
+    display = matrix.SwapOnVSync(canvas)
     time.sleep(.005)
     display.Clear()
 # -------------------------------------------------- Clock : End -------------------------------------------------  
@@ -65,7 +70,7 @@ try:
             last_check = time.monotonic()
         elif time.monotonic() > last_check + 60:
             last_check = time.monotonic()
-            fetchNotification()
+            ALERT_NOTIFICATION = fetchNotification()
         
 except KeyboardInterrupt:
     GPIO.cleanup()

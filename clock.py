@@ -2,7 +2,7 @@ import time
 from rgbmatrix import graphics
 from PIL import Image
 from scene import SCENES
-from config import matrix
+from config import config_matrix
 
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
@@ -33,7 +33,7 @@ def getClockCanvas(cvsClock, showDayOfWeek=False):
 
     #Draw
     image = Image.open(strImagePath)
-    image.thumbnail((matrix["width"], matrix["height"]), Image.ANTIALIAS)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
 
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
