@@ -16,16 +16,18 @@ GPIO.setup(BUTTON_D_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_E_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def getInputOptions():
+    cycleUp = False
     
     def handleButton(isPressed, thenDo):
         if isPressed:
             thenDo()
-
     def btnAHandler():
         global SHOW_DAY_OF_WEEK
         SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
         print("Button A Pressed")
     def btnBHandler():
+        nonlocal cycleUp
+        cycleUp = True
         print("Button B Pressed")
     def btnCHandler():
         print("Button C Pressed")
@@ -40,4 +42,4 @@ def getInputOptions():
     handleButton(not GPIO.input(BUTTON_D_PIN), btnDHandler)
     handleButton(not GPIO.input(BUTTON_E_PIN), btnEHandler)
 
-    return SHOW_DAY_OF_WEEK
+    return SHOW_DAY_OF_WEEK, cycleUp
