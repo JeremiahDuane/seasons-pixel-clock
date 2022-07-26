@@ -9,7 +9,10 @@ from secrets import secrets
 NOTIFICATION_IS_NEW = True
 CURRENT_NOTIFICATION = None
 
+FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
+
+FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
 class Notification:    
@@ -110,6 +113,6 @@ def getAlertCanvas(cvsAlert):
     scene = SCENES[0]
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
 
-    graphics.DrawText(cvsAlert, FONT_SUBTITLE, 0, 26, clrPrimary, config_notification["alert_icon"])
+    graphics.DrawText(cvsAlert, FONT_TITLE, 50, 0, clrPrimary, config_notification["alert_icon"])
 
     return cvsAlert
