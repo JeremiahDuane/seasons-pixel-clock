@@ -66,7 +66,7 @@ def getNotificationCanvas(cvsNotification):
     image.thumbnail((matrix["width"], matrix["height"]), Image.ANTIALIAS)
     cvsNotification.SetImage(image.convert('RGB'))  
 
-    graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, 1, clrPrimary, strContent)
+    graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, 5, clrPrimary, strContent)
 
     return cvsNotification
 
