@@ -35,6 +35,8 @@ matrix = RGBMatrix(options = options)
 
 def loop():
     global CURRENT_PAGE
+    global ALERT_NOTIFICATION
+    
     display = None
     canvas = None
 
