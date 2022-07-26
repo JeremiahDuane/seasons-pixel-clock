@@ -3,14 +3,13 @@ import time
 import sys
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions, graphics
-from notification import getNotification
+from notification import fetchNotification, getNotificationCanvas
 import RPi.GPIO as GPIO
 
 from clock import getClockCanvas
 from input import getInputOptions
 
 #---------------- GLOBALS ----------------#
-CURRENT_NOTIFICATION = None
 CURRENT_PAGE = 0
 
 #------ Configuration for the matrix -----#
@@ -41,13 +40,13 @@ def loop():
     showDayOfWeek, cycleUp = getInputOptions()
 
     clock = getClockCanvas(matrix.CreateFrameCanvas(), showDayOfWeek)
-    clock2 = getClockCanvas(matrix.CreateFrameCanvas(), False)
+    notification = getNotificationCanvas(matrix.CreateFrameCanvas())
 
     if cycleUp:
         CURRENT_PAGE+=1
 
     if CURRENT_PAGE == 1:
-        display = matrix.SwapOnVSync(clock2)
+        display = matrix.SwapOnVSync(notification)
     else:
         CURRENT_PAGE = 0
         display = matrix.SwapOnVSync(clock)
@@ -66,7 +65,7 @@ try:
             last_check = time.monotonic()
         elif time.monotonic() > last_check + 60:
             last_check = time.monotonic()
-            CURRENT_NOTIFICATION = getNotification()
+            fetchNotification()
         
 except KeyboardInterrupt:
     GPIO.cleanup()
