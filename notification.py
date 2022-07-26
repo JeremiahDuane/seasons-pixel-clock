@@ -4,6 +4,7 @@ from rgbmatrix import graphics
 from PIL import Image
 from scene import SCENES
 from config import matrix
+from secrets import secrets
 
 NOTIFICATION_IS_NEW = True
 CURRENT_NOTIFICATION = None
@@ -70,7 +71,7 @@ def getNotificationCanvas(cvsNotification):
     return cvsNotification
 
 def getContentString():
-    result = ""
+    result = "No messages, or messages loading..."
     def getBitWidth(char):
         if char in ["M", "W", "^"]:
             return 6
@@ -99,4 +100,5 @@ def getContentString():
         for str in contentArr:
             result += str + "\n"
 
+    print(result)
     return result
