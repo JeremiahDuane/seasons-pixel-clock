@@ -34,9 +34,8 @@ class Notification:
         return self.date
 
 def fetchNotification():
-    global NOTIFICATION_IS_NEW
     global CURRENT_NOTIFICATION
-
+    isNew = False
     if requests != None:
         url = secrets["api_read-unread"]
         r = requests.post(url, data={}, headers={})
@@ -51,10 +50,10 @@ def fetchNotification():
                 # Only store the newest message.
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
                     CURRENT_NOTIFICATION = notification
-                    NOTIFICATION_IS_NEW = True
+                    isNew = True
     
     print(CURRENT_NOTIFICATION.getContent())
-    return NOTIFICATION_IS_NEW
+    return isNew
 
 def getNotificationCanvas(cvsNotification):
     arrContent = getContentString()
