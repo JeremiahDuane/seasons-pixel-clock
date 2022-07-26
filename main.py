@@ -61,6 +61,7 @@ def loop():
         canvas = clock
 
     if ALERT_NOTIFICATION:
+        print("tick")
         canvas = getAlertCanvas(canvas)
 
     display = matrix.SwapOnVSync(canvas)
