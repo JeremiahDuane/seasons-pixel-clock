@@ -60,8 +60,8 @@ def loop():
         CURRENT_PAGE = 0
         canvas = clock
 
-    if ALERT_NOTIFICATION and second % 2 == 0:
-        getAlertCanvas(canvas)
+    if ALERT_NOTIFICATION
+        canvas = getAlertCanvas(canvas)
 
     display = matrix.SwapOnVSync(canvas)
     time.sleep(.005)
