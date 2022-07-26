@@ -66,12 +66,12 @@ def getNotificationCanvas(cvsNotification):
     image.thumbnail((matrix["width"], matrix["height"]), Image.ANTIALIAS)
     cvsNotification.SetImage(image.convert('RGB'))  
 
-    graphics.DrawText(cvsNotification, FONT_SUBTITLE, 2, 17, clrPrimary, strContent)
+    graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, 1, clrPrimary, strContent)
 
     return cvsNotification
 
 def getContentString():
-    result = "No messages, or messages loading..."
+    result = "No messages, or \nmessages loading..."
     def getBitWidth(char):
         if char in ["M", "W", "^"]:
             return 6
