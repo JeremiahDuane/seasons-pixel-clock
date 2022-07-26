@@ -42,15 +42,14 @@ def fetchNotification():
         messages = data['messages']
         if len(messages) > 0:
             for message in messages:
-                currentNotification = None
                 notification = Notification(message["eventId"], message["content"], message["date"])
 
                 # Only store the newest message.
-                if currentNotification == None or notification.getDate() > currentNotification.getDate():
-                    currentNotification = notification
+                if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
+                    CURRENT_NOTIFICATION = notification
                     NOTIFICATION_IS_NEW = True
     
-    print(currentNotification.getContent())
+    print(CURRENT_NOTIFICATION.getContent())
 
 def getNotificationCanvas(cvsNotification):
     arrContent = getContentString()
@@ -100,6 +99,6 @@ def getContentString():
                 result = char
         contentArr.append(result.strip())
     else:
-        contentArr = ["No messages, or", "messages loading..."]
+        contentArr = ["No messages, or", "messages are", "loading..."]
 
     return contentArr
