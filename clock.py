@@ -10,10 +10,12 @@ FONT_SUBTITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
-COUNT_DAYS = 0
-COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)    
+COUNT_END = datetime.now()
+COUNT_START = datetime.now()    
+
 SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
+
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
     strDate = getDateString(year, month, day, weekday)
@@ -91,12 +93,8 @@ def handleButtons_Clock(B, C, D):
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
-    global COUNT_DAYS
-    global COUNT_TIME
-
     #Clock
-    strTime = getCountdownTimeString(COUNT_TIME.hour, COUNT_TIME.minute, COUNT_TIME.second)
-    strDay = getCountdownDayString(COUNT_DAYS)
+    strDay, strTime = getCountdownString(year, month, day, hour, minute, second)
     scene = getScene(year, month, day, weekday)
 
     #Scene
@@ -111,54 +109,54 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 
     return cvsClock
 
-def getCountdownDayString(days):
-    timeLabel =  "{days:02d} remaining".format(
-        days=days
-    )
-    return timeLabel
+def getCountdownString(year, month, day, hour, minute, second):
+    global COUNT_END
+    global COUNT_START
 
-def getCountdownTimeString(hour, minute, second):
-    timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
-        hour=hour, minute=minute, second=second
+    dayLabel =  "{days:02d} remaining".format(
+        days=(COUNT_END - COUNT_START).days
     )
-    return timeLabel
+    timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
+        hour=COUNT_END.hour-hour, minute=COUNT_END.minute-minute, second=COUNT_END.second-second
+    )
+    return dayLabel, timeLabel
 
 def handleButtons_Countdown(B, C, D):
     global SELECTED_OPTION
-    def addDay():
-        global COUNT_DAYS
-        COUNT_DAYS = COUNT_DAYS + 1
-        print("Adding days", COUNT_DAYS)
-    def remDay():
-        global COUNT_DAYS
-        COUNT_DAYS = COUNT_DAYS - 1
-    def addHour():
-        global COUNT_TIME
-        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
-    def remHour():        
-        global COUNT_TIME
-        COUNT_TIME = COUNT_TIME - timedelta(hours=1)
-    def addMinute():
-        global COUNT_TIME
-        COUNT_TIME = COUNT_TIME + timedelta(minutes=1)
-    def remMinute():
-        global COUNT_TIME
-        COUNT_TIME = COUNT_TIME - timedelta(minutes=1)           
+    global COUNT_END
+    global COUNT_START
+
+    def addDay(dTime):
+        dTime = dTime + timedelta(hours=1)
+    def remDay(dTime):
+        dTime = dTime + timedelta(hours=1)
+    def addHour(dTime):
+        dTime = dTime + timedelta(hours=1)
+    def remHour(dTime):        
+        dTime = dTime - timedelta(hours=1)
+    def addMinute(dTime):
+        dTime = dTime + timedelta(minutes=1)
+    def remMinute(dTime):
+        dTime = dTime - timedelta(minutes=1)           
 
     if B:
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
     print(SELECTED_OPTION, B, C, D)
     if C:
         if SELECTED_OPTION == 1:
-           addDay()
+           addDay(COUNT_END)
         elif SELECTED_OPTION == 2:
-            addHour()
+            addHour(COUNT_END)
         elif SELECTED_OPTION == 3:
-            addMinute()
+            addMinute(COUNT_END)
+        else:
+            COUNT_START = datetime.now()
     if D:
         if SELECTED_OPTION == 1:
-           remDay()
+           remDay(COUNT_END)
         elif SELECTED_OPTION == 2:
-            remHour()
+            remHour(COUNT_END)
         elif SELECTED_OPTION == 3:
-            remMinute()
+            remMinute(COUNT_END)
+        else:
+            COUNT_START = datetime.now()
