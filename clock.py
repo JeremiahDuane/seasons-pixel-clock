@@ -13,7 +13,7 @@ FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-su
 COUNT_DAYS = 0
 COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)    
 SHOW_DAY_OF_WEEK = False
-
+SELECTED_OPTION = 0
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
     strDate = getDateString(year, month, day, weekday)
@@ -112,6 +112,7 @@ def getCountdownString(day, hour, minute, second):
     return timeLabel
 
 def handleButtons_Countdown(B, C, D):
+    global SELECTED_OPTION
     print("Handling buttons")
     def addDay():
         COUNT_TIME = COUNT_TIME + timedelta(days=1)
@@ -126,22 +127,20 @@ def handleButtons_Countdown(B, C, D):
     def remMinute():
         COUNT_TIME = COUNT_TIME - timedelta(minutes=1)           
 
-
-    selectedOption = 0
     if B:
-        selectedOption = selectedOption + 1 if selectedOption < 3 else 0
-    print(selectedOption, B, C, D)
+        SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
+    print(SELECTED_OPTION, B, C, D)
     if C:
-        if selectedOption == 1:
+        if SELECTED_OPTION == 1:
            addDay()
-        elif selectedOption == 2:
+        elif SELECTED_OPTION == 2:
             addHour()
-        elif selectedOption == 3:
+        elif SELECTED_OPTION == 3:
             addMinute()
     if D:
-        if selectedOption == 1:
+        if SELECTED_OPTION == 1:
            remDay()
-        elif selectedOption == 2:
+        elif SELECTED_OPTION == 2:
             remHour()
-        elif selectedOption == 3:
+        elif SELECTED_OPTION == 3:
             remMinute()
