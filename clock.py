@@ -149,36 +149,29 @@ def handleButtons_Countdown(B, C, D):
     global COUNT_DAY
     global COUNT_HOUR
     global COUNT_MINUTE
-
-
-    def add(dTime):
-        dTime = dTime + 1
-    def rem(dTime):
-        dTime = dTime - 1        
-
     if B:
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
     print(SELECTED_OPTION, B, C, D)
 
     if SELECTED_OPTION == 0:
         if C:
-            add(COUNT_DAY)
+            COUNT_DAY = COUNT_DAY+1
         if D:
-            rem(COUNT_DAY)
+            COUNT_DAY = COUNT_DAY-1
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 1:
         if C:
-            add(COUNT_HOUR)
+            COUNT_HOUR = COUNT_HOUR+1
         if D:
-            rem(COUNT_HOUR)
+            COUNT_HOUR = COUNT_HOUR-1
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 2:
         if C:
-            add(COUNT_MINUTE)
+            COUNT_MINUTE = COUNT_MINUTE+1
         if D:
-            rem(COUNT_MINUTE)
+            COUNT_MINUTE = COUNT_MINUTE-1
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 3:
