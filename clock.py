@@ -2,12 +2,17 @@ from rgbmatrix import graphics
 from PIL import Image
 from scene import SCENES
 from config import config_matrix
+from datetime import datetime, timedelta
 
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
 
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
+
+COUNT_DAYS = 0
+COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)    
+SHOW_DAY_OF_WEEK = False
 
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday, showDayOfWeek=False):
     #Clock
@@ -35,7 +40,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday, sh
 
     return cvsClock
 
-def getDateString(year, month, day, weekday, showDayOfWeek):
+def getDateString(year, month, day, weekday):
     dateLabel = None
     if showDayOfWeek: 
         dateLabel =  "{dayOfWeek} {zero}{day}-{zero1}{month}".format(
@@ -80,6 +85,10 @@ def getScene(year, month, day, weekday):
 
     return scene
 
+def handleButtons_Clock(B, C, D):
+    if B:
+        SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK   
+
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday, count_days, count_time):
     #Clock
@@ -102,3 +111,35 @@ def getCountdownString(day, hour, minute, second):
         hour=hour, minute=minute, second=second
     )
     return timeLabel
+
+def handleButtons_Countdown(B, C, D):
+    def addDay():
+        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
+    def remDay():
+        COUNT_TIME = COUNT_TIME - timedelta(hours=1)    
+    def addHour():
+        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
+    def remHour():
+        COUNT_TIME = COUNT_TIME - timedelta(hours=1)
+    def addMinute():
+        COUNT_TIME = COUNT_TIME + timedelta(minutes=1)
+    def remMinute():
+        COUNT_TIME = COUNT_TIME - timedelta(minutes=1)           
+
+    selectedOption = 0
+    if B:
+        selectedOption = selectedOption + 1 if selectedOption < 3 else 0
+    if C:
+        if selectedOption == 1:
+           addDay()
+        elif selectedOption == 2:
+            addHour()
+        elif selectedOption == 3:
+            addMinute()
+    if D:
+        if selectedOption == 1:
+           remDay()
+        elif selectedOption == 2:
+            remHour()
+        elif selectedOption == 3:
+            remMinute()

@@ -3,18 +3,15 @@ import time
 import sys
 import RPi.GPIO as GPIO
 
-from datetime import datetime, timedelta
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from notification import fetchNotification, getNotificationCanvas, getAlertCanvas
-from clock import getClockCanvas, getCountdownCanvas
+from clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
 from input import getInputOptions
 
 #---------------- GLOBALS ----------------#
 CURRENT_PAGE = 0
 ALERT_NOTIFICATION = False
-SHOW_DAY_OF_WEEK = False
-COUNT_DAYS = 0
-COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)    
+
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -58,30 +55,21 @@ def loop():
     btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_e_pressed = getInputOptions()
 
     if btn_a_pressed:
-        CURRENT_PAGE+=1
+        CURRENT_PAGE+=1     
 
-    if CURRENT_PAGE == 2:
-        if btn_c_pressed:
-            COUNT_DAYS = COUNT_DAYS + 1
-        if btn_d_pressed:
-            COUNT_TIME = COUNT_TIME + timedelta(hours=1)
-        if btn_e_pressed:
-            COUNT_TIME = COUNT_TIME + timedelta(minutes=1)
-    else:
-        if btn_b_pressed:
-            SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK        
-
-    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, SHOW_DAY_OF_WEEK)
+    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
     notification = getNotificationCanvas(matrix.CreateFrameCanvas())
-    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, COUNT_DAYS, COUNT_TIME)
+    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
 
     if CURRENT_PAGE == 2:
-        canvas = countdown    
+        canvas = countdown
+        handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
     elif CURRENT_PAGE == 1:
         canvas = notification
     else:
         CURRENT_PAGE = 0
         canvas = clock
+        handleButtons_Clock(btn_b_pressed, btn_c_pressed, btn_d_pressed)
 
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
