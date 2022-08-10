@@ -115,16 +115,22 @@ def handleButtons_Countdown(B, C, D):
     global SELECTED_OPTION
     print("Handling buttons")
     def addDay():
-        COUNT_TIME = COUNT_TIME + timedelta(days=1)
+        global COUNT_DAYS
+        COUNT_DAYS = COUNT_DAYS + 1
     def remDay():
-        COUNT_TIME = COUNT_TIME - timedelta(days=1)    
+        global COUNT_DAYS
+        COUNT_DAYS = COUNT_DAYS - 1
     def addHour():
+        global COUNT_TIME
         COUNT_TIME = COUNT_TIME + timedelta(hours=1)
-    def remHour():
+    def remHour():        
+        global COUNT_TIME
         COUNT_TIME = COUNT_TIME - timedelta(hours=1)
     def addMinute():
+        global COUNT_TIME
         COUNT_TIME = COUNT_TIME + timedelta(minutes=1)
     def remMinute():
+        global COUNT_TIME
         COUNT_TIME = COUNT_TIME - timedelta(minutes=1)           
 
     if B:
