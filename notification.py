@@ -45,7 +45,7 @@ def fetchNotification():
         messages = data['messages']
         if len(messages) > 0:
             for message in messages:
-                notification = Notification(message["eventId"], message["content"], message["date"])
+                notification = Notification(message["id"], message["content"], message["date"])
 
                 # Only store the newest message.
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
