@@ -57,8 +57,7 @@ def getTimeString(hour, minute, second):
         hour = 12
     elif hour > 12:
         hour = hour - 12
-    timeLabel =  "{zero}{hour}{colon}{minute:02d}".format(
-        zero="0" if hour < 10 else "", 
+    timeLabel =  "{hour:02d}{colon}{minute:02d}".format(
         hour=hour, minute=minute,
         colon=" " if second % 2 == 0 else ":"
     )

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import time
 import sys
+from datetime import datetime, timedelta
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from notification import fetchNotification, getNotificationCanvas, getAlertCanvas
@@ -12,6 +13,10 @@ from input import getInputOptions
 #---------------- GLOBALS ----------------#
 CURRENT_PAGE = 0
 ALERT_NOTIFICATION = False
+SHOW_DAY_OF_WEEK = False
+COUNT_DAYS = 0
+COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)
+
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -36,6 +41,7 @@ matrix = RGBMatrix(options = options)
 def loop():
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
+    global SHOW_DAY_OF_WEEK
 
     display = None
     canvas = None
@@ -49,14 +55,23 @@ def loop():
     second =  now[5]
     weekday = now[6]
 
-    showDayOfWeek, cycleUp, count_days, count_time = getInputOptions()
-    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, showDayOfWeek)
-    notification = getNotificationCanvas(matrix.CreateFrameCanvas())
-    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, count_days, count_time)
+    btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_e_pressed = getInputOptions()
 
-    if cycleUp:
+    if btn_a_pressed:
         CURRENT_PAGE+=1
         ALERT_NOTIFICATION = False
+    if btn_b_pressed:
+        SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
+    if btn_c_pressed:
+        global COUNT_DAYS
+        global COUNT_TIME
+
+        COUNT_DAYS = COUNT_DAYS + 1
+        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
+
+    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, SHOW_DAY_OF_WEEK)
+    notification = getNotificationCanvas(matrix.CreateFrameCanvas())
+    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, COUNT_DAYS, COUNT_TIME)
 
     if CURRENT_PAGE == 2:
         canvas = countdown    

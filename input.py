@@ -1,10 +1,4 @@
-from datetime import datetime, timedelta
 import RPi.GPIO as GPIO
-
-SHOW_DAY_OF_WEEK = False
-
-COUNT_DAYS = 0
-COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)
 
 BUTTON_A_PIN = 9 #MOSI
 BUTTON_B_PIN = 10 #MISO
@@ -20,30 +14,34 @@ GPIO.setup(BUTTON_D_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_E_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def getInputOptions():
-    cycleUp = False
-    
+    btn_a_pressed = False
+    btn_b_pressed = False
+    btn_c_pressed = False
+    btn_d_pressed = False
+    btn_e_pressed = False
+
     def handleButton(isPressed, thenDo):
         if isPressed:
             thenDo()
     def btnAHandler():
-        global SHOW_DAY_OF_WEEK
-        SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
+        nonlocal btn_a_pressed
+        btn_a_pressed = True
         print("Button A Pressed")
     def btnBHandler():
-        nonlocal cycleUp
-        cycleUp = True
+        nonlocal btn_b_pressed
+        btn_b_pressed = True
         print("Button B Pressed")
     def btnCHandler():
-        global COUNT_DAYS
-        global COUNT_TIME
-
-        COUNT_DAYS = COUNT_DAYS + 1
-        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
-
+        nonlocal btn_c_pressed
+        btn_c_pressed = True
         print("Button C Pressed")
     def btnDHandler():
+        nonlocal btn_d_pressed
+        btn_d_pressed = True
         print("Button D Pressed")
     def btnEHandler():
+        nonlocal btn_e_pressed
+        btn_e_pressed = True
         print("Button E Pressed")
         
     handleButton(not GPIO.input(BUTTON_A_PIN), btnAHandler)
@@ -52,4 +50,4 @@ def getInputOptions():
     handleButton(not GPIO.input(BUTTON_D_PIN), btnDHandler)
     handleButton(not GPIO.input(BUTTON_E_PIN), btnEHandler)
 
-    return SHOW_DAY_OF_WEEK, cycleUp, COUNT_DAYS, COUNT_TIME
+    return btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_e_pressed
