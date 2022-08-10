@@ -138,6 +138,7 @@ def getCountdownString():
 
         return dayLabel, timeLabel
     else:
+        print("none")
         dayLabel =  "{days:02d} days".format(
             days=COUNT_DAY
         )
