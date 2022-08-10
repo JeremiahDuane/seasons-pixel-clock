@@ -4,9 +4,8 @@ import RPi.GPIO as GPIO
 
 SHOW_DAY_OF_WEEK = False
 
-START = datetime(datetime.now().year,datetime.now().month,datetime.now().day,datetime.now().hour,datetime.now().month,datetime.now().second,0)
-END = START + timedelta(days=1)  
-COUNT = END - START
+COUNT_DAYS = 0
+COUNT_TIME = time(0,0,0)
 
 BUTTON_A_PIN = 9 #MOSI
 BUTTON_B_PIN = 10 #MISO
@@ -36,8 +35,12 @@ def getInputOptions():
         cycleUp = True
         print("Button B Pressed")
     def btnCHandler():
-        global COUNT
-        COUNT.hours = COUNT.hours + 1
+        global COUNT_DAYS
+        global COUNT_TIME
+
+        COUNT_DAYS = COUNT_DAYS + 1
+        COUNT_TIME.hour = COUNT_TIME.hour + 1
+
         print("Button C Pressed")
     def btnDHandler():
         print("Button D Pressed")
@@ -50,4 +53,4 @@ def getInputOptions():
     handleButton(not GPIO.input(BUTTON_D_PIN), btnDHandler)
     handleButton(not GPIO.input(BUTTON_E_PIN), btnEHandler)
 
-    return SHOW_DAY_OF_WEEK, cycleUp, COUNT
+    return SHOW_DAY_OF_WEEK, cycleUp, COUNT_DAYS, COUNT_TIME
