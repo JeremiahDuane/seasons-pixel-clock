@@ -1,5 +1,4 @@
-from datetime import datetime, timedelta
-import time
+from datetime import time, timedelta
 import RPi.GPIO as GPIO
 
 SHOW_DAY_OF_WEEK = False
