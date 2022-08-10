@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 import time
 import sys
-from datetime import datetime, timedelta
-
-from rgbmatrix import RGBMatrix, RGBMatrixOptions
-from notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 import RPi.GPIO as GPIO
 
+from datetime import datetime, timedelta
+from rgbmatrix import RGBMatrix, RGBMatrixOptions
+from notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 from clock import getClockCanvas, getCountdownCanvas
 from input import getInputOptions
 
@@ -15,8 +14,7 @@ CURRENT_PAGE = 0
 ALERT_NOTIFICATION = False
 SHOW_DAY_OF_WEEK = False
 COUNT_DAYS = 0
-COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)
-
+COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)    
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
 options.rows = 32
@@ -42,6 +40,8 @@ def loop():
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
     global SHOW_DAY_OF_WEEK
+    global COUNT_DAYS
+    global COUNT_TIME
 
     display = None
     canvas = None
@@ -59,15 +59,17 @@ def loop():
 
     if btn_a_pressed:
         CURRENT_PAGE+=1
-        ALERT_NOTIFICATION = False
-    if btn_b_pressed:
-        SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK
-    if btn_c_pressed:
-        global COUNT_DAYS
-        global COUNT_TIME
 
-        COUNT_DAYS = COUNT_DAYS + 1
-        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
+    if CURRENT_PAGE == 2:
+        if btn_b_pressed:
+            COUNT_DAYS = COUNT_DAYS + 1
+        if btn_c_pressed:
+            COUNT_TIME = COUNT_TIME + timedelta(hours=1)
+        if btn_c_pressed:
+            COUNT_TIME = COUNT_TIME + timedelta(minutes=1)
+    else:
+        if btn_b_pressed:
+            SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK        
 
     clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, SHOW_DAY_OF_WEEK)
     notification = getNotificationCanvas(matrix.CreateFrameCanvas())
