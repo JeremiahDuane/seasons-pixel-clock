@@ -47,4 +47,4 @@ def getInputOptions():
     handleButton(not GPIO.input(BUTTON_D_PIN), btnDHandler)
     handleButton(not GPIO.input(BUTTON_E_PIN), btnEHandler)
 
-    return SHOW_DAY_OF_WEEK, cycleUp
+    return SHOW_DAY_OF_WEEK, cycleUp, COUNT
