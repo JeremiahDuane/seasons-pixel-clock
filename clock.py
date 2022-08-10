@@ -127,7 +127,7 @@ def getCountdownString():
         return dayLabel, timeLabel
     else:
         dayLabel =  "{days:02d} days".format(
-            days=(COUNT_END).days
+            days=COUNT_END.day
         )
         timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
             hour=COUNT_END.hour, minute=COUNT_END.minute, second=COUNT_END.second
