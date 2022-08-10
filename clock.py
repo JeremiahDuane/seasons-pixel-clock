@@ -12,7 +12,10 @@ FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
 COUNT_START = None    
-COUNT_END = datetime.now()    
+COUNT_END = None
+COUNT_DAY = 0
+COUNT_MINUTE = 0
+COUNT_HOUR = 0
 
 SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
@@ -138,20 +141,15 @@ def handleButtons_Countdown(B, C, D):
     global SELECTED_OPTION
     global COUNT_END
     global COUNT_START
-    global COUNT_RUN
+    global COUNT_DAY
+    global COUNT_HOUR
+    global COUNT_MINUTE
 
-    def addDay(dTime):
-        dTime = dTime + timedelta(hours=1)
-    def remDay(dTime):
-        dTime = dTime + timedelta(hours=1)
-    def addHour(dTime):
-        dTime = dTime + timedelta(hours=1)
-    def remHour(dTime):        
-        dTime = dTime - timedelta(hours=1)
-    def addMinute(dTime):
-        dTime = dTime + timedelta(minutes=1)
-    def remMinute(dTime):
-        dTime = dTime - timedelta(minutes=1)           
+
+    def add(dTime):
+        dTime = dTime + 1
+    def rem(dTime):
+        dTime = dTime - 1        
 
     if B:
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
@@ -159,21 +157,26 @@ def handleButtons_Countdown(B, C, D):
 
     if SELECTED_OPTION == 1:
         if C:
-            addDay(COUNT_END)
+            add(COUNT_DAY)
         if D:
-            remDay(COUNT_END)
-        COUNT_START = None    
+            rem(COUNT_DAY)
+        COUNT_START = None
+        COUNT_END = None    
     elif SELECTED_OPTION == 2:
         if C:
-            addHour(COUNT_END)
+            add(COUNT_HOUR)
         if D:
-            remHour(COUNT_END)
-        COUNT_START = None    
+            rem(COUNT_HOUR)
+        COUNT_START = None
+        COUNT_END = None    
     elif SELECTED_OPTION == 3:
         if C:
-            addMinute(COUNT_END)
+            add(COUNT_MINUTE)
         if D:
-            remMinute(COUNT_END)
-        COUNT_START = None    
+            rem(COUNT_MINUTE)
+        COUNT_START = None
+        COUNT_END = None    
     else:
         COUNT_START = datetime.now()
+        COUNT_END = datetime(COUNT_START.year, COUNT_START.month, COUNT_START.day, COUNT_START.hour, COUNT_START.minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
+
