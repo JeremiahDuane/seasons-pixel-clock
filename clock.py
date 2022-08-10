@@ -116,6 +116,9 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 def getCountdownString():
     global COUNT_END
     global COUNT_START
+    global COUNT_DAY
+    global COUNT_HOUR
+    global COUNT_MINUTE
 
     if COUNT_START != None:
         if COUNT_START > COUNT_END:
@@ -130,10 +133,10 @@ def getCountdownString():
         return dayLabel, timeLabel
     else:
         dayLabel =  "{days:02d} days".format(
-            days=COUNT_END.day
+            days=COUNT_DAY
         )
         timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
-            hour=COUNT_END.hour, minute=COUNT_END.minute, second=COUNT_END.second
+            hour=COUNT_HOUR, minute=COUNT_MINUTE, second=0
         )
         return dayLabel, timeLabel
 
