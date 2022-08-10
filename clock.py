@@ -180,8 +180,9 @@ def handleButtons_Countdown(B, C, D):
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 3:
-        COUNT_START = datetime.now()
-        print("twtrwertwe", COUNT_DAY, COUNT_HOUR)
-        COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
-        print("Here is the output", COUNT_START, COUNT_END)
+        if B or C or D:
+            COUNT_START = datetime.now()
+            print("twtrwertwe", COUNT_DAY, COUNT_HOUR)
+            COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
+            print("Here is the output", COUNT_START, COUNT_END)
 
