@@ -1,10 +1,10 @@
-import datetime 
+from datetime import datetime 
 import time
 import RPi.GPIO as GPIO
 
 SHOW_DAY_OF_WEEK = False
 
-COUNT = datetime.datetime(datetime.now().year,datetime.now().month,datetime.now().day,datetime.now().hour,datetime.now().month,datetime.now().second,0)
+COUNT = datetime(datetime.now().year,datetime.now().month,datetime.now().day,datetime.now().hour,datetime.now().month,datetime.now().second,0)
 
 BUTTON_A_PIN = 9 #MOSI
 BUTTON_B_PIN = 10 #MISO
