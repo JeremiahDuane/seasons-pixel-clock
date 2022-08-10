@@ -6,7 +6,7 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 import RPi.GPIO as GPIO
 
-from clock import getClockCanvas
+from clock import getClockCanvas, getCountdownCanvas
 from input import getInputOptions
 
 #---------------- GLOBALS ----------------#
@@ -52,12 +52,15 @@ def loop():
     showDayOfWeek, cycleUp = getInputOptions()
     clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, showDayOfWeek)
     notification = getNotificationCanvas(matrix.CreateFrameCanvas())
+    countdown = getCountdownCanvas(matrix.CreateFrameCanvas())
 
     if cycleUp:
         CURRENT_PAGE+=1
         ALERT_NOTIFICATION = False
-        
-    if CURRENT_PAGE == 1:
+
+    if CURRENT_PAGE == 2:
+        canvas = countdown    
+    elif CURRENT_PAGE == 1:
         canvas = notification
     else:
         CURRENT_PAGE = 0
