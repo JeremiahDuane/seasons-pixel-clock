@@ -62,14 +62,14 @@ def loop():
     countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
 
     if CURRENT_PAGE == 2:
-        canvas = countdown
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
+        canvas = countdown
     elif CURRENT_PAGE == 1:
         canvas = notification
     else:
         CURRENT_PAGE = 0
-        canvas = clock
         handleButtons_Clock(btn_b_pressed, btn_c_pressed, btn_d_pressed)
+        canvas = clock
 
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
