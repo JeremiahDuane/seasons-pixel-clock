@@ -14,9 +14,9 @@ COUNT_DAYS = 0
 COUNT_TIME = datetime(datetime.now().year,datetime.now().month,datetime.now().day, 0,0,0)    
 SHOW_DAY_OF_WEEK = False
 
-def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday, showDayOfWeek=False):
+def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
-    strDate = getDateString(year, month, day, weekday, showDayOfWeek)
+    strDate = getDateString(year, month, day, weekday)
     strTime = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
     scene = getScene(year, month, day, weekday)
@@ -42,7 +42,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday, sh
 
 def getDateString(year, month, day, weekday):
     dateLabel = None
-    if showDayOfWeek: 
+    if SHOW_DAY_OF_WEEK: 
         dateLabel =  "{dayOfWeek} {zero}{day}-{zero1}{month}".format(
             zero="0" if day < 10 else "", 
             zero1="0" if month < 10 else "",
