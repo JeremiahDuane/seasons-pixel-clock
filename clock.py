@@ -113,7 +113,10 @@ def getCountdownString(year, month, day, hour, minute, second):
     global COUNT_END
     global COUNT_START
 
-    dayLabel =  "{days:02d} remaining".format(
+    if COUNT_START > COUNT_END:
+        return "0 days", "00:00:00"
+
+    dayLabel =  "{days:02d} days".format(
         days=(COUNT_END - COUNT_START).days
     )
     timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
