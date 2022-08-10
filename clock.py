@@ -84,6 +84,7 @@ def getScene(year, month, day, weekday):
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday, count_days, count_time):
     #Clock
+    print(count_days, count_time)
     strTime = getCountdownString(count_days, count_time.hour, count_time.minute, count_time.second)
     scene = getScene(year, month, day, weekday)
 
