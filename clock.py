@@ -1,3 +1,4 @@
+from pickle import NONE
 from rgbmatrix import graphics
 from PIL import Image
 from scene import SCENES
@@ -10,8 +11,8 @@ FONT_SUBTITLE = graphics.Font()
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
 
-COUNT_END = datetime.now()
-COUNT_START = datetime.now()    
+COUNT_START = None    
+COUNT_END = datetime.now()    
 
 SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
@@ -94,7 +95,7 @@ def handleButtons_Clock(B, C, D):
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
-    strDay, strTime = getCountdownString(year, month, day, hour, minute, second)
+    strDay, strTime = getCountdownString()
     scene = getScene(year, month, day, weekday)
 
     #Scene
@@ -109,25 +110,35 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 
     return cvsClock
 
-def getCountdownString(year, month, day, hour, minute, second):
+def getCountdownString():
     global COUNT_END
     global COUNT_START
 
-    if COUNT_START > COUNT_END:
-        return "0 days", "00:00:00"
+    if COUNT_START != None:
+        if COUNT_START > COUNT_END:
+            return "0 days", "00:00:00"
 
-    dayLabel =  "{days:02d} days".format(
-        days=(COUNT_END - COUNT_START).days
-    )
-    timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
-        hour=COUNT_END.hour-hour, minute=COUNT_END.minute-minute, second=COUNT_END.second-second
-    )
-    return dayLabel, timeLabel
+        dayLabel =  "{days:02d} days".format(
+            days=(COUNT_END - COUNT_START).days
+        )
+        timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
+            hour=COUNT_END.hour-COUNT_START.hour, minute=COUNT_END.minute-COUNT_START.minute, second=COUNT_END.second-COUNT_START.second
+        )
+        return dayLabel, timeLabel
+    else:
+        dayLabel =  "{days:02d} days".format(
+            days=(COUNT_END).days
+        )
+        timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
+            hour=COUNT_END.hour, minute=COUNT_END.minute, second=COUNT_END.second
+        )
+        return dayLabel, timeLabel
 
 def handleButtons_Countdown(B, C, D):
     global SELECTED_OPTION
     global COUNT_END
     global COUNT_START
+    global COUNT_RUN
 
     def addDay(dTime):
         dTime = dTime + timedelta(hours=1)
@@ -145,21 +156,24 @@ def handleButtons_Countdown(B, C, D):
     if B:
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
     print(SELECTED_OPTION, B, C, D)
-    if C:
-        if SELECTED_OPTION == 1:
-           addDay(COUNT_END)
-        elif SELECTED_OPTION == 2:
+
+    if SELECTED_OPTION == 1:
+        if C:
+            addDay(COUNT_END)
+        if D:
+            remDay(COUNT_END)
+        COUNT_START = None    
+    elif SELECTED_OPTION == 2:
+        if C:
             addHour(COUNT_END)
-        elif SELECTED_OPTION == 3:
-            addMinute(COUNT_END)
-        else:
-            COUNT_START = datetime.now()
-    if D:
-        if SELECTED_OPTION == 1:
-           remDay(COUNT_END)
-        elif SELECTED_OPTION == 2:
+        if D:
             remHour(COUNT_END)
-        elif SELECTED_OPTION == 3:
+        COUNT_START = None    
+    elif SELECTED_OPTION == 3:
+        if C:
+            addMinute(COUNT_END)
+        if D:
             remMinute(COUNT_END)
-        else:
-            COUNT_START = datetime.now()
+        COUNT_START = None    
+    else:
+        COUNT_START = datetime.now()
