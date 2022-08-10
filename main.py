@@ -52,7 +52,7 @@ def loop():
     showDayOfWeek, cycleUp = getInputOptions()
     clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, showDayOfWeek)
     notification = getNotificationCanvas(matrix.CreateFrameCanvas())
-    countdown = getCountdownCanvas(matrix.CreateFrameCanvas())
+    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
 
     if cycleUp:
         CURRENT_PAGE+=1
