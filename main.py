@@ -61,11 +61,11 @@ def loop():
         CURRENT_PAGE+=1
 
     if CURRENT_PAGE == 2:
-        if btn_b_pressed:
+        if btn_c_pressed:
             COUNT_DAYS = COUNT_DAYS + 1
-        if btn_c_pressed:
+        if btn_d_pressed:
             COUNT_TIME = COUNT_TIME + timedelta(hours=1)
-        if btn_c_pressed:
+        if btn_e_pressed:
             COUNT_TIME = COUNT_TIME + timedelta(minutes=1)
     else:
         if btn_b_pressed:
