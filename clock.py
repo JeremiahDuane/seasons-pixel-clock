@@ -91,6 +91,9 @@ def handleButtons_Clock(B, C, D):
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
+    global COUNT_DAYS
+    global COUNT_TIME
+
     #Clock
     strTime = getCountdownString(COUNT_DAYS, COUNT_TIME.hour, COUNT_TIME.minute, COUNT_TIME.second)
     scene = getScene(year, month, day, weekday)
