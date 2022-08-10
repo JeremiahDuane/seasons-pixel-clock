@@ -113,10 +113,10 @@ def getCountdownString(day, hour, minute, second):
 
 def handleButtons_Countdown(B, C, D):
     global SELECTED_OPTION
-    print("Handling buttons")
     def addDay():
         global COUNT_DAYS
         COUNT_DAYS = COUNT_DAYS + 1
+        print("Adding days", COUNT_DAYS)
     def remDay():
         global COUNT_DAYS
         COUNT_DAYS = COUNT_DAYS - 1
