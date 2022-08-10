@@ -90,10 +90,9 @@ def handleButtons_Clock(B, C, D):
         SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK   
 
 #---------- Countdown ----------#
-def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday, count_days, count_time):
+def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
-    print(count_days, count_time)
-    strTime = getCountdownString(count_days, count_time.hour, count_time.minute, count_time.second)
+    strTime = getCountdownString(COUNT_DAYS, COUNT_TIME.hour, COUNT_TIME.minute, COUNT_TIME.second)
     scene = getScene(year, month, day, weekday)
 
     #Scene
