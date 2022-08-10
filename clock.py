@@ -104,10 +104,10 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
 
     #Draw
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 17, clrSecondary, strDay)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 18, clrPrimary, strDay)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 32, clrSecondary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 32, clrPrimary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 15, clrSecondary, strDay)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 16, clrPrimary, strDay)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 30, clrSecondary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 31, clrPrimary, strTime)
 
     return cvsClock
 
