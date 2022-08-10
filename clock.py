@@ -93,6 +93,7 @@ def getScene(year, month, day, weekday):
     return scene
 
 def handleButtons_Clock(B, C, D):
+    global SHOW_DAY_OF_WEEK
     if B:
         SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK   
 
