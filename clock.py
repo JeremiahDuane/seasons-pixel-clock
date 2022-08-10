@@ -84,7 +84,7 @@ def getScene(year, month, day, weekday):
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday, count):
     #Clock
-    strTime = getCountdownString(count.day, count.hour, count.minute)
+    strTime = getCountdownString(count.day, count.hour, count.minute, count.second)
     scene = getScene(year, month, day, weekday)
 
     #Scene
@@ -97,8 +97,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 
     return cvsClock
     
-def getCountdownString(hour, minute, second):
-    timeLabel =  "{hour:02d}:{minute:02d}:{second}".format(
+def getCountdownString(day, hour, minute, second):
+    timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
         hour=hour, minute=minute, second=second
     )
     return timeLabel
