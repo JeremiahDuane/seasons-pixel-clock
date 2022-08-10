@@ -160,29 +160,30 @@ def handleButtons_Countdown(B, C, D):
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
     print(SELECTED_OPTION, B, C, D)
 
-    if SELECTED_OPTION == 1:
+    if SELECTED_OPTION == 0:
         if C:
             add(COUNT_DAY)
         if D:
             rem(COUNT_DAY)
         COUNT_START = None
         COUNT_END = None    
-    elif SELECTED_OPTION == 2:
+    elif SELECTED_OPTION == 1:
         if C:
             add(COUNT_HOUR)
         if D:
             rem(COUNT_HOUR)
         COUNT_START = None
         COUNT_END = None    
-    elif SELECTED_OPTION == 3:
+    elif SELECTED_OPTION == 2:
         if C:
             add(COUNT_MINUTE)
         if D:
             rem(COUNT_MINUTE)
         COUNT_START = None
         COUNT_END = None    
-    else:
+    elif SELECTED_OPTION == 3:
         COUNT_START = datetime.now()
+        print("twtrwertwe", COUNT_DAY, COUNT_HOUR)
         COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
         print("Here is the output", COUNT_START, COUNT_END)
 
