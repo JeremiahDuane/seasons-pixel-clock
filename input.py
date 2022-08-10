@@ -3,7 +3,7 @@ import time
 import RPi.GPIO as GPIO
 
 SHOW_DAY_OF_WEEK = False
-COUNT = datetime.datetime(years=0, month=0, days=0,hours=0,minutes=0,seconds=0)
+COUNT = datetime.datetime(year=0, month=0, days=0,hours=0,minutes=0,seconds=0)
 
 BUTTON_A_PIN = 9 #MOSI
 BUTTON_B_PIN = 10 #MISO
