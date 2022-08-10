@@ -183,6 +183,6 @@ def handleButtons_Countdown(B, C, D):
         COUNT_END = None    
     else:
         COUNT_START = datetime.now()
-        COUNT_END = datetime(COUNT_START.year, COUNT_START.month, COUNT_START.day, COUNT_START.hour, COUNT_START.minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
+        COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
         print("Here is the output", COUNT_START, COUNT_END)
 
