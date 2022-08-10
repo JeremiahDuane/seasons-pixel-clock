@@ -131,8 +131,8 @@ def getCountdownString():
         dayLabel =  "{days:02d} days".format(
             days=days
         )
-        timeLabel =  datetime.datetime.strptime(str(duration),'%H:%M:%S')
-        
+        timeLabel =  datetime.strptime(str(duration),'%H:%M:%S')
+
         return dayLabel, timeLabel
     else:
         print("none")
