@@ -112,10 +112,11 @@ def getCountdownString(day, hour, minute, second):
     return timeLabel
 
 def handleButtons_Countdown(B, C, D):
+    print("Handling buttons")
     def addDay():
-        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
+        COUNT_TIME = COUNT_TIME + timedelta(days=1)
     def remDay():
-        COUNT_TIME = COUNT_TIME - timedelta(hours=1)    
+        COUNT_TIME = COUNT_TIME - timedelta(days=1)    
     def addHour():
         COUNT_TIME = COUNT_TIME + timedelta(hours=1)
     def remHour():
@@ -125,9 +126,11 @@ def handleButtons_Countdown(B, C, D):
     def remMinute():
         COUNT_TIME = COUNT_TIME - timedelta(minutes=1)           
 
+
     selectedOption = 0
     if B:
         selectedOption = selectedOption + 1 if selectedOption < 3 else 0
+    print(selectedOption, B, C, D)
     if C:
         if selectedOption == 1:
            addDay()
