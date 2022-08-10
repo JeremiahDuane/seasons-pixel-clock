@@ -128,15 +128,11 @@ def getCountdownString():
 
         duration = (COUNT_END- COUNT_START)
         days, seconds = duration.days, duration.seconds
-        hours = days * 24 + seconds // 3600
-        minutes = (seconds % 3600) // 60
-        seconds = seconds % 60
         dayLabel =  "{days:02d} days".format(
             days=days
         )
-        timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
-            hour=hours, minute=minutes, second=seconds
-        )
+        timeLabel =  datetime.datetime.strptime(str(duration),'%H:%M:%S')
+        
         return dayLabel, timeLabel
     else:
         print("none")
