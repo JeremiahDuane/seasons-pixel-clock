@@ -38,7 +38,7 @@ def getInputOptions():
         global COUNT_TIME
 
         COUNT_DAYS = COUNT_DAYS + 1
-        COUNT_TIME.hour = COUNT_TIME.hour + 1
+        COUNT_TIME = COUNT_TIME + timedelta(hours=1)
 
         print("Button C Pressed")
     def btnDHandler():
