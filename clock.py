@@ -95,7 +95,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     global COUNT_TIME
 
     #Clock
-    strTime = getCountdownString(COUNT_DAYS, COUNT_TIME.hour, COUNT_TIME.minute, COUNT_TIME.second)
+    strTime = getCountdownTimeString(COUNT_TIME.hour, COUNT_TIME.minute, COUNT_TIME.second)
+    strDay = getCountdownTimeString(COUNT_DAYS)
     scene = getScene(year, month, day, weekday)
 
     #Scene
@@ -103,12 +104,20 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
 
     #Draw
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 17, clrSecondary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 18, clrPrimary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 17, clrSecondary, strDay)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 18, clrPrimary, strDay)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 32, clrSecondary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 32, clrPrimary, strTime)
 
     return cvsClock
-    
-def getCountdownString(day, hour, minute, second):
+
+def getCountdownTimeString(days):
+    timeLabel =  "{days:02d} remaining".format(
+        days=days
+    )
+    return timeLabel
+
+def getCountdownTimeString(hour, minute, second):
     timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
         hour=hour, minute=minute, second=second
     )
