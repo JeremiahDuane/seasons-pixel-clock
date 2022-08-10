@@ -82,9 +82,9 @@ def getScene(year, month, day, weekday):
     return scene
 
 #---------- Countdown ----------#
-def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
+def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday, count):
     #Clock
-    strTime = getCountdownString(hour, minute, second)
+    strTime = getCountdownString(count.days, count.hours, count.minutes)
     scene = getScene(year, month, day, weekday)
 
     #Scene
@@ -92,8 +92,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
 
     #Draw
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 17, clrSecondary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 1, 18, clrPrimary, strTime)
 
     return cvsClock
     

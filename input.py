@@ -1,6 +1,9 @@
+from datetime import timedelta
+import time
 import RPi.GPIO as GPIO
 
 SHOW_DAY_OF_WEEK = False
+COUNT = timedelta(days=0, hours=0, minutes=0)
 
 BUTTON_A_PIN = 9 #MOSI
 BUTTON_B_PIN = 10 #MISO
@@ -30,6 +33,8 @@ def getInputOptions():
         cycleUp = True
         print("Button B Pressed")
     def btnCHandler():
+        global COUNT
+        COUNT.hours = COUNT.hours + 1
         print("Button C Pressed")
     def btnDHandler():
         print("Button D Pressed")

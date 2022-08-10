@@ -36,7 +36,7 @@ matrix = RGBMatrix(options = options)
 def loop():
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
-    
+
     display = None
     canvas = None
 
@@ -49,10 +49,10 @@ def loop():
     second =  now[5]
     weekday = now[6]
 
-    showDayOfWeek, cycleUp = getInputOptions()
+    showDayOfWeek, cycleUp, count = getInputOptions()
     clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, showDayOfWeek)
     notification = getNotificationCanvas(matrix.CreateFrameCanvas())
-    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
+    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday, count)
 
     if cycleUp:
         CURRENT_PAGE+=1
