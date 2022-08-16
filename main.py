@@ -65,6 +65,7 @@ def loop():
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
         canvas = countdown
     elif CURRENT_PAGE == 1:
+        ALERT_NOTIFICATION = False
         canvas = notification
     else:
         CURRENT_PAGE = 0
