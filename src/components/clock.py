@@ -1,6 +1,6 @@
 from rgbmatrix import graphics
 from PIL import Image
-from src.objects.scene import SCENES
+from objects.scene import SCENES
 from config import config_matrix
 from datetime import datetime, timedelta
 
