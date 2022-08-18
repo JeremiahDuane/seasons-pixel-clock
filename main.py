@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from multiprocessing import dummy
 import time
 import sys
 import RPi.GPIO as GPIO
@@ -36,6 +37,7 @@ matrix = RGBMatrix(options = options)
 CLOCK = matrix.CreateFrameCanvas()
 COUNTDOWN = matrix.CreateFrameCanvas()
 NOTIFICATION = matrix.CreateFrameCanvas()
+dummy = matrix.CreateFrameCanvas()
 
 def loop():
     global CURRENT_PAGE
@@ -62,8 +64,8 @@ def loop():
         CURRENT_PAGE+=1     
 
     clock = getClockCanvas(CLOCK, year, month, day, hour, minute, second, weekday)
-    notification = getNotificationCanvas(COUNTDOWN)
-    countdown = getCountdownCanvas(NOTIFICATION, year, month, day, hour, minute, second, weekday)
+    notification = getNotificationCanvas(NOTIFICATION)
+    countdown = getCountdownCanvas(COUNTDOWN, year, month, day, hour, minute, second, weekday)
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
@@ -80,8 +82,7 @@ def loop():
         canvas = getAlertCanvas(canvas)
 
     display = matrix.SwapOnVSync(canvas)
-    time.sleep(.005)
-    display.Clear()
+
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
