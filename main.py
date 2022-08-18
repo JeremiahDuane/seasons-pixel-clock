@@ -39,7 +39,10 @@ CANVAS2 = matrix.CreateFrameCanvas()
 SWITCH = False
 
 def loop():
-    SWITCH = not SWITCH
+    global CANVAS1
+    global CANVAS2
+    global SWITCH
+
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
     global SHOW_DAY_OF_WEEK
@@ -47,6 +50,7 @@ def loop():
     global COUNT_TIME
 
     display = None
+    SWITCH = not SWITCH
     canvas = CANVAS1 if SWITCH else CANVAS2
 
     now = time.localtime() 
