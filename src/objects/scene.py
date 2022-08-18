@@ -1,4 +1,4 @@
-from rgb import RGB
+from objects.rgb import RGB
 
 class Scene:    
     def __init__(self, primaryColor, secondaryColor, bmp, bmp2=None):      
