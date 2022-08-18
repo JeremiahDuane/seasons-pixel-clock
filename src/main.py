@@ -5,9 +5,9 @@ import sys
 import RPi.GPIO as GPIO
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
-from src.components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas
-from src.components.clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
-from src.system.input import getInputOptions
+from components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas
+from components.clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
+from system.input import getInputOptions
 
 #---------------- GLOBALS ----------------#
 CURRENT_PAGE = 0
