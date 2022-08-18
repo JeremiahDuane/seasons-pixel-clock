@@ -3,8 +3,8 @@ from datetime import datetime
 from rgbmatrix import graphics
 from PIL import Image
 from objects.scene import SCENES
-from src.system.config import config_matrix, config_notification
-from src.system.secrets import secrets
+from system.config import config_matrix, config_notification
+from system.secrets import secrets
 
 NOTIFICATION_IS_NEW = True
 CURRENT_NOTIFICATION = None
