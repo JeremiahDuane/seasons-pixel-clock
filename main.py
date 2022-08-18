@@ -64,23 +64,19 @@ def loop():
 
     btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_e_pressed = getInputOptions()
 
-    clock = getClockCanvas(canvas, year, month, day, hour, minute, second, weekday)
-    countdown = getCountdownCanvas(canvas, year, month, day, hour, minute, second, weekday)
-    notification = getNotificationCanvas(canvas)
-    
     if btn_a_pressed:
         CURRENT_PAGE+=1     
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
-        canvas = countdown
+        canvas = getCountdownCanvas(canvas, year, month, day, hour, minute, second, weekday)
     elif CURRENT_PAGE == 1:
         ALERT_NOTIFICATION = False
-        canvas = notification
+        canvas = getNotificationCanvas(canvas)
     else:
         CURRENT_PAGE = 0
         handleButtons_Clock(btn_b_pressed, btn_c_pressed, btn_d_pressed)
-        canvas = clock
+        canvas = getClockCanvas(canvas, year, month, day, hour, minute, second, weekday)
 
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
