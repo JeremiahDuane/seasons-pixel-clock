@@ -34,10 +34,7 @@ options.gpio_slowdown = 3
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
-CLOCK = matrix.CreateFrameCanvas()
-COUNTDOWN = matrix.CreateFrameCanvas()
-NOTIFICATION = matrix.CreateFrameCanvas()
-DUMMY = matrix.CreateFrameCanvas()
+CANVAS = matrix.CreateFrameCanvas()
 
 def loop():
     global CURRENT_PAGE
@@ -47,7 +44,7 @@ def loop():
     global COUNT_TIME
 
     display = None
-    canvas = None
+    canvas = CANVAS
 
     now = time.localtime() 
     year = now[0]
@@ -63,28 +60,23 @@ def loop():
     if btn_a_pressed:
         CURRENT_PAGE+=1     
 
-    clock = getClockCanvas(CLOCK, year, month, day, hour, minute, second, weekday)
-    notification = getNotificationCanvas(NOTIFICATION)
-    countdown = getCountdownCanvas(COUNTDOWN, year, month, day, hour, minute, second, weekday)
-
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
-        canvas = countdown
+        canvas = getCountdownCanvas(canvas, year, month, day, hour, minute, second, weekday)
     elif CURRENT_PAGE == 1:
         ALERT_NOTIFICATION = False
-        canvas = notification
+        canvas = getNotificationCanvas(canvas)
     else:
         CURRENT_PAGE = 0
         handleButtons_Clock(btn_b_pressed, btn_c_pressed, btn_d_pressed)
-        canvas = clock
+        canvas = getClockCanvas(canvas, year, month, day, hour, minute, second, weekday)
 
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
 
-    if btn_a_pressed:
-        display = matrix.SwapOnVSync(canvas)
-        time.sleep(.005)
-        display.Clear()
+    display = matrix.SwapOnVSync(canvas)
+    time.sleep(.005)
+    display.Clear()
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
