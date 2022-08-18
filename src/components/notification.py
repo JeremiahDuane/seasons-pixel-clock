@@ -55,7 +55,7 @@ def fetchNotification():
         x[y]
     except Exception as error:
         log = open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "w")
-        log.writelines(["-" * 10, datetime.now() + "", error, "-" * 10])
+        log.writelines(["-" * 10, str(datetime.now()), error, "-" * 10])
         log.close()
     
     return isNew
