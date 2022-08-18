@@ -34,9 +34,12 @@ options.gpio_slowdown = 3
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
-CANVAS = matrix.CreateFrameCanvas()
+CANVAS1 = matrix.CreateFrameCanvas()
+CANVAS2 = matrix.CreateFrameCanvas()
+SWITCH = False
 
 def loop():
+    SWITCH = not SWITCH
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
     global SHOW_DAY_OF_WEEK
@@ -44,7 +47,7 @@ def loop():
     global COUNT_TIME
 
     display = None
-    canvas = CANVAS
+    canvas = CANVAS1 if SWITCH else CANVAS2
 
     now = time.localtime() 
     year = now[0]
