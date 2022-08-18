@@ -37,7 +37,7 @@ matrix = RGBMatrix(options = options)
 CLOCK = matrix.CreateFrameCanvas()
 COUNTDOWN = matrix.CreateFrameCanvas()
 NOTIFICATION = matrix.CreateFrameCanvas()
-dummy = matrix.CreateFrameCanvas()
+DUMMY = matrix.CreateFrameCanvas()
 
 def loop():
     global CURRENT_PAGE
@@ -63,9 +63,9 @@ def loop():
     if btn_a_pressed:
         CURRENT_PAGE+=1     
 
-    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
-    notification = getNotificationCanvas(matrix.CreateFrameCanvas())
-    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
+    clock = getClockCanvas(CLOCK, year, month, day, hour, minute, second, weekday)
+    notification = getNotificationCanvas(NOTIFICATION)
+    countdown = getCountdownCanvas(COUNTDOWN, year, month, day, hour, minute, second, weekday)
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
@@ -81,8 +81,11 @@ def loop():
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
 
-    display = matrix.SwapOnVSync(canvas)
+    if btn_a_pressed:
+        display = matrix.SwapOnVSync(canvas)
+    
     time.sleep(.005)
+    display.Clear()
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
