@@ -4,6 +4,7 @@ from rgbmatrix import graphics
 from PIL import Image
 from objects.scene import SCENES
 from system.config import config_matrix, config_notification, secrets
+from system.logger import log
 
 NOTIFICATION_IS_NEW = True
 CURRENT_NOTIFICATION = None
@@ -54,9 +55,7 @@ def fetchNotification():
         x = []
         x[y]
     except Exception as error:
-        log = open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "w")
-        log.writelines(["-" * 10, str(datetime.now()), str(error), "-" * 10])
-        log.close()
+        log(error)
     
     return isNew
 
