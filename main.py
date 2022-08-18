@@ -76,6 +76,7 @@ def loop():
 
     display = matrix.SwapOnVSync(canvas)
     time.sleep(.005)
+    display.Clear()
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
