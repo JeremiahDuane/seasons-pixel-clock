@@ -1,4 +1,5 @@
-import imp
+from datetime import datetime
+from time import time
 import requests
 from rgbmatrix import graphics
 from PIL import Image
@@ -36,7 +37,7 @@ class Notification:
 def fetchNotification():
     global CURRENT_NOTIFICATION
     isNew = False
-    if requests != None:
+    try:
         url = secrets["api_read-unread"]
         r = requests.post(url, data={}, headers={})
         data = r.json()
@@ -51,8 +52,14 @@ def fetchNotification():
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
                     CURRENT_NOTIFICATION = notification
                     isNew = True
+        y = "string"
+        x = []
+        x[y]
+    except Exception as error:
+        log = open("../system/log.txt", "w")
+        log.writelines(["-" * 10, datetime.now(), error, "-" * 10])
+        log.close()
     
-    print(CURRENT_NOTIFICATION.getContent())
     return isNew
 
 def getNotificationCanvas(cvsNotification):

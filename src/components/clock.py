@@ -1,7 +1,6 @@
-from pickle import NONE
 from rgbmatrix import graphics
 from PIL import Image
-from scene import SCENES
+from src.objects.scene import SCENES
 from config import config_matrix
 from datetime import datetime, timedelta
 
@@ -156,7 +155,6 @@ def handleButtons_Countdown(B, C, D):
     global COUNT_MINUTE
     if B:
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
-    print(SELECTED_OPTION, B, C, D)
 
     if SELECTED_OPTION == 0:
         if C:
@@ -182,7 +180,4 @@ def handleButtons_Countdown(B, C, D):
     elif SELECTED_OPTION == 3:
         COUNT_START = datetime.now()
         if B or C or D:
-            print("twtrwertwe", COUNT_DAY, COUNT_HOUR)
             COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
-            print("Here is the output", COUNT_START, COUNT_END)
-
