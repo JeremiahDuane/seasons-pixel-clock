@@ -49,7 +49,6 @@ def loop():
     global COUNT_DAYS
     global COUNT_TIME
 
-    display = None
     SWITCH = not SWITCH
     canvas = CANVAS1 if SWITCH else CANVAS2
 
@@ -81,8 +80,8 @@ def loop():
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
 
-    display = matrix.SwapOnVSync(canvas)
-    time.sleep(.1)
+    matrix.SwapOnVSync(canvas)
+    time.sleep(.005)
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
@@ -91,7 +90,7 @@ try:
     print("Press CTRL-C to stop.")
     while True:
         loop()
-        time.sleep(1)
+        time.sleep(.25)
         debug+=1
         print(debug)
 
