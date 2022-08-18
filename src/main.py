@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from multiprocessing import dummy
 import time
 import sys
 import RPi.GPIO as GPIO

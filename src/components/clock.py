@@ -1,7 +1,7 @@
 from rgbmatrix import graphics
 from PIL import Image
 from objects.scene import SCENES
-from system.config import config_matrix
+from config import config_matrix
 from datetime import datetime, timedelta
 
 FONT_TITLE = graphics.Font()
