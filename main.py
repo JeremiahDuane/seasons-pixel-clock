@@ -83,9 +83,8 @@ def loop():
 
     if btn_a_pressed:
         display = matrix.SwapOnVSync(canvas)
-    
-    time.sleep(.005)
-    display.Clear()
+        time.sleep(.005)
+        display.Clear()
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
