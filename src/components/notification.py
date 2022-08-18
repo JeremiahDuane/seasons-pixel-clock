@@ -54,7 +54,7 @@ def fetchNotification():
         x = []
         x[y]
     except Exception as error:
-        log = open("../system/log.txt", "w")
+        log = open("./system/log.txt", "w")
         log.writelines(["-" * 10, datetime.now(), error, "-" * 10])
         log.close()
     
