@@ -33,6 +33,10 @@ options.gpio_slowdown = 3
 options.drop_privileges = False
 matrix = RGBMatrix(options = options)
 
+CLOCK = matrix.CreateFrameCanvas()
+COUNTDOWN = matrix.CreateFrameCanvas()
+NOTIFICATION = matrix.CreateFrameCanvas()
+
 def loop():
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
@@ -57,9 +61,9 @@ def loop():
     if btn_a_pressed:
         CURRENT_PAGE+=1     
 
-    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
-    notification = getNotificationCanvas(matrix.CreateFrameCanvas())
-    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
+    clock = getClockCanvas(CLOCK, year, month, day, hour, minute, second, weekday)
+    notification = getNotificationCanvas(COUNTDOWN)
+    countdown = getCountdownCanvas(NOTIFICATION, year, month, day, hour, minute, second, weekday)
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
