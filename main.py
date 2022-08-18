@@ -82,6 +82,7 @@ def loop():
         canvas = getAlertCanvas(canvas)
 
     display = matrix.SwapOnVSync(canvas)
+    time.sleep(5)
     display.Clear()
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
