@@ -63,9 +63,9 @@ def loop():
     if btn_a_pressed:
         CURRENT_PAGE+=1     
 
-    clock = getClockCanvas(CLOCK, year, month, day, hour, minute, second, weekday)
-    notification = getNotificationCanvas(NOTIFICATION)
-    countdown = getCountdownCanvas(COUNTDOWN, year, month, day, hour, minute, second, weekday)
+    clock = getClockCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
+    notification = getNotificationCanvas(matrix.CreateFrameCanvas())
+    countdown = getCountdownCanvas(matrix.CreateFrameCanvas(), year, month, day, hour, minute, second, weekday)
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
