@@ -2,6 +2,7 @@ from datetime import datetime
 
 debug = 0
 def init():
+    global debug
     debug+=1
     print(debug)
 
