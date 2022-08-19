@@ -40,7 +40,7 @@ def fetchNotification():
         url = secrets["api_read-unread"]
         r = requests.post(url, data={}, headers={})
         data = r.json()
-        r.close()
+        r.close() 
 
         messages = data['messages']
         if len(messages) > 0:
