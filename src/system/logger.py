@@ -9,7 +9,7 @@ def init():
 def log(error):
     print("here")
     print(error)
-    log = open("log.txt", "w")
+    log = open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "w")
     log.write(str(debug) + "-" * 10 + "\n")
     log.write(str(datetime.now()) + "\n")
     log.write(str(error) + "\n")

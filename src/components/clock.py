@@ -113,8 +113,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     cvsClock.SetImage(image.convert('RGB'))  
 
     #Draw
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 6, clrSecondary, strDay)
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 7, clrPrimary, strDay)
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 7, clrSecondary, strDay)
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary, strDay)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 9, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 28, clrPrimary, strTime)
