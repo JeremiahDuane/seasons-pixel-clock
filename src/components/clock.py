@@ -131,7 +131,7 @@ def getCountdownString():
 
     if COUNT_START != None:
         if COUNT_START > COUNT_END:
-            return "0 days", "00:00:00"
+            return "0 days", "00:00"
 
         duration = (COUNT_END- COUNT_START)
         days, s = duration.days, duration.seconds
@@ -141,7 +141,7 @@ def getCountdownString():
         dayLabel =  "{days:02d} days".format(
             days=days
         )
-        timeLabel = '{:02d}:{:02d}:{:02d}'.format(int(hours), int(minutes), int(seconds))
+        timeLabel = '{:02d}:{:02d}'.format(int(hours), int(minutes))
 
         return dayLabel, timeLabel
     else:
@@ -149,8 +149,8 @@ def getCountdownString():
         dayLabel =  "{days:02d} days".format(
             days=COUNT_DAY
         )
-        timeLabel =  "{hour:02d}:{minute:02d}:{second:02d}".format(
-            hour=COUNT_HOUR, minute=COUNT_MINUTE, second=0
+        timeLabel =  "{hour:02d}:{minute:02d}".format(
+            hour=COUNT_HOUR, minute=COUNT_MINUTE
         )
         return dayLabel, timeLabel
 
