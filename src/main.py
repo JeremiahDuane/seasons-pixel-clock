@@ -84,14 +84,11 @@ def loop():
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
 last_check = None
-debug = 0
 try:
     print("Press CTRL-C to stop.")
     while True:
         loop()
         time.sleep(.25)
-        debug+=1
-        print(debug)
 
         if last_check is None:
             last_check = time.monotonic()

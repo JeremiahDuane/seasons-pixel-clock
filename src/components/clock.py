@@ -105,12 +105,20 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     #Scene
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
+    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
 
     #Draw
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 14, clrSecondary, strDay)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 15, clrPrimary, strDay)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 31, clrSecondary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 1, 32, clrPrimary, strTime)
+    image = Image.open(strImagePath)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    cvsClock.SetImage(image.convert('RGB'))  
+
+    #Draw
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 17, clrSecondary, strDay)
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 18, clrPrimary, strDay)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, "___")
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 32, clrPrimary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 33, clrPrimary, strTime)
 
     return cvsClock
 
