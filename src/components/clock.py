@@ -118,10 +118,10 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
-    graphics.DrawText(cvsClock, FONT_TITLE, 19, 28, clrSecondary, ":")
-    graphics.DrawText(cvsClock, FONT_TITLE, 19, 29, clrPrimary, ":")
-    graphics.DrawText(cvsClock, FONT_TITLE, 24, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
-    graphics.DrawText(cvsClock, FONT_TITLE, 24, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":")
+    graphics.DrawText(cvsClock, FONT_TITLE, 25, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
+    graphics.DrawText(cvsClock, FONT_TITLE, 25, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
     
     return cvsClock
 
