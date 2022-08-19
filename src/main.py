@@ -7,6 +7,7 @@ from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 from components.clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
 from system.input import getInputOptions
+from system.logger import init
 
 #---------------- GLOBALS ----------------#
 CURRENT_PAGE = 0
@@ -89,7 +90,7 @@ try:
     while True:
         loop()
         time.sleep(.25)
-
+        init()
         if last_check is None:
             last_check = time.monotonic()
         elif time.monotonic() > last_check + 60:
