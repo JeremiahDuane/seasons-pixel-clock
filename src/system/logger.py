@@ -1,6 +1,6 @@
 from curses import nonl
 from datetime import datetime
-from config import package
+from system.config import package
 
 debug = 0
 def init():
@@ -14,7 +14,7 @@ def logger(error):
         global debug
         global package
         nonlocal error
-        
+
         return [
             f'----------------------------------------------------------{str(datetime.now())}{newLine}',
             f'    Log#: {debug}                                                              {newLine}',
