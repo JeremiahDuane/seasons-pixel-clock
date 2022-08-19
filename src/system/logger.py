@@ -19,7 +19,7 @@ def logger(error):
             f'----------------------------------------------------------{str(datetime.now())}{newLine}',
             f'    Log#: {debug}                                                              {newLine}',
             f'    Error#: {error}                                                            {newLine}',
-            f'----------------------------------------------------------{package.version}    {newLine}'
+            f'----------------------------------------------------------{package["version"]}    {newLine}'
         ]
 
     with open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "a") as file:
