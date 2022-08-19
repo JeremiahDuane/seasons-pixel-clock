@@ -40,7 +40,7 @@ def fetchNotification():
         url = secrets["api_read-unread"]
         r = requests.post(url, data={}, headers={})
         data = r.json()
-        r.close() 
+        r.close()
 
         messages = data['messages']
         if len(messages) > 0:
@@ -51,7 +51,9 @@ def fetchNotification():
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
                     CURRENT_NOTIFICATION = notification
                     isNew = True
-
+        y = "string"
+        x = []
+        x[y]
     except Exception as error:
         log(error)
     
