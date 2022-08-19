@@ -13,3 +13,7 @@ secrets = {
     'timezone' : "America/Chicago", # http://worldtimeapi.org/timezones
     'api_read-unread' : 'https://a4lrurckzb.execute-api.us-east-2.amazonaws.com/prod/events/read-unread'
 }
+
+package = {
+    "version" : "v1.0.0"
+}

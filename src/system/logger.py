@@ -1,4 +1,6 @@
+from curses import nonl
 from datetime import datetime
+from config import package
 
 debug = 0
 def init():
@@ -6,12 +8,23 @@ def init():
     debug+=1
     print(debug)
 
-def log(error):
-    print("here")
-    print(error)
-    log = open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "w")
-    log.write(str(debug) + "-" * 10 + "\n")
-    log.write(str(datetime.now()) + "\n")
-    log.write(str(error) + "\n")
-    log.write("-" * 10 + "\n")
-    log.close()
+def logger(error):
+
+    def log(newLine):
+        global debug
+        global package
+        nonlocal error
+        
+        return [
+            f'----------------------------------------------------------{str(datetime.now())}{newLine}',
+            f'    Log#: {debug}                                                              {newLine}',
+            f'    Error#: {error}                                                            {newLine}',
+            f'----------------------------------------------------------{package.version}    {newLine}'
+        ]
+
+    with open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "a") as file:
+        file.writelines(log('\n'))
+        file.close
+
+    for line in log('\n'):
+        print(line)
