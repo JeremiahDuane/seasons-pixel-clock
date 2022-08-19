@@ -99,27 +99,30 @@ def handleButtons_Clock(B, C, D):
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
-    strDay, strTime = getCountdownString()
+    strDay, strHour, strMinute = getCountdownString()
     scene = getScene(year, month, day, weekday)
 
     #Scene
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
-
+    white = graphics.Color(255,255,255)
     #Draw
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
 
     #Draw
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 7, clrSecondary, strDay)
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary, strDay)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrSecondary, "___")
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 9, clrPrimary, "___")
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary, strTime)
-
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
+    graphics.DrawText(cvsClock, FONT_TITLE, 14, 28, clrSecondary, ":")
+    graphics.DrawText(cvsClock, FONT_TITLE, 14, 29, clrPrimary, ":")
+    graphics.DrawText(cvsClock, FONT_TITLE, 19, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
+    graphics.DrawText(cvsClock, FONT_TITLE, 19, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
+    
     return cvsClock
 
 def getCountdownString():
@@ -131,7 +134,7 @@ def getCountdownString():
 
     if COUNT_START != None:
         if COUNT_START > COUNT_END:
-            return "0 days", "00:00"
+            return "00 days", "00", "00"
 
         duration = (COUNT_END- COUNT_START)
         days, s = duration.days, duration.seconds
@@ -141,18 +144,21 @@ def getCountdownString():
         dayLabel =  "{days:02d} days".format(
             days=days
         )
-        timeLabel = '{:02d}:{:02d}'.format(int(hours), int(minutes))
+        hourLabel = '{:02d}'.format(int(hours))
+        minuteLabel = '{:02d}'.format(int(minutes))
 
-        return dayLabel, timeLabel
+        return dayLabel, hourLabel, minuteLabel
     else:
-        print("none")
         dayLabel =  "{days:02d} days".format(
             days=COUNT_DAY
         )
-        timeLabel =  "{hour:02d}:{minute:02d}".format(
-            hour=COUNT_HOUR, minute=COUNT_MINUTE
+        hourLabel =  "{hour:02d}".format(
+            hour=COUNT_HOUR
         )
-        return dayLabel, timeLabel
+        minuteLabel =  "{minute:02d}".format(
+            minute=COUNT_MINUTE
+        )
+        return dayLabel, hourLabel, minuteLabel
 
 def handleButtons_Countdown(B, C, D):
     global SELECTED_OPTION
@@ -161,6 +167,7 @@ def handleButtons_Countdown(B, C, D):
     global COUNT_DAY
     global COUNT_HOUR
     global COUNT_MINUTE
+
     if B:
         SELECTED_OPTION = SELECTED_OPTION + 1 if SELECTED_OPTION < 3 else 0
 
