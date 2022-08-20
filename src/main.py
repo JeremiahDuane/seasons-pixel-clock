@@ -64,9 +64,7 @@ def loop():
     btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_e_pressed = getInputOptions()
 
     if btn_a_pressed:
-        CURRENT_PAGE+=1     
-    if btn_e_pressed:
-        sys.exit(0)
+        CURRENT_PAGE+=1
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
