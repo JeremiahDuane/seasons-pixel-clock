@@ -51,9 +51,6 @@ def fetchNotification():
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
                     CURRENT_NOTIFICATION = notification
                     isNew = True
-        y = "string"
-        x = []
-        x[y]
     except Exception as error:
         logger(error=error)
     
