@@ -1,12 +1,13 @@
 from curses import nonl
 from datetime import datetime
 from system.config import package
+from system.colors import colors
 
 debug = 0
 def init():        
     global debug
     debug+=1
-    print(debug)
+    print(colors.fg.blue, debug)
 
 def logger(error):
     def log(newLine):
@@ -15,7 +16,6 @@ def logger(error):
         nonlocal error
 
         return [
-            '\033[34m',
             f'----------------------------------------------------------|{str(datetime.now())}|{newLine}',
             f'    Log#: {debug}                                                                {newLine}',
             f'    Error: {error}                                                               {newLine}',
