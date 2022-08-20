@@ -38,3 +38,5 @@ def appendToLog(fg, message, error):
 
     for line in log('\n'):
         print(line)
+    
+    print(colors.reset)
