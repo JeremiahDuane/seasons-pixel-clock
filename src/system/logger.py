@@ -7,7 +7,7 @@ debug = 0
 def debugger():        
     global debug
     debug+=1
-    print(colors.fg.blue, debug)
+    print(debug)
 
 def boot():
     appendToLog(colors.fg.blue, "BOOT: Startup sequence...", "")
