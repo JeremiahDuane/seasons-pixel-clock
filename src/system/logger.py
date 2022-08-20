@@ -25,11 +25,12 @@ def appendToLog(fg, message, error):
         nonlocal error
 
         return [
-            f'{fg}----------------------------------------------------------|{str(datetime.now())}|     {newLine}',
-            f'{fg}    Log#: {debug}                                                                     {newLine}',
-            f'{fg}    Message: {message}                                                                {newLine}' if message != "" else "",
-            f'{fg}    Error: {error}                                                                    {newLine}' if error   != "" else "",
-            f'{fg}----------------------------------------------------------|{package["version"]}|      {newLine}'
+            f'{fg}',
+            f'----------------------------------------------------------|{str(datetime.now())}|     {newLine}',
+            f'    Log#: {debug}                                                                     {newLine}',
+            f'    Message: {message}                                                                {newLine}' if message != "" else "",
+            f'    Error: {error}                                                                    {newLine}' if error   != "" else "",
+            f'----------------------------------------------------------|{package["version"]}|      {newLine}'
         ]
 
     with open("/home/jgage/code/seasons-pixel-clock/src/system/log.txt", "a") as file:
