@@ -3,19 +3,19 @@ from datetime import datetime
 from system.config import package
 
 debug = 0
-def init():
+def init():        
     global debug
     debug+=1
     print(debug)
 
 def logger(error):
-
     def log(newLine):
         global debug
         global package
         nonlocal error
 
         return [
+            '\033[34m',
             f'----------------------------------------------------------|{str(datetime.now())}|{newLine}',
             f'    Log#: {debug}                                                                {newLine}',
             f'    Error: {error}                                                               {newLine}',

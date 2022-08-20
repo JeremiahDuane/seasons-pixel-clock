@@ -52,7 +52,7 @@ def fetchNotification():
                     CURRENT_NOTIFICATION = notification
                     isNew = True
     except Exception as error:
-        logger(error)
+        logger(error=error)
     
     return isNew
 
