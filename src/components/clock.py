@@ -31,13 +31,13 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrPrimary, clrSecondary = getColors(scene)
     
     #Draw
+    handleImage(cvsClock, scene, second % 2 == 0, year)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDate)
     graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrPrimary, strPeriod)
-    handleImage(cvsClock, scene, second % 2 == 0, year)
 
     return cvsClock
 
