@@ -11,6 +11,7 @@ from system.logger import debugger, boot
 
 
 #---------------- GLOBALS ----------------#
+ON = True
 CURRENT_PAGE = 0
 ALERT_NOTIFICATION = False
 
@@ -40,6 +41,10 @@ CANVAS2 = MATRIX.CreateFrameCanvas()
 SWITCH = False
 
 def readyExit():
+    global ON
+    global MATRIX
+
+    ON = False
     print("Off")
     MATRIX.SwapOnVSync(MATRIX.CreateFrameCanvas())
     GPIO.cleanup()
@@ -95,7 +100,7 @@ boot()
 last_check = None
 try:
     print("Press CTRL-C to stop.")
-    while True:
+    while ON:
         debugger()
         loop()
         time.sleep(.25)
