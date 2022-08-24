@@ -29,7 +29,7 @@ class Scene:
         return self.action
 
 def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
-    color = graphics.Color(255,255,240)
+    color = graphics.Color(255,255,200)
     graphics.DrawText(canvas, font, 47, 20, color, str(year-1997))
     graphics.DrawText(canvas, font, 47, 21, color, str(year-1997))
 
