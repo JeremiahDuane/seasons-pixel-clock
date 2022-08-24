@@ -38,6 +38,10 @@ CANVAS1 = matrix.CreateFrameCanvas()
 CANVAS2 = matrix.CreateFrameCanvas()
 SWITCH = False
 
+def readyExit():
+    GPIO.cleanup()
+    sys.exit(0)
+
 def loop():
     global CANVAS1
     global CANVAS2
@@ -61,8 +65,10 @@ def loop():
     second =  now[5]
     weekday = now[6]
 
-    btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_e_pressed = getInputOptions()
+    btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_power_pressed = getInputOptions()
 
+    if btn_power_pressed:
+        readyExit()
     if btn_a_pressed:
         CURRENT_PAGE+=1
 
@@ -97,6 +103,4 @@ try:
             last_check = time.monotonic()
             ALERT_NOTIFICATION = fetchNotification()
 except KeyboardInterrupt:
-    GPIO.cleanup()
-    sys.exit(0)
-    
+    readyExit()
