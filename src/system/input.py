@@ -14,9 +14,7 @@ GPIO.setup(BUTTON_B_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_C_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_D_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #GPIO.setup(BUTTON_E_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-
 GPIO.setup(BUTTON_POWER_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-GPIO.wait_for_edge(BUTTON_POWER_PIN, GPIO.FALLING)
 
 def getInputOptions():
     btn_a_pressed = False
