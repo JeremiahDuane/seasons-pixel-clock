@@ -1,9 +1,7 @@
 from objects.rgb import RGB
 
 class Scene:    
-    def default(*, any=None):
-        pass
-    def __init__(self, primaryColor, secondaryColor, bmp, bmp2=None, action=default):      
+    def __init__(self, primaryColor, secondaryColor, bmp, bmp2=None, action=None):      
         self.primaryColor = primaryColor            
         self.secondaryColor = secondaryColor            
         self.bmp = bmp                                  
@@ -38,6 +36,6 @@ SCENES = [
     Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                 # -0-  Notification 
     Scene(RGB(255,255,255), RGB(0,255,255), "./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"),         # -1-  January Snowman
     #Scene(RGB(200,190,0), RGB(255,190,0), "./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"),     # -8-  August Sunflowers
-    Scene(RGB(200,190,0), RGB(255,190,0), "./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp"),     # -8-  August Sunflowers
+    Scene(RGB(200,190,0), RGB(255,190,0), "./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp", BirthdayAction),     # -8-  August Sunflowers
     Scene(RGB(255,255,255), RGB(0,255,255), "./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp")            # -12- December Wreath
 ]
