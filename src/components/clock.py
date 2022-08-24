@@ -28,25 +28,16 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     strPeriod = getPeriodString(hour)
     scene = getScene(year, month, day, weekday)
 
-    #Scene
-    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
-    clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
-
+    clrPrimary, clrSecondary = getColors(scene)
+    
     #Draw
-    image = Image.open(strImagePath)
-    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    cvsClock.SetImage(image.convert('RGB'))  
-
-    graphics.DrawText(cvsClock, FONT_HEADING, 47, 21, clrPrimary, str(year-1997))
-    graphics.DrawText(cvsClock, FONT_HEADING, 47, 20, clrSecondary, str(year-1997))
-
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDate)
     graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrPrimary, strPeriod)
+    handleImage(cvsClock, scene, second % 2 == 0, year)
 
     return cvsClock
 
@@ -82,19 +73,6 @@ def getTimeString(hour, minute, second):
 def getPeriodString(hours):
     periodLabel = "AM" if hours < 12 else "PM"
     return periodLabel
-
-def getScene(year, month, day, weekday): 
-    IsSpring = False
-    IsSummer = True
-    IsFall = False
-    IsWinter = False
-
-    if IsSummer:
-        scene = SCENES[2]
-    else: 
-        scene = SCENES[1]
-
-    return scene
 
 def handleButtons_Clock(B, C, D):
     global SHOW_DAY_OF_WEEK
@@ -201,3 +179,38 @@ def handleButtons_Countdown(B, C, D):
         COUNT_START = datetime.now()
         if B or C or D:
             COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
+
+
+#---------- Shared ----------#
+def getScene(year, month, day, weekday): 
+    IsSpring = False
+    IsSummer = True
+    IsFall = False
+    IsWinter = False
+
+    if IsSummer:
+        scene = SCENES[2]
+    else: 
+        scene = SCENES[1]
+
+    return scene
+
+def getColors(scene):
+    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
+    clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
+
+    return clrPrimary, clrSecondary
+
+def handleImage(canvas, scene, blink, year):
+    strImagePath = scene.getBMP1() if blink else scene.getBMP2()
+    clrPrimary, clrSecondary = getColors(scene)
+
+    #Draw
+    image = Image.open(strImagePath)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    canvas.SetImage(image.convert('RGB'))  
+
+    graphics.DrawText(canvas, FONT_HEADING, 47, 21, clrPrimary, str(year-1997))
+    graphics.DrawText(canvas, FONT_HEADING, 47, 20, clrSecondary, str(year-1997))
+
+    return clrPrimary, clrSecondary, strImagePath
