@@ -40,6 +40,7 @@ CANVAS2 = MATRIX.CreateFrameCanvas()
 SWITCH = False
 
 def readyExit():
+    print("Off")
     MATRIX.SwapOnVSync(MATRIX.CreateFrameCanvas())
     GPIO.cleanup()
     sys.exit(0)
@@ -54,8 +55,7 @@ def loop():
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
 
-    SWITCH = not SWITCH
-    canvas = CANVAS1 if SWITCH else CANVAS2
+    canvas = CANVAS1
 
     now = time.localtime() 
     year = now[0]
