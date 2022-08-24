@@ -6,7 +6,6 @@ import RPi.GPIO as GPIO
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 from components.clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
-from components.poweroff import getPowerOffCanvas
 from system.input import getInputOptions
 from system.logger import debugger, boot
 
