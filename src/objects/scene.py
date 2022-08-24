@@ -1,7 +1,7 @@
 from objects.rgb import RGB
 
 class Scene:    
-    def default():
+    def default(*, any=None):
         pass
     def __init__(self, primaryColor, secondaryColor, bmp, bmp2=None, action=default):      
         self.primaryColor = primaryColor            
