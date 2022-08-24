@@ -1,11 +1,14 @@
 from objects.rgb import RGB
 
 class Scene:    
-    def __init__(self, primaryColor, secondaryColor, bmp, bmp2=None):      
+    def default():
+        pass
+    def __init__(self, primaryColor, secondaryColor, bmp, bmp2=None, action=default):      
         self.primaryColor = primaryColor            
         self.secondaryColor = secondaryColor            
         self.bmp = bmp                                  
-        self.bmp2 = bmp2        
+        self.bmp2 = bmp2     
+        self.action = action   
     def setBMP1(self, bmp):
         self.bmp = bmp
     def getBMP1(self):    
@@ -22,6 +25,14 @@ class Scene:
         self.secondaryColor = secondaryColor
     def getSecondaryColor(self):    
         return self.secondaryColor
+    def setAction(self, action):
+        self.action = action    
+    def getAction(self):
+        return self.action
+
+def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
+    graphics.DrawText(canvas, font, 47, 21, clrPrimary, str(year-1997))
+    graphics.DrawText(canvas, font, 47, 20, clrSecondary, str(year-1997))
 
 SCENES = [
     Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                 # -0-  Notification 

@@ -31,7 +31,13 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrPrimary, clrSecondary = getColors(scene)
     
     #Draw
-    handleImage(cvsClock, scene, second % 2 == 0, year)
+    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
+    image = Image.open(strImagePath)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    cvsClock.SetImage(image.convert('RGB'))  
+
+    scene.getAction()(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
+
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
@@ -89,7 +95,13 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     white = graphics.Color(255,255,255)
     
     #Draw
-    handleImage(cvsClock, scene, second % 2 == 0, year)
+    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
+    image = Image.open(strImagePath)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    cvsClock.SetImage(image.convert('RGB'))  
+
+    scene.getAction()(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
+
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
@@ -194,17 +206,3 @@ def getColors(scene):
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
 
     return clrPrimary, clrSecondary
-
-def handleImage(canvas, scene, blink, year):
-    strImagePath = scene.getBMP1() if blink else scene.getBMP2()
-    clrPrimary, clrSecondary = getColors(scene)
-
-    #Draw
-    image = Image.open(strImagePath)
-    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    canvas.SetImage(image.convert('RGB'))  
-
-    graphics.DrawText(canvas, FONT_HEADING, 47, 21, clrPrimary, str(year-1997))
-    graphics.DrawText(canvas, FONT_HEADING, 47, 20, clrSecondary, str(year-1997))
-
-    return clrPrimary, clrSecondary, strImagePath
