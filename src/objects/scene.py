@@ -29,8 +29,8 @@ class Scene:
         return self.action
 
 def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
-    graphics.DrawText(canvas, font, 47, 20, clrSecondary, str(year-1997))
-    graphics.DrawText(canvas, font, 47, 21, clrSecondary, str(year-1997))
+    graphics.DrawText(canvas, font, 47, 20, RGB(255,100,255), str(year-1997))
+    graphics.DrawText(canvas, font, 47, 21, RGB(255,190,255), str(year-1997))
 
 SCENES = [
     Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                 # -0-  Notification 
