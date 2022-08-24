@@ -90,15 +90,15 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     
     #Draw
     handleImage(cvsClock, scene, second % 2 == 0, year)
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 1 else white, strDay)
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 2 else white, strHour)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 2 else white, strHour)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":" if second % 2 == 0 else "")
     graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":" if second % 2 == 0 else "")
-    graphics.DrawText(cvsClock, FONT_TITLE, 25, 28, clrSecondary if SELECTED_OPTION != 3 else white, strMinute)
-    graphics.DrawText(cvsClock, FONT_TITLE, 25, 29, clrPrimary if SELECTED_OPTION != 3 else white, strMinute)
+    graphics.DrawText(cvsClock, FONT_TITLE, 25, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
+    graphics.DrawText(cvsClock, FONT_TITLE, 25, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
     
     return cvsClock
 
