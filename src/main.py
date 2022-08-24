@@ -33,10 +33,10 @@ options.led_rgb_sequence = 'RGB'
 #  options.pixel_mapper_config = ''
 options.gpio_slowdown = 3
 options.drop_privileges = False
-matrix = RGBMatrix(options = options)
+MATRIX = RGBMatrix(options = options)
 
-CANVAS1 = matrix.CreateFrameCanvas()
-CANVAS2 = matrix.CreateFrameCanvas()
+CANVAS1 = MATRIX.CreateFrameCanvas()
+CANVAS2 = MATRIX.CreateFrameCanvas()
 SWITCH = False
 
 def readyExit():
@@ -44,15 +44,13 @@ def readyExit():
     sys.exit(0)
 
 def loop():
+    global MATRIX
     global CANVAS1
     global CANVAS2
     global SWITCH
 
     global CURRENT_PAGE
     global ALERT_NOTIFICATION
-    global SHOW_DAY_OF_WEEK
-    global COUNT_DAYS
-    global COUNT_TIME
 
     SWITCH = not SWITCH
     canvas = CANVAS1 if SWITCH else CANVAS2
