@@ -85,17 +85,10 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     strDay, strHour, strMinute = getCountdownString()
     scene = getScene(year, month, day, weekday)
 
-    #Scene
-    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
-    clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
-    white = graphics.Color(255,255,255)
+    clrPrimary, clrSecondary = getColors(scene)
+    
     #Draw
-    image = Image.open(strImagePath)
-    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    cvsClock.SetImage(image.convert('RGB'))  
-
-    #Draw
+    handleImage(cvsClock, scene, second % 2 == 0, year)
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
