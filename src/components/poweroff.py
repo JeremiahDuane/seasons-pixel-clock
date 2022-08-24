@@ -20,6 +20,6 @@ def getPowerOffCanvas(cvsPowerOff):
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsPowerOff.SetImage(image.convert('RGB'))  
 
-    graphics.DrawText(cvsPowerOff, FONT_SUBTITLE, 0, 12, clrPrimary, "Powering off...")
+    graphics.DrawText(cvsPowerOff, FONT_SUBTITLE, 2, 18, clrPrimary, "Powering off...")
 
     return cvsPowerOff
