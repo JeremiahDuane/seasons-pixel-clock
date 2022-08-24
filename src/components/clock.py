@@ -6,9 +6,11 @@ from datetime import datetime, timedelta
 
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
+FONT_HEADING = graphics.Font()
 
 FONT_TITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-main-24.bdf") 
 FONT_SUBTITLE.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-subtitle-7.bdf") 
+FONT_HEADING.LoadFont("/home/jgage/code/seasons-pixel-clock/fonts/pixelclock-heading-12.bdf") 
 
 COUNT_START = None    
 COUNT_END = None
@@ -35,6 +37,8 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
+
+    graphics.DrawText(cvsClock, FONT_HEADING, 40, 17, clrSecondary, (year-1997))
 
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
