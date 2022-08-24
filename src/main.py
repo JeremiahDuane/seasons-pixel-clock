@@ -12,6 +12,7 @@ from system.logger import debugger, boot
 
 
 #---------------- GLOBALS ----------------#
+ON=True
 CURRENT_PAGE = 0
 ALERT_NOTIFICATION = False
 
@@ -70,10 +71,12 @@ def loop():
     btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_power_pressed = getInputOptions()
 
     if btn_power_pressed:
+        global ON
+        ON = False
         canvas = getPowerOffCanvas(canvas)
         matrix.SwapOnVSync(canvas)
         return
-
+      
     if btn_a_pressed:
         CURRENT_PAGE+=1
 
@@ -99,7 +102,7 @@ boot()
 last_check = None
 try:
     print("Press CTRL-C to stop.")
-    while True:
+    while ON:
         debugger()
         loop()
         time.sleep(.25)
