@@ -29,13 +29,13 @@ class Scene:
         return self.action
 
 def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
-    graphics.DrawText(canvas, font, 47, 21, clrSecondary, str(year-1997))
-    graphics.DrawText(canvas, font, 47, 20, clrPrimary, str(year-1997))
+    graphics.DrawText(canvas, font, 47, 20, clrSecondary, str(year-1997))
+    graphics.DrawText(canvas, font, 47, 21, clrPrimary, str(year-1997))
 
 SCENES = [
     Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                 # -0-  Notification 
     Scene(RGB(255,255,255), RGB(0,255,255), "./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"),         # -1-  January Snowman
     #Scene(RGB(200,190,0), RGB(255,190,0), "./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"),     # -8-  August Sunflowers
-    Scene(RGB(255,220,220), RGB(255,150,150), "./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp", BirthdayAction),     # -8-  August Sunflowers
+    Scene(RGB(255,230,230), RGB(255,190,150), "./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp", BirthdayAction),     # -8-  August Sunflowers
     Scene(RGB(255,255,255), RGB(0,255,255), "./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp")            # -12- December Wreath
 ]
