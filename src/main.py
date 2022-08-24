@@ -86,7 +86,6 @@ def loop():
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
 
-
     MATRIX.SwapOnVSync(canvas)
 # -------------------------------------------------- Clock : End -------------------------------------------------  
 
