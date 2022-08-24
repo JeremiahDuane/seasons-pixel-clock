@@ -77,7 +77,7 @@ def loop():
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
-        canvas = getCountdownCanvas(canvas, year, month, day, hour, minute, second, weekday)
+        canvas = getPowerOffCanvas(canvas)
     elif CURRENT_PAGE == 1:
         ALERT_NOTIFICATION = False
         canvas = getNotificationCanvas(canvas)
