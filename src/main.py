@@ -40,8 +40,10 @@ CANVAS2 = MATRIX.CreateFrameCanvas()
 SWITCH = False
 
 def readyExit():
+    MATRIX.SwapOnVSync(MATRIX.CreateFrameCanvas())
     GPIO.cleanup()
     sys.exit(0)
+    
 
 def loop():
     global MATRIX
