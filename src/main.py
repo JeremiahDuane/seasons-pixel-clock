@@ -6,8 +6,10 @@ import RPi.GPIO as GPIO
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas
 from components.clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
+from components.poweroff import getPowerOffCanvas
 from system.input import getInputOptions
 from system.logger import debugger, boot
+
 
 #---------------- GLOBALS ----------------#
 CURRENT_PAGE = 0
@@ -68,7 +70,8 @@ def loop():
     btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_power_pressed = getInputOptions()
 
     if btn_power_pressed:
-        readyExit()
+        canvas = getPowerOffCanvas(canvas)
+
     if btn_a_pressed:
         CURRENT_PAGE+=1
 
