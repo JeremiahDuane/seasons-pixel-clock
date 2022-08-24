@@ -38,7 +38,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
 
-    graphics.DrawText(cvsClock, FONT_HEADING, 40, 17, clrSecondary, (year-1997))
+    graphics.DrawText(cvsClock, FONT_HEADING, 40, 17, clrSecondary, str(year-1997))
 
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
