@@ -29,7 +29,7 @@ class Scene:
         return self.action
 
 def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
-    graphics.DrawText(canvas, font, 47, 20, clrSecondary, str(year-1997))
+    graphics.DrawText(canvas, font, 47, 20, clrPrimary, str(year-1997))
     graphics.DrawText(canvas, font, 47, 21, clrPrimary, str(year-1997))
 
 SCENES = [
