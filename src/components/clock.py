@@ -28,7 +28,8 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     strPeriod = getPeriodString(hour)
     scene = getScene(year, month, day, weekday)
 
-    clrPrimary, clrSecondary = getColors(scene)
+    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
+    clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     
     #Draw
     strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
@@ -36,7 +37,9 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
 
-    scene.getAction()(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
+    action = scene.getAction()
+    if action != None:
+        action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
 
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
@@ -91,7 +94,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     strDay, strHour, strMinute = getCountdownString()
     scene = getScene(year, month, day, weekday)
 
-    clrPrimary, clrSecondary = getColors(scene)
+    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
+    clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     white = graphics.Color(255,255,255)
     
     #Draw
@@ -100,7 +104,9 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
 
-    scene.getAction()(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
+    action = scene.getAction()
+    if action != None:
+        action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
 
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
@@ -200,9 +206,3 @@ def getScene(year, month, day, weekday):
         scene = SCENES[1]
 
     return scene
-
-def getColors(scene):
-    clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
-    clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-
-    return clrPrimary, clrSecondary
