@@ -86,6 +86,7 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     scene = getScene(year, month, day, weekday)
 
     clrPrimary, clrSecondary = getColors(scene)
+    white = graphics.Color(255,255,255)
     
     #Draw
     handleImage(cvsClock, scene, second % 2 == 0, year)
