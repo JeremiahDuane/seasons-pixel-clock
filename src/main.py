@@ -71,7 +71,8 @@ def loop():
 
     if btn_power_pressed:
         canvas = getPowerOffCanvas(canvas)
-        print("power off")
+        matrix.SwapOnVSync(canvas)
+        return
 
     if btn_a_pressed:
         CURRENT_PAGE+=1
@@ -89,6 +90,7 @@ def loop():
 
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
+
 
     matrix.SwapOnVSync(canvas)
 # -------------------------------------------------- Clock : End -------------------------------------------------  
