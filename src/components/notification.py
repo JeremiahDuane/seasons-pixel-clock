@@ -63,7 +63,7 @@ def getNotificationCanvas(cvsNotification):
     scene = SCENES[0]
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    strImagePath = scene.getBMP1()
+    strImagePath = scene.getBMPs()[0]
 
     #Draw
     image = Image.open(strImagePath)
