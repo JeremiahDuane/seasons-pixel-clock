@@ -50,6 +50,7 @@ def fetchNotification():
 
                 # Only store the newest message.
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
+                    print(CURRENT_NOTIFICATION.getContent(), notification.getDate(), CURRENT_NOTIFICATION.getDate())
                     CURRENT_NOTIFICATION = notification
                     NOTIFICATION_IS_NEW = True
     except Exception as error:
