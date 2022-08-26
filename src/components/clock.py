@@ -35,6 +35,7 @@ def getImage(scene, second):
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    LAST_TICK = second
     return image
 
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
