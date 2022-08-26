@@ -20,6 +20,7 @@ COUNT_HOUR = 0
 
 SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
+IDX = 0
 
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
@@ -32,12 +33,11 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     
     #Draw
-    idx = 0
     if second % 2 == 0:
-        idx=idx+1
-    if idx >= len(scene.getBMPs()):
-        idx = 0
-    strImagePath = scene.getBMPs()[idx] 
+        IDX=IDX+1
+    if IDX >= len(scene.getBMPs()):
+        IDX = 0
+    strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
