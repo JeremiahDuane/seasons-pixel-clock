@@ -85,13 +85,14 @@ def getDateString(year, month, day, weekday):
     return dateLabel
     
 def getTimeString(hour, minute, second):
+    global TICK
     if hour == 0:
         hour = 12
     elif hour > 12:
         hour = hour - 12
     timeLabel =  "{hour:02d}{colon}{minute:02d}".format(
         hour=hour, minute=minute,
-        colon=" " if second % 2 == 0 else ":"
+        colon=" " if TICK % 2 == 0 else ":"
     )
     return timeLabel
 
@@ -106,6 +107,7 @@ def handleButtons_Clock(B, C, D):
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
+    global TICK
     #Clock
     strDay, strHour, strMinute = getCountdownString()
     scene = getScene(year, month, day, weekday)
@@ -127,8 +129,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":" if second % 2 == 0 else "")
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":" if second % 2 == 0 else "")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":" if TICK % 2 == 0 else "")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":" if TICK % 2 == 0 else "")
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
     
