@@ -23,11 +23,14 @@ SELECTED_OPTION = 0
 
 IMAGE_INDEX = 0
 TICK = 1
+BLINK = False
 
 def getImage(scene, second):
     global IMAGE_INDEX
     global TICK
     
+    if TICK == 1:
+        BLINK = not BLINK 
     TICK = 1 if TICK >= 4 else TICK + 1
  
     if TICK % scene.getTempo() == 0:
@@ -85,7 +88,7 @@ def getDateString(year, month, day, weekday):
     return dateLabel
     
 def getTimeString(hour, minute, second):
-    global TICK
+    global BLINK
     print("----", TICK)
     if hour == 0:
         hour = 12
@@ -93,7 +96,7 @@ def getTimeString(hour, minute, second):
         hour = hour - 12
     timeLabel =  "{hour:02d}{colon}{minute:02d}".format(
         hour=hour, minute=minute,
-        colon=" " if TICK == 2 or TICK == 3 else ":"
+        colon=" " if BLINK else ":"
     )
     return timeLabel
 
@@ -108,7 +111,7 @@ def handleButtons_Clock(B, C, D):
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
-    global TICK
+    global BLINK
     #Clock
     strDay, strHour, strMinute = getCountdownString()
     scene = getScene(year, month, day, weekday)
@@ -130,8 +133,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":" if TICK == 2 or TICK == 3 else "")
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":" if TICK == 2 or TICK == 3 else "")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":" if BLINK else "")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":" if BLINK else "")
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
     
