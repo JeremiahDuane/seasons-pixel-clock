@@ -26,7 +26,7 @@ def getImage(scene, second):
     global IDX
     if second % scene.getTempo() == 0:
         IDX=IDX+1
-    if IDX > len(scene.getBMPs()):
+    if IDX >= len(scene.getBMPs()):
         IDX = 0
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
