@@ -34,7 +34,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     
     #Draw
     global IDX
-    if second % 2 == 0:
+    if second % 1 == 0:
         IDX=IDX+1
     if IDX >= len(scene.getBMPs()):
         IDX = 0
