@@ -22,6 +22,17 @@ SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
 IDX = 0
 
+def getImage(scene, second):
+    global IDX
+    if second % scene.getTempo() == 0:
+        IDX=IDX+1
+    if IDX >= len(scene.getBMPs()):
+        IDX = 0
+    strImagePath = scene.getBMPs()[IDX] 
+    image = Image.open(strImagePath)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    return image
+
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
     strDate = getDateString(year, month, day, weekday)
@@ -33,15 +44,8 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     
     #Draw
-    global IDX
-    if second % 1 == 0:
-        IDX=IDX+1
-    if IDX >= len(scene.getBMPs()):
-        IDX = 0
-    strImagePath = scene.getBMPs()[IDX] 
-    image = Image.open(strImagePath)
-    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    cvsClock.SetImage(image.convert('RGB'))  
+    image = getImage(scene, second)
+    cvsClock.SetImage(image.convert('RGB')) 
 
     action = scene.getAction()
     if action != None:
@@ -105,16 +109,9 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     white = graphics.Color(255,255,255)
     
     #Draw
-    idx = 0
-    if second % 2 == 0:
-        idx=idx+1
-    if idx >= len(scene.getBMPs()):
-        idx = 0
-    strImagePath = scene.getBMPs()[idx]
-    image = Image.open(strImagePath)
-    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    cvsClock.SetImage(image.convert('RGB'))  
-
+    image = getImage(scene, second)
+    cvsClock.SetImage(image.convert('RGB')) 
+    
     action = scene.getAction()
     if action != None:
         action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
