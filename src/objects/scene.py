@@ -30,8 +30,8 @@ class Scene:
 
 def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
     color = graphics.Color(255,230,230)
-    graphics.DrawText(canvas, font, 47, 20, color, str(year-1997))
-    graphics.DrawText(canvas, font, 47, 21, color, str(year-1997))
+    graphics.DrawText(canvas, font, 47, 20, color, str(year-1990))
+    graphics.DrawText(canvas, font, 47, 21, color, str(year-1990))
 
 SCENES = [
     Scene(RGB(255,255,255), RGB(255,255,255), "./bmps/blank.bmp", "./bmps/blank.bmp"),                              # -0-  Notification 
