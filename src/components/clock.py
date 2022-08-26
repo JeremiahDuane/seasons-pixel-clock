@@ -21,18 +21,20 @@ COUNT_HOUR = 0
 SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
 
-IDX = 0
-LAST_TICK = 0
+IMAGE_INDEX = 0
+TICK = 1
 
 def getImage(scene, second):
-    global IDX
-    global LAST_TICK
+    global IMAGE_INDEX
+    global TICK
     
-    if LAST_TICK != second:
-        IDX= 0 if IDX >= len(scene.getBMPs()) - 1 else IDX+1
+    TICK = 1 if TICK > 4 else TICK + 1
+ 
+    if TICK % scene.getTempo() == 0:
+        IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
 
-    print("===", IDX)
-    strImagePath = scene.getBMPs()[IDX] 
+    print("===", IMAGE_INDEX)
+    strImagePath = scene.getBMPs()[IMAGE_INDEX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     LAST_TICK = second
