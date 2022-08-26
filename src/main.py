@@ -4,7 +4,7 @@ import sys
 import RPi.GPIO as GPIO
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
-from components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas
+from components.notification import NOTIFICATION_IS_NEW, fetchNotification, getNotificationCanvas, getAlertCanvas
 from components.clock import getClockCanvas, getCountdownCanvas, handleButtons_Clock, handleButtons_Countdown
 from system.input import getInputOptions
 from system.logger import debugger, boot
@@ -13,7 +13,6 @@ from system.logger import debugger, boot
 #---------------- GLOBALS ----------------#
 ON = True
 CURRENT_PAGE = 0
-ALERT_NOTIFICATION = False
 
 #------ Configuration for the matrix -----#
 options = RGBMatrixOptions()
@@ -56,7 +55,7 @@ def loop():
     global SWITCH
 
     global CURRENT_PAGE
-    global ALERT_NOTIFICATION
+    global NOTIFICATION_IS_NEW
 
     SWITCH = not SWITCH
     canvas = CANVAS1 if SWITCH else CANVAS2
@@ -82,14 +81,14 @@ def loop():
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
         canvas = getCountdownCanvas(canvas, year, month, day, hour, minute, second, weekday)
     elif CURRENT_PAGE == 1:
-        ALERT_NOTIFICATION = False
+        NOTIFICATION_IS_NEW = False
         canvas = getNotificationCanvas(canvas)
     else:
         CURRENT_PAGE = 0
         handleButtons_Clock(btn_b_pressed, btn_c_pressed, btn_d_pressed)
         canvas = getClockCanvas(canvas, year, month, day, hour, minute, second, weekday)
 
-    if ALERT_NOTIFICATION and second % 2 == 0:
+    if NOTIFICATION_IS_NEW and second % 2 == 0:
         canvas = getAlertCanvas(canvas)
 
     MATRIX.SwapOnVSync(canvas)
@@ -107,6 +106,6 @@ try:
             last_check = time.monotonic()
         elif time.monotonic() > last_check + 60:
             last_check = time.monotonic()
-            ALERT_NOTIFICATION = fetchNotification()
+            fetchNotification()
 except KeyboardInterrupt:
     readyExit()
