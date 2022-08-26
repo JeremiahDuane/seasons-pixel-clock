@@ -32,7 +32,8 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     
     #Draw
-    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
+    idx = 0 if second % 2 == 0 else 1
+    strImagePath = scene.getBMPs()[idx] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
@@ -99,7 +100,8 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     white = graphics.Color(255,255,255)
     
     #Draw
-    strImagePath = scene.getBMP1() if second % 2 == 0 else scene.getBMP2()
+    idx = 0 if second % 2 == 0 else 1
+    strImagePath = scene.getBMPs()[idx]
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
     cvsClock.SetImage(image.convert('RGB'))  
