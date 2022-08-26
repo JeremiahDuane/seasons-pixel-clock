@@ -6,7 +6,7 @@ from objects.scene import SCENES
 from system.config import config_matrix, config_notification, secrets
 from system.logger import logger
 
-NOTIFICATION_IS_NEW = True
+NOTIFICATION_IS_NEW = False
 CURRENT_NOTIFICATION = None
 
 FONT_TITLE = graphics.Font()
@@ -35,7 +35,8 @@ class Notification:
 
 def fetchNotification():
     global CURRENT_NOTIFICATION
-    isNew = False
+    global NOTIFICATION_IS_NEW
+
     try:
         url = secrets["api_read-unread"]
         r = requests.post(url, data={}, headers={})
@@ -50,11 +51,11 @@ def fetchNotification():
                 # Only store the newest message.
                 if CURRENT_NOTIFICATION == None or notification.getDate() > CURRENT_NOTIFICATION.getDate():
                     CURRENT_NOTIFICATION = notification
-                    isNew = True
+                    NOTIFICATION_IS_NEW = True
     except Exception as error:
         logger(error=error)
     
-    return isNew
+    return NOTIFICATION_IS_NEW
 
 def getNotificationCanvas(cvsNotification):
     arrContent = getContentString()
