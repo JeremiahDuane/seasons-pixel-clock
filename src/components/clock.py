@@ -28,7 +28,7 @@ def getImage(scene, second):
     global IMAGE_INDEX
     global TICK
     
-    TICK = 1 if TICK > 4 else TICK + 1
+    TICK = 1 if TICK >= 4 else TICK + 1
  
     if TICK % scene.getTempo() == 0:
         IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
