@@ -21,16 +21,20 @@ COUNT_HOUR = 0
 SHOW_DAY_OF_WEEK = False
 SELECTED_OPTION = 0
 IDX = 0
+LAST_TICK = 0
 
 def getImage(scene, second):
     global IDX
-    IDX=IDX+1
-    if IDX >= len(scene.getBMPs()):
-        IDX = 0
+    global LAST_TICK
+    
+    if LAST_TICK != second:
+        IDX= 0 if IDX >= len(scene.getBMPs()) else IDX+1
+
     print("===", IDX)
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    LAST_TICK = second
     return image
 
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
