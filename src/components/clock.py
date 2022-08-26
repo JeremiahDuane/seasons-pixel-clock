@@ -86,6 +86,7 @@ def getDateString(year, month, day, weekday):
     
 def getTimeString(hour, minute, second):
     global TICK
+    print("----", TICK)
     if hour == 0:
         hour = 12
     elif hour > 12:
