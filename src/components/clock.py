@@ -26,8 +26,8 @@ def getImage(scene, second):
     global IDX
     if second % scene.getTempo() == 0:
         IDX=IDX+1
-    if IDX >= len(scene.getBMPs()):
-        IDX = 1 if len(scene.getBMPs()) == 2 else 0
+    if IDX > len(scene.getBMPs()):
+        IDX = 0
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
