@@ -28,14 +28,13 @@ def getImage(scene, second):
     global IDX
     global LAST_TICK
     
-    if LAST_TICK != second:
+    if LAST_TICK != second / scene.getTempo():
         IDX= 0 if IDX >= len(scene.getBMPs()) - 1 else IDX+1
 
     print("===", IDX)
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    LAST_TICK = second
     return image
 
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
