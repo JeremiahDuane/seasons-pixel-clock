@@ -27,7 +27,7 @@ def getImage(scene, second):
     if second % scene.getTempo() == 0:
         IDX=IDX+1
     if IDX >= len(scene.getBMPs()):
-        IDX = 0
+        IDX = 1 if len(scene.getBMPs()) == 2 else 0
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
@@ -111,7 +111,7 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     #Draw
     image = getImage(scene, second)
     cvsClock.SetImage(image.convert('RGB')) 
-    
+
     action = scene.getAction()
     if action != None:
         action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
