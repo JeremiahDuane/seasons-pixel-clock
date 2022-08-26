@@ -54,7 +54,7 @@ def fetchNotification():
                     NOTIFICATION_IS_NEW = True
     except Exception as error:
         logger(error=error)
-    
+    print(NOTIFICATION_IS_NEW)
 def getNotificationCanvas(cvsNotification):
     arrContent = getContentString()
 

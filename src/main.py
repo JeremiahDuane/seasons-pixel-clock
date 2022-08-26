@@ -56,6 +56,7 @@ def loop():
 
     global CURRENT_PAGE
     global NOTIFICATION_IS_NEW
+    print("main", NOTIFICATION_IS_NEW)
 
     SWITCH = not SWITCH
     canvas = CANVAS1 if SWITCH else CANVAS2
