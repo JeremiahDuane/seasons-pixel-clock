@@ -28,6 +28,7 @@ def getImage(scene, second):
         IDX=IDX+1
     if IDX >= len(scene.getBMPs()):
         IDX = 0
+    print("===", IDX)
     strImagePath = scene.getBMPs()[IDX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
