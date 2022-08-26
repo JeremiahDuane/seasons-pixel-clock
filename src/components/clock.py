@@ -30,9 +30,11 @@ def getImage(scene, second):
     global TICK
     global BLINK
 
-    if TICK == 1:
-        BLINK = not BLINK 
-    TICK = 1 if TICK >= 4 else TICK + 1
+    if TICK >= 4:
+        TICK = 1 
+        BLINK = not BLINK
+    else:
+        TICK = TICK + 1 
  
     if TICK % scene.getTempo() == 0:
         IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
@@ -90,7 +92,6 @@ def getDateString(year, month, day, weekday):
     
 def getTimeString(hour, minute, second):
     global BLINK
-    print("----", TICK)
     if hour == 0:
         hour = 12
     elif hour > 12:
