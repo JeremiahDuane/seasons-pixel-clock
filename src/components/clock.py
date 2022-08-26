@@ -33,6 +33,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     
     #Draw
+    global IDX
     if second % 2 == 0:
         IDX=IDX+1
     if IDX >= len(scene.getBMPs()):
