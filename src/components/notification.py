@@ -33,6 +33,10 @@ class Notification:
     def getDate(self):    
         return self.date
 
+def markNotificationRead():
+    global NOTIFICATION_IS_NEW
+    NOTIFICATION_IS_NEW = False
+    
 def fetchNotification():
     global CURRENT_NOTIFICATION
     global NOTIFICATION_IS_NEW
@@ -54,7 +58,9 @@ def fetchNotification():
                     NOTIFICATION_IS_NEW = True
     except Exception as error:
         logger(error=error)
-    print(NOTIFICATION_IS_NEW)
+    
+    return NOTIFICATION_IS_NEW
+
 def getNotificationCanvas(cvsNotification):
     arrContent = getContentString()
 
