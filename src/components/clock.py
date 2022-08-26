@@ -33,7 +33,6 @@ def getImage(scene, second):
     if TICK % scene.getTempo() == 0:
         IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
 
-    print("===", IMAGE_INDEX)
     strImagePath = scene.getBMPs()[IMAGE_INDEX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
@@ -210,14 +209,39 @@ def handleButtons_Countdown(B, C, D):
 
 #---------- Shared ----------#
 def getScene(year, month, day, weekday): 
-    IsSpring = False
-    IsSummer = True
-    IsFall = False
-    IsWinter = False
+    christmas = False
+    thanksgiving = False
+    easter = False
+    birthday = False
+    anniversary = False
+    halloween = False
+    spring = False
+    summer = False
+    fall = True
+    winter = False
 
-    if IsSummer:
-        scene = SCENES[2]
-    else: 
-        scene = SCENES[1]
 
-    return scene
+    if False:
+        pass
+    elif christmas:
+        return SCENES[6]
+    elif thanksgiving:
+        return SCENES[0]
+    elif easter:
+        return SCENES[2]
+    elif halloween:
+        return SCENES[2]    
+    elif anniversary:
+        return SCENES[2]  
+    elif birthday:
+        return SCENES[2]    
+    elif spring:
+        return SCENES[5]
+    elif summer:
+        return SCENES[2]
+    elif fall:
+        return SCENES[4]
+    elif winter:
+        return SCENES[7]
+    else:
+        return SCENES[0]
