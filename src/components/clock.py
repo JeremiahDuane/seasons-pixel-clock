@@ -28,7 +28,7 @@ def getImage(scene, second):
     global IDX
     global LAST_TICK
     
-    if LAST_TICK != second / scene.getTempo():
+    if LAST_TICK != second:
         IDX= 0 if IDX >= len(scene.getBMPs()) - 1 else IDX+1
 
     print("===", IDX)
