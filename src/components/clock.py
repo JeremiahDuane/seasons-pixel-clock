@@ -28,7 +28,8 @@ BLINK = False
 def getImage(scene, second):
     global IMAGE_INDEX
     global TICK
-    
+    global BLINK
+
     if TICK == 1:
         BLINK = not BLINK 
     TICK = 1 if TICK >= 4 else TICK + 1
