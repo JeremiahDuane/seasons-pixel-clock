@@ -47,7 +47,7 @@ SCENES = [
     Scene(RGB(200,190,0), RGB(255,150,0), ["./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"], 4),                                                                        # -5-  Sunflowers
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp"], 4),                                                                            # -6-  Wreath
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"], 4),                                                                          # -7-  Snowman
-    Scene(RGB(230,255,255), RGB(255,255,0), 
+    Scene(RGB(180,255,255), RGB(255,255,0), 
         ["./bmps/egg_1.bmp", "./bmps/egg_1.bmp", "./bmps/egg_2.bmp", "./bmps/egg_3.bmp", 
         "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", 
         "./bmps/egg_3.bmp", "./bmps/egg_2.bmp", "./bmps/egg_1.bmp", "./bmps/egg_1.bmp",
