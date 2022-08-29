@@ -80,10 +80,10 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     if CALENDAR_FORMAT == 0:
         strYear, strDay, strMonth = getDateString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDay)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 10, 29, clrQuaternary, ".")
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 13, 29, clrPrimary, strMonth)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 19, 29, clrQuaternary, ".")
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 22, 29, clrPrimary, strYear)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 11, 29, clrQuaternary, ".")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 14, 29, clrPrimary, strMonth)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrQuaternary, ".")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 24, 29, clrPrimary, strYear)
     elif CALENDAR_FORMAT == 1:
         strDayOfWeek, strDay, strMonth = getDayOfWeekString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDayOfWeek)
