@@ -101,7 +101,7 @@ def getTimeString(hour, minute, second):
         hour = 12
     elif hour > 12:
         hour = hour - 12
-    hourLabel =  "{hour:02d}".format(minute=minute,)
+    hourLabel =  "{hour:02d}".format(hour=hour,)
     minuteLabel =  "{minute:02d}".format(minute=minute,)
     colonLabel =  " " if BLINK else ":"
 
