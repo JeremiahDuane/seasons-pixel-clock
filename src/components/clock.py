@@ -48,14 +48,13 @@ def getImage(scene, second):
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     #Clock
     strDate = getDateString(year, month, day, weekday)
-    strTime = getTimeString(hour, minute, second)
+    strHour, strColon, strMinute = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
     scene = getScene(year, month, day, weekday)
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    clrPeriod = graphics.Color(scene.getPeriodColor().R,scene.getPeriodColor().G,scene.getPeriodColor().B) 
-    clrBorder = graphics.Color(scene.getBorderColor().R,scene.getBorderColor().G,scene.getBorderColor().B) 
+    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryColor().G,scene.getTertiaryColor().B) 
 
     #Draw
     image = getImage(scene, second)
@@ -65,12 +64,16 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     if action != None:
         action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
 
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strHour)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strHour)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrTertiary, strColon)
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrTertiary, strColon)
+    graphics.DrawText(cvsClock, FONT_TITLE, 32, 17, clrSecondary, strMinute)
+    graphics.DrawText(cvsClock, FONT_TITLE, 32, 18, clrPrimary, strMinute)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrBorder, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrTertiary, "___")
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDate)
-    graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrPeriod, strPeriod)
+    graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrPrimary, strPeriod)
 
     return cvsClock
 
@@ -98,11 +101,11 @@ def getTimeString(hour, minute, second):
         hour = 12
     elif hour > 12:
         hour = hour - 12
-    timeLabel =  "{hour:02d}{colon}{minute:02d}".format(
-        hour=hour, minute=minute,
-        colon=" " if BLINK else ":"
-    )
-    return timeLabel
+    hourLabel =  "{hour:02d}".format(minute=minute,)
+    minuteLabel =  "{minute:02d}".format(minute=minute,)
+    colonLabel =  " " if BLINK else ":"
+
+    return hourLabel, colonLabel,  minuteLabel
 
 def getPeriodString(hours):
     periodLabel = "AM" if hours < 12 else "PM"
