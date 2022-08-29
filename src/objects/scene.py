@@ -1,9 +1,10 @@
 from objects.rgb import RGB
 
 class Scene:    
-    def __init__(self, primaryColor, secondaryColor, bmps, tempo, action=None):      
+    def __init__(self, primaryColor, secondaryColor, tertiaryColor, bmps, tempo, action=None):      
         self.primaryColor = primaryColor            
-        self.secondaryColor = secondaryColor            
+        self.secondaryColor = secondaryColor
+        self.tertiaryColor = tertiaryColor           
         self.bmps = bmps                                  
         self.tempo = tempo
         self.action = action
@@ -18,7 +19,11 @@ class Scene:
     def setSecondaryColor(self, secondaryColor):
         self.secondaryColor = secondaryColor
     def getSecondaryColor(self):    
-        return self.secondaryColor
+        return self.secondaryColor    
+    def setTertiaryColor(self, tertiaryColor):
+        self.tertiaryColor = tertiaryColor
+    def getTertiaryColor(self):    
+        return self.tertiaryColor
     def setTempo(self, tempo):
         self.tempo = tempo    
     def getTempo(self):
