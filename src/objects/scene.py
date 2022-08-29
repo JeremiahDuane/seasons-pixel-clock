@@ -42,12 +42,12 @@ SCENES = [
     Scene(RGB(255,255,255), RGB(255,255,255), ["./bmps/blank.bmp", "./bmps/blank.bmp"], 4),                                                                                # -0-  Notification 
     Scene(RGB(255,190,0), RGB(255,100,0), ["./bmps/scarecrow_1.bmp", "./bmps/scarecrow_2.bmp"], 4),                                                                        # -1-  Scarecrow
     Scene(RGB(255,255,255), RGB(245,100,255), ["./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp", "./bmps/pinkcake_3.bmp", "./bmps/pinkcake_4.bmp"], 1, BirthdayAction),    # -2-  Birthday
-    Scene(RGB(255,160,240), RGB(255,255,255), ["./bmps/daffodil_1.bmp", "./bmps/daffodil_2.bmp"], 4),                                                                      # -3-  Daffodil
+    Scene(RGB(255,100,240), RGB(255,255,255), ["./bmps/daffodil_1.bmp", "./bmps/daffodil_2.bmp"], 4),                                                                      # -3-  Daffodil
     Scene(RGB(255,190,0), RGB(255,130,0), ["./bmps/pumpkin_1.bmp", "./bmps/pumpkin_2.bmp"], 4),                                                                            # -4-  Pumpkin
     Scene(RGB(200,190,0), RGB(255,150,0), ["./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"], 4),                                                                        # -5-  Sunflowers
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp"], 4),                                                                            # -6-  Wreath
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"], 4),                                                                          # -7-  Snowman
-    Scene(RGB(255,160,240), RGB(255,255,0), 
+    Scene(RGB(255,100,240), RGB(255,255,0), 
         ["./bmps/egg_1.bmp", "./bmps/egg_1.bmp", "./bmps/egg_2.bmp", "./bmps/egg_3.bmp", 
         "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", 
         "./bmps/egg_3.bmp", "./bmps/egg_2.bmp", "./bmps/egg_1.bmp", "./bmps/egg_1.bmp",
