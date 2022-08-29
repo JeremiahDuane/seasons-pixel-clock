@@ -47,5 +47,5 @@ SCENES = [
         "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", 
         "./bmps/egg_3.bmp", "./bmps/egg_2.bmp", "./bmps/egg_1.bmp", "./bmps/egg_1.bmp",
         ], 1),                                                                                                                                                             # -8-  Egg
-    Scene(RGB(77,50,23), RGB(255,50,80), ["./bmps/turkey_1.bmp", "./bmps/turkey_2.bmp", "./bmps/turkey_3.bmp"], 1),                                                     # -9-  Turkey
+    Scene(RGB(145,100,50), RGB(255,50,80), ["./bmps/turkey_1.bmp", "./bmps/turkey_2.bmp", "./bmps/turkey_3.bmp"], 1),                                                     # -9-  Turkey
 ]
