@@ -13,7 +13,7 @@ GPIO.setup(BUTTON_A_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_B_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_C_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(BUTTON_D_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-#GPIO.setup(BUTTON_E_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+#GPIO.setup(BUTTON_E_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP) 
 GPIO.setup(BUTTON_POWER_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def getInputOptions():
