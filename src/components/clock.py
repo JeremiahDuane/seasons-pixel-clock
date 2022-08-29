@@ -218,8 +218,8 @@ def handleButtons_Countdown(B, C, D):
 #---------- Shared ----------#
 def getScene(year, month, day, weekday): 
     christmas = False
-    thanksgiving = False
-    easter = True
+    thanksgiving = True
+    easter = False
     birthday = False
     anniversary = False
     halloween = False
