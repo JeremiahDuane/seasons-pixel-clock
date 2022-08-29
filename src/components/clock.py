@@ -54,7 +54,8 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    
+    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryolor().G,scene.getTertiaryColor().B) 
+
     #Draw
     image = getImage(scene, second)
     cvsClock.SetImage(image.convert('RGB')) 
@@ -65,10 +66,10 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
 
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strTime)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strTime)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrTertiary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDate)
-    graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrPrimary, strPeriod)
+    graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrTertiary, strPeriod)
 
     return cvsClock
 
@@ -120,6 +121,7 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
+    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryolor().G,scene.getTertiaryColor().B) 
     white = graphics.Color(255,255,255)
     
     #Draw
@@ -131,7 +133,7 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
         action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
 
     graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrTertiary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
