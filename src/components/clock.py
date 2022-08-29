@@ -54,7 +54,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryolor().G,scene.getTertiaryColor().B) 
+    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryColor().G,scene.getTertiaryColor().B) 
 
     #Draw
     image = getImage(scene, second)
@@ -121,7 +121,7 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
-    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryolor().G,scene.getTertiaryColor().B) 
+    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryColor().G,scene.getTertiaryColor().B) 
     white = graphics.Color(255,255,255)
     
     #Draw
