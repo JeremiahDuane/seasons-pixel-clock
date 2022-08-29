@@ -262,8 +262,8 @@ def getScene(year, month, day, weekday):
     halloween = False
     spring = False
     summer = False
-    fall = False
-    winter = True
+    fall = True
+    winter = False
 
 
     if False:
