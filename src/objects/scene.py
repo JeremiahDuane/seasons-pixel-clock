@@ -5,7 +5,7 @@ class Scene:
         self.primaryColor = primaryColor            
         self.secondaryColor = secondaryColor
         self.tertiaryColor = tertiaryColor           
-        self.clrQuaternary = quaternaryColor           
+        self.quaternaryColor = quaternaryColor           
         self.bmps = bmps                                  
         self.tempo = tempo
         self.action = action
