@@ -219,11 +219,11 @@ def handleButtons_Countdown(B, C, D):
 def getScene(year, month, day, weekday): 
     christmas = False
     thanksgiving = False
-    easter = False
+    easter = True
     birthday = False
     anniversary = False
     halloween = False
-    spring = True
+    spring = False
     summer = False
     fall = False
     winter = False
