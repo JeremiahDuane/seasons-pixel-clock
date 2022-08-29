@@ -44,7 +44,7 @@ def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
     graphics.DrawText(canvas, font, 47, 22, color, str(year-1997))
 
 SCENES = [
-    Scene(RGB(255,255,255), RGB(255,255,255), ["./bmps/blank.bmp", "./bmps/blank.bmp"], 4),                                                                                # -0-  Notification 
+    Scene(RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), ["./bmps/blank.bmp", "./bmps/blank.bmp"], 4),                                                                                # -0-  Notification 
     Scene(RGB(255,190,0), RGB(255,100,0), ["./bmps/scarecrow_1.bmp", "./bmps/scarecrow_2.bmp"], 4),                                                                        # -1-  Scarecrow
     Scene(RGB(255,255,255), RGB(245,100,255), ["./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp", "./bmps/pinkcake_3.bmp", "./bmps/pinkcake_4.bmp"], 1, BirthdayAction),    # -2-  Birthday
     Scene(RGB(255,255,255), RGB(255,180,255), ["./bmps/daffodil_1.bmp", "./bmps/daffodil_2.bmp"], 4),                                                                      # -3-  Daffodil
