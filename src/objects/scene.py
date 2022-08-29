@@ -42,6 +42,10 @@ SCENES = [
     Scene(RGB(200,190,0), RGB(255,190,0), ["./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"], 4),                                                                        # -5-  Sunflowers
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp"], 4),                                                                            # -6-  Wreath
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"], 4),                                                                          # -7-  Snowman
-    Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/egg_1.bmp", "./bmps/egg_2.bmp", "./bmps/egg_3.bmp", "./bmps/egg_4.bmp", "./bmps/egg_3.bmp", "./bmps/egg_2.bmp"], 1),  # -8-  Egg
+    Scene(RGB(255,255,255), RGB(0,255,255), 
+        ["./bmps/egg_1.bmp", "./bmps/egg_1.bmp", "./bmps/egg_2.bmp", "./bmps/egg_3.bmp", 
+        "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", 
+        "./bmps/egg_3.bmp", "./bmps/egg_2.bmp", "./bmps/egg_1.bmp", "./bmps/egg_1.bmp",
+        ], 1),                                                                                                                                                             # -8-  Egg
     Scene(RGB(255,255,255), RGB(0,255,255), ["./bmps/turkey_1.bmp", "./bmps/turkey_2.bmp", "./bmps/turkey_3.bmp"], 1),                                                     # -9-  Turkey
 ]
