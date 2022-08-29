@@ -55,6 +55,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
     clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryColor().G,scene.getTertiaryColor().B) 
+    clrQuaternary = graphics.Color(scene.getQuaternaryColor().R,scene.getQuaternaryColor().G,scene.getQuaternaryColor().B) 
 
     #Draw
     image = getImage(scene, second)
@@ -72,8 +73,8 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 18, clrPrimary, strMinute)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrTertiary, "___")
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDate)
-    graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrPrimary, strPeriod)
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrQuaternary, strDate)
+    graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrQuaternary, strPeriod)
 
     return cvsClock
 
