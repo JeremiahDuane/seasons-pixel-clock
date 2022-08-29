@@ -88,7 +88,7 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
         strDayOfWeek, strDay, strMonth = getDayOfWeekString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDayOfWeek)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrQuaternary, strMonth)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 28, 29, clrPrimary, "/")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 29, 29, clrPrimary, "/")
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 33, 29, clrQuaternary, strDay)
     else:
         strDate = getMonthDayString(year, month, day, weekday)
