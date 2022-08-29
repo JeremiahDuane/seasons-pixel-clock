@@ -283,9 +283,9 @@ def getScene(year, month, day, weekday):
     elif spring:
         return SCENES[3]
     elif summer:
-        return SCENES[2]
-    elif fall:
         return SCENES[5]
+    elif fall:
+        return SCENES[4]
     elif winter:
         return SCENES[7]
     else:
