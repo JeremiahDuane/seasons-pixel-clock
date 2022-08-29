@@ -18,7 +18,7 @@ COUNT_DAY = 0
 COUNT_MINUTE = 0
 COUNT_HOUR = 0
 
-SHOW_DAY_OF_WEEK = False
+CALENDAR_FORMAT = 0
 SELECTED_OPTION = 0
 
 IMAGE_INDEX = 0
@@ -46,8 +46,6 @@ def getImage(scene, second):
     return image
 
 def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
-    #Clock
-    strDate = getDateString(year, month, day, weekday)
     strHour, strColon, strMinute = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
     scene = getScene(year, month, day, weekday)
@@ -65,37 +63,68 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     if action != None:
         action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
 
+    ##Time
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrPrimary, strHour)
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 18, clrTertiary, strColon)
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 17, clrQuaternary, strColon)
     graphics.DrawText(cvsClock, FONT_TITLE, 20, 18, clrTertiary, strColon)
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 17, clrSecondary, strMinute)
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 18, clrPrimary, strMinute)
+
+    ##Border + Period
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 17, clrSecondary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 18, clrTertiary, "___")
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrQuaternary, strDate)
     graphics.DrawText(cvsClock, FONT_TITLE, 42, 17, clrQuaternary, strPeriod)
+
+    ##Date
+    if CALENDAR_FORMAT == 0:
+        strYear, strDay, strMonth = getDateString(year, month, day, weekday)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDay)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 9, 29, clrQuaternary, ".")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 12, 29, clrPrimary, strMonth)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 18, 29, clrQuaternary, ".")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrPrimary, strYear)
+    elif CALENDAR_FORMAT == 1:
+        strDayOfWeek, strDay, strMonth = getDayOfWeekString(year, month, day, weekday)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDayOfWeek)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 17, 29, clrQuaternary, strDay)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrPrimary, "-")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 25, 29, clrQuaternary, strMonth)
+    else:
+        strDate = getMonthDayString(year, month, day, weekday)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrQuaternary, strDate)
 
     return cvsClock
 
 def getDateString(year, month, day, weekday):
-    global SHOW_DAY_OF_WEEK
-    dateLabel = None
-    if SHOW_DAY_OF_WEEK: 
-        dateLabel =  "{dayOfWeek} {zero}{day}-{zero1}{month}".format(
-            zero="0" if day < 10 else "", 
-            zero1="0" if month < 10 else "",
-            month=month,
-            dayOfWeek=["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][weekday],
-            day=day
-        )
-    else:
-        dateLabel =  "{zero}{day}.{zero1}{month}.{year}".format(
-            zero="0" if day < 10 else "", zero1="0" if month < 10 else "", year=year, month=month, day=day
-        )
+    yearLabel =  "{year:02}".format(year=year)
+    dayLabel =  "{day:02d}".format(day=day)
+    monthLabel =  "{month:02d}".format(month=month,)
     
+    return yearLabel, dayLabel, monthLabel
+
+def getDayOfWeekString(year, month, day, weekday):
+    dayOfWeekLabel =  "{dayOfWeek}".format(dayOfWeek=["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][weekday])
+    dayLabel =  "{day:02d}".format(day=day)
+    monthLabel =  "{month:02d}".format(month=month,)
+    return dayOfWeekLabel, dayLabel, monthLabel
+
+def getMonthDayString(year, month, day, weekday):
+    sup = "th"
+    if day == 1:
+        sup = "st"
+    elif day == 2:
+        sup = "nd"
+    elif sup == 3:
+        sup = "rd"
+
+    dateLabel =  "{month}, {day}{sup}".format(
+        month=["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNSE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"][month],
+        day=day,
+        sup=sup
+    )
     return dateLabel
-    
+
 def getTimeString(hour, minute, second):
     global BLINK
     if hour == 0:
@@ -113,9 +142,9 @@ def getPeriodString(hours):
     return periodLabel
 
 def handleButtons_Clock(B, C, D):
-    global SHOW_DAY_OF_WEEK
+    global CALENDAR_FORMAT
     if B:
-        SHOW_DAY_OF_WEEK = not SHOW_DAY_OF_WEEK   
+        CALENDAR_FORMAT = CALENDAR_FORMAT+1 if CALENDAR_FORMAT < 2 else 0
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
@@ -126,6 +155,9 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
+    clrTertiary = graphics.Color(scene.getTertiaryColor().R,scene.getTertiaryColor().G,scene.getTertiaryColor().B) 
+    clrQuaternary = graphics.Color(scene.getQuaternaryColor().R,scene.getQuaternaryColor().G,scene.getQuaternaryColor().B) 
+    
     white = graphics.Color(255,255,255)
     
     #Draw
@@ -136,13 +168,13 @@ def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday
     if action != None:
         action(graphics, cvsClock, FONT_HEADING, clrPrimary, clrSecondary, year)
 
-    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrPrimary if SELECTED_OPTION != 0 else white, strDay)
+    graphics.DrawText(cvsClock, FONT_SUBTITLE, 2, 8, clrQuaternary if SELECTED_OPTION != 0 else white, strDay)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 7, clrSecondary, "___")
-    graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrPrimary, "___")
+    graphics.DrawText(cvsClock, FONT_TITLE, 2, 8, clrTertiary, "___")
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 28, clrSecondary if SELECTED_OPTION != 1 else white, strHour)
     graphics.DrawText(cvsClock, FONT_TITLE, 2, 29, clrPrimary if SELECTED_OPTION != 1 else white, strHour)
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrSecondary, ":" if BLINK else "")
-    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrPrimary, ":" if BLINK else "")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 28, clrQuaternary, ":" if BLINK else "")
+    graphics.DrawText(cvsClock, FONT_TITLE, 20, 29, clrTertiary, ":" if BLINK else "")
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 28, clrSecondary if SELECTED_OPTION != 2 else white, strMinute)
     graphics.DrawText(cvsClock, FONT_TITLE, 25, 29, clrPrimary if SELECTED_OPTION != 2 else white, strMinute)
     
