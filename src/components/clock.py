@@ -80,16 +80,16 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     if CALENDAR_FORMAT == 0:
         strYear, strDay, strMonth = getDateString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDay)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 9, 29, clrQuaternary, ".")
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 12, 29, clrPrimary, strMonth)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 18, 29, clrQuaternary, ".")
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrPrimary, strYear)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 10, 29, clrQuaternary, ".")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 13, 29, clrPrimary, strMonth)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 19, 29, clrQuaternary, ".")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 22, 29, clrPrimary, strYear)
     elif CALENDAR_FORMAT == 1:
         strDayOfWeek, strDay, strMonth = getDayOfWeekString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDayOfWeek)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 17, 29, clrQuaternary, strDay)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrPrimary, "-")
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 25, 29, clrQuaternary, strMonth)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 22, 29, clrQuaternary, strMonth)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 26, 29, clrPrimary, "/")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 30, 29, clrQuaternary, strDay)
     else:
         strDate = getMonthDayString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrQuaternary, strDate)
@@ -119,7 +119,7 @@ def getMonthDayString(year, month, day, weekday):
         sup = "rd"
 
     dateLabel =  "{month}, {day}{sup}".format(
-        month=["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNSE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"][month],
+        month=["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][month],
         day=day,
         sup=sup
     )
