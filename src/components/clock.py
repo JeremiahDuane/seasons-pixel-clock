@@ -87,9 +87,9 @@ def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
     elif CALENDAR_FORMAT == 1:
         strDayOfWeek, strDay, strMonth = getDayOfWeekString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrPrimary, strDayOfWeek)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 22, 29, clrQuaternary, strMonth)
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 30, 29, clrPrimary, "/")
-        graphics.DrawText(cvsClock, FONT_SUBTITLE, 34, 29, clrQuaternary, strDay)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 21, 29, clrQuaternary, strMonth)
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 19, 29, clrPrimary, "/")
+        graphics.DrawText(cvsClock, FONT_SUBTITLE, 33, 29, clrQuaternary, strDay)
     else:
         strDate = getMonthDayString(year, month, day, weekday)
         graphics.DrawText(cvsClock, FONT_SUBTITLE, 3, 29, clrQuaternary, strDate)
@@ -252,12 +252,11 @@ def handleButtons_Countdown(B, C, D):
         if B or C or D:
             COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
 
-
 #---------- Shared ----------#
 def getScene(year, month, day, weekday): 
     christmas = False
-    thanksgiving = False
-    easter = True
+    thanksgiving = True
+    easter = False
     birthday = False
     anniversary = False
     halloween = False
