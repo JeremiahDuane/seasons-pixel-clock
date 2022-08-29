@@ -1,7 +1,7 @@
 from objects.rgb import RGB
 
 class Scene:    
-    def __init__(self, primaryColor, secondaryColor, tertiaryColor, clrBorder, bmps, tempo, action=None):      
+    def __init__(self, primaryColor, secondaryColor, tertiaryColor, bmps, tempo, action=None):      
         self.primaryColor = primaryColor            
         self.secondaryColor = secondaryColor
         self.tertiaryColor = tertiaryColor           
