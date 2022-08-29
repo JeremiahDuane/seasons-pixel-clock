@@ -260,9 +260,9 @@ def getScene(year, month, day, weekday):
     birthday = False
     anniversary = False
     halloween = False
-    spring = True
+    spring = False
     summer = False
-    fall = False
+    fall = True
     winter = False
 
 
