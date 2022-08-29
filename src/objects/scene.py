@@ -5,7 +5,6 @@ class Scene:
         self.primaryColor = primaryColor            
         self.secondaryColor = secondaryColor
         self.tertiaryColor = tertiaryColor           
-        self.clrBorder = clrBorder           
         self.bmps = bmps                                  
         self.tempo = tempo
         self.action = action
@@ -21,10 +20,10 @@ class Scene:
         self.secondaryColor = secondaryColor
     def getSecondaryColor(self):    
         return self.secondaryColor    
+    def setTertiaryColor(self, tertiaryColor):
+        self.tertiaryColor = tertiaryColor
     def getTertiaryColor(self):    
         return self.tertiaryColor    
-    def setBorderColor(self, tertiaryColor):
-        self.tertiaryColor = tertiaryColor
     def setTempo(self, tempo):
         self.tempo = tempo    
     def getTempo(self):
