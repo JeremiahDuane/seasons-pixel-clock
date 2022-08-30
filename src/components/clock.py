@@ -1,7 +1,7 @@
 from rgbmatrix import graphics
 from PIL import Image
 from objects.scene import SCENES
-from system.config import config_matrix
+from system.config import config_matrix, config_timezone
 from datetime import datetime, timedelta
 import time
 
@@ -152,10 +152,8 @@ def handleButtons_Clock(B, C, D):
     if B:
         CALENDAR_FORMAT = CALENDAR_FORMAT+1 if CALENDAR_FORMAT < 2 else 0
     if C:
-        TIMEZONE_OPTION = TIMEZONE_OPTION+1 if TIMEZONE_OPTION < 1 else 0
-    
-    global TESTER
-    
+        TIMEZONE_OPTION = TIMEZONE_OPTION+1 if TIMEZONE_OPTION < len(config_timezone["offsets"]) else 0
+        
     global IMAGE_INDEX
     global TESTER
 
@@ -166,6 +164,7 @@ def handleButtons_Clock(B, C, D):
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock):
     year, month, day, hour, minute, second, weekday = getTimezone()
+
     global BLINK
     #Clock
     strDay, strHour, strMinute = getCountdownString()
@@ -272,12 +271,9 @@ def handleButtons_Countdown(B, C, D):
 
 #---------- Shared ----------#
 def getTimezone():
-    now = None
     global TIMEZONE_OPTION
-    if TIMEZONE_OPTION == 0:
-        now = time.localtime() 
-    else:
-        now = time.gmtime()
+    offset = config_timezone["offsets"][TIMEZONE_OPTION]
+    now = time.gmtime() + timedelta(hours=offset)
 
     return now[0], now[1], now[2], now[3], now[4], now[5], now[6]
 

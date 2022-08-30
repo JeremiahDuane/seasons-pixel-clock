@@ -1,3 +1,6 @@
+from time import timezone
+
+
 config_matrix = {
     'width' : 64,
     'height' : 32,
@@ -16,4 +19,8 @@ secrets = {
 
 package = {
     "version" : "v1.0.0"
+}
+
+config_timezone = {
+    "offsets" : [1, 2, -5]
 }
