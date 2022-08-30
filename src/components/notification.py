@@ -78,7 +78,7 @@ def getNotificationCanvas(cvsNotification):
     i = 0
     for line in arrContent:
         i+=1
-        graphics.DrawText(cvsNotification, FONT_SUBTITLE, 0, -1 + i*6, clrPrimary, line)
+        graphics.DrawText(cvsNotification, FONT_SUBTITLE, 1, 0 + i*6, clrPrimary, line)
 
     return cvsNotification
 
@@ -90,8 +90,10 @@ def getContentString():
             return 6
         elif char in ["N"]:
             return 5
-        elif char in [",", ".", "!", "[", "]", "(", ")", "'"]:
-            return 3
+        elif char in ["[", "]", "(", ")", "'"]:
+            return 3        
+        elif char in ["!", ",", "."]:
+            return 2
         else:
             return 4
 
@@ -100,7 +102,7 @@ def getContentString():
         bitCount = 0
         result = ""
         for char in CURRENT_NOTIFICATION.getContent():
-            if (bitCount + getBitWidth(char)) < 63:
+            if (bitCount + getBitWidth(char)) < 62:
                 bitCount += getBitWidth(char)
                 result += char
             else:

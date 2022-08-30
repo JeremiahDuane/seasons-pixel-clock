@@ -3,7 +3,7 @@ from PIL import Image
 from objects.scene import SCENES
 from system.config import config_matrix, config_timezone
 from datetime import datetime, timedelta
-
+import ephem
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
 FONT_HEADING = graphics.Font()
@@ -167,7 +167,7 @@ def getCountdownCanvas(cvsClock):
     global BLINK
     #Clock
     strDay, strHour, strMinute = getCountdownString()
-    scene = getScene(year, month, day, weekday)
+    scene = getScene()
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
@@ -276,17 +276,19 @@ def getTimezone():
 
     return now.year, now.month, now.day, now.hour, now.minute, now.second, now.weekday()
 
-def getScene(year, month, day, weekday): 
-    christmas = False
-    thanksgiving = False
+def getScene(): 
+    year, month, day, hour, minute, second, weekday = getTimezone()
+
+    christmas = month == 12 and day == 25
+    thanksgiving = month == 11 and day == 24
+    birthday = month == 10 and day == 3
+    halloween = month == 10 and day == 31
     easter = False
-    birthday = False
-    anniversary = False
-    halloween = False
     spring = False
     summer = False
     fall = True
     winter = False
+    anniversary = False
 
 
     if False:
