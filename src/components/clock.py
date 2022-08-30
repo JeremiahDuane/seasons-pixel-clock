@@ -284,7 +284,7 @@ def getScene():
     birthday = month == 10 and day == 3
     halloween = month == 10 and day == 31
     anniversary = False
-    
+
     def isEaster(year, month, day):
         a = year % 19
         b = year // 100
@@ -331,19 +331,8 @@ def getScene():
 #---------- Shared ----------#
 TESTER = 0
 def TEST():
-    def isEaster(year, month, day):
-        a = year % 19
-        b = year // 100
-        c = year % 100
-        d = (19 * a + b - b // 4 - ((b - (b + 8) // 25 + 1) // 3) + 15) % 30
-        e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
-        f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
-        m = f // 31
-        d = f % 31 + 1 
-        print(m, d)   
-        return month == m and day == d
-    
-    print (isEaster(2022, 1, 1), isEaster(2022, 4, 17), isEaster(2022, 4, 16), isEaster(2023, 4, 9), isEaster(2022, 4, 18))
+    year, month, day, hour, minute, second, weekday = getTimezone()
 
+    print(SCENES[2].getIsNow(year, month, day))
     global TESTER
     return SCENES[TESTER]
