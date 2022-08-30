@@ -3,7 +3,7 @@ from PIL import Image
 from objects.scene import SCENES
 from system.config import config_matrix, config_timezone
 from datetime import datetime, timedelta
-import ephem
+
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
 FONT_HEADING = graphics.Font()
