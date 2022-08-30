@@ -275,7 +275,7 @@ def getTimezone():
     else:
         now = time.gmtime()
 
-    now[0], now[1], now[2], now[3], now[4], now[5], now[6]
+    return now[0], now[1], now[2], now[3], now[4], now[5], now[6]
 
 def getScene(year, month, day, weekday): 
     christmas = False
