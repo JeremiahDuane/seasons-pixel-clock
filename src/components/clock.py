@@ -3,6 +3,7 @@ from PIL import Image
 from objects.scene import SCENES
 from system.config import config_matrix, config_timezone
 from datetime import datetime, timedelta
+import math
 
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
@@ -362,10 +363,9 @@ def TEST():
         p = i-j+e
         d = 1+(p+27+(p+6)/40)%31
         m = 3+(p+26)/30
-        print(y, m, d)
-        return year == y and month == m and day == d
+        return year == math.floor(y) and month == math.floor(m) and day == math.floor(d)
     
-    print (isEaster(2022, 1, 1), isEaster(2022, 4, 17), isEaster(2022, 4, 16))
+    print (isEaster(2022, 1, 1), isEaster(2022, 4, 17), isEaster(2022, 4, 16), isEaster(2023, 4, 9), isEaster(2022, 4, 18))
 
     global TESTER
     return SCENES[TESTER]
