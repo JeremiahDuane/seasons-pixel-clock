@@ -278,7 +278,6 @@ def getTimezone():
 
 def getScene(): 
     year, month, day, hour, minute, second, weekday = getTimezone()
-
     christmas = month == 12 and day == 25
     thanksgiving = month == 11 and day == 24
     birthday = month == 10 and day == 3
@@ -297,11 +296,16 @@ def getScene():
         return month == m and day == d    
     easter = isEaster(year, month, day)
 
-    spring = month == 3 and day == 20 
-    summer = month == 6 and day == 20
-    fall = month == 9 and day == 20
-    winter = month == 12 and day == 20
+    today = datetime(year, month, day)
+    startOfSpring = datetime(year, 3, 20)
+    startOfSummer = datetime(year, 6, 20)
+    startOfFall = datetime(year, 9, 20)
+    startOfWinter = datetime(year, 12, 20)
 
+    spring = today >= startOfSpring and today < startOfSummer
+    summer = today >= startOfSummer and today < startOfFall
+    fall = today >= startOfFall and today < startOfWinter
+    winter = today >= startOfWinter or today < startOfSpring
 
     if False:
         pass
