@@ -273,9 +273,9 @@ def handleButtons_Countdown(B, C, D):
 def getTimezone():
     global TIMEZONE_OPTION
     offset = config_timezone["offsets"][TIMEZONE_OPTION]
-    now = time.gmtime()
+    now = datetime.utcnow() + timedelta(hours=offset)
 
-    return now[0], now[1], now[2], now[3]+offset, now[4], now[5], now[6]
+    return now.year, now.month, now.day, now.hour, now.minute, now.second, now.weekday()
 
 def getScene(year, month, day, weekday): 
     christmas = False
