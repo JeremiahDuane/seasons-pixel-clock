@@ -147,6 +147,7 @@ def getPeriodString(hours):
 
 def handleButtons_Clock(B, C, D):
     global CALENDAR_FORMAT
+    global TIMEZONE_OPTION
 
     if B:
         CALENDAR_FORMAT = CALENDAR_FORMAT+1 if CALENDAR_FORMAT < 2 else 0
@@ -155,9 +156,10 @@ def handleButtons_Clock(B, C, D):
     
     global TESTER
     
+    global IMAGE_INDEX
+    global TESTER
+
     if D:
-        global TIMEZONE_OPTION
-        global IMAGE_INDEX
         IMAGE_INDEX = 0
         TESTER = TESTER+1 if TESTER < 9 else 0
 
