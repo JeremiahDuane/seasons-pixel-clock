@@ -306,33 +306,30 @@ def getScene():
     if False:
         pass
     elif christmas:
-        return SCENES[6]
+        return SCENES[1]
     elif thanksgiving:
-        return SCENES[9]
+        return SCENES[2]
     elif easter:
-        return SCENES[8]
-    elif halloween:
-        return SCENES[2]    
-    elif anniversary:
-        return SCENES[2]  
-    elif birthday:
-        return SCENES[2]    
-    elif spring:
         return SCENES[3]
-    elif summer:
-        return SCENES[5]
-    elif fall:
-        return SCENES[4]
-    elif winter:
+    elif halloween:
+        return SCENES[4]    
+    elif anniversary:
+        return SCENES[5]  
+    elif birthday:
+        return SCENES[6]    
+    elif spring:
         return SCENES[7]
+    elif summer:
+        return SCENES[8]
+    elif fall:
+        return SCENES[9]
+    elif winter:
+        return SCENES[10]
     else:
         return SCENES[0]
 
 #---------- Shared ----------#
 TESTER = 0
 def TEST():
-    year, month, day, hour, minute, second, weekday = getTimezone()
-
-    print(SCENES[2].getIsNow(year, month, day))
     global TESTER
     return SCENES[TESTER]
