@@ -352,9 +352,9 @@ def TEST():
         e = (32 + 2 * (b % 4) + 2 * (c // 4) - d - (c % 4)) % 7
         f = d + e - 7 * ((a + 11 * d + 22 * e) // 451) + 114
         m = f // 31
-        d = f % 31 + 1    
-        print(y, m, d)
-        return year == math.floor(y) and month == math.floor(m) and day == math.floor(d)
+        d = f % 31 + 1 
+        print(m, d)   
+        return month == math.floor(m) and day == math.floor(d)
     
     print (isEaster(2022, 1, 1), isEaster(2022, 4, 17), isEaster(2022, 4, 16), isEaster(2023, 4, 9), isEaster(2022, 4, 18))
 
