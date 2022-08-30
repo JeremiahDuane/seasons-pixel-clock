@@ -3,7 +3,6 @@ from PIL import Image
 from objects.scene import SCENES
 from system.config import config_matrix, config_timezone
 from datetime import datetime, timedelta
-import time
 
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
@@ -152,7 +151,7 @@ def handleButtons_Clock(B, C, D):
     if B:
         CALENDAR_FORMAT = CALENDAR_FORMAT+1 if CALENDAR_FORMAT < 2 else 0
     if C:
-        TIMEZONE_OPTION = TIMEZONE_OPTION+1 if TIMEZONE_OPTION < len(config_timezone["offsets"]) else 0
+        TIMEZONE_OPTION = TIMEZONE_OPTION+1 if TIMEZONE_OPTION < len(config_timezone["offsets"])-1 else 0
         
     global IMAGE_INDEX
     global TESTER
