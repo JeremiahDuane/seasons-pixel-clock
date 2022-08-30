@@ -283,11 +283,35 @@ def getScene():
     thanksgiving = month == 11 and day == 24
     birthday = month == 10 and day == 3
     halloween = month == 10 and day == 31
-    easter = False
-    spring = False
-    summer = False
-    fall = True
-    winter = False
+    
+    spring = month == 3 and day == 20 
+    summer = month == 6 and day == 20
+    fall = month == 9 and day == 20
+    winter = month == 12 and day == 20
+
+    def isEaster(year, month, day):
+        y = year
+        # golden year - 1
+        g = y % 19
+        # offset
+        e = 0
+        # century
+        c = y/100
+        # h is (23 - Epact) mod 30
+        h = (c-c/4-(8*c+13)/25+19*g+15)%30
+        # number of days from March 21 to Paschal Full Moon
+        i = h-(h/28)*(1-(h/28)*(29/(h+1))*((21-g)/11))
+        # weekday for Paschal Full Moon (0=Sunday)
+        j = (y+y/4+i+2-c+c/4)%7
+        # number of days from March 21 to Sunday on or before Paschal Full Moon
+        # p can be from -6 to 28
+        p = i-j+e
+        d = 1+(p+27+(p+6)/40)%31
+        m = 3+(p+26)/30
+        return year == y and month == m and day == d
+    
+    easter = isEaster(year, month, day)
+    print (isEaster(2022, 1, 1), isEaster(2022, 4, 17), isEaster(2022, 4, 16))
     anniversary = False
 
 
