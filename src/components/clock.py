@@ -272,7 +272,9 @@ def handleButtons_Countdown(B, C, D):
 #---------- Shared ----------#
 def getTimezone():
     global TIMEZONE_OPTION
+    print(TIMEZONE_OPTION)
     offset = config_timezone["offsets"][TIMEZONE_OPTION]
+    print(offset)
     now = time.gmtime() + timedelta(hours=offset)
 
     return now[0], now[1], now[2], now[3], now[4], now[5], now[6]
