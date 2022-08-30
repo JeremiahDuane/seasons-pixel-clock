@@ -62,13 +62,7 @@ def loop():
     canvas = CANVAS1 if SWITCH else CANVAS2
 
     now = time.localtime() 
-    year = now[0]
-    month = now[1]
-    day = now[2]
-    hour = now[3]
-    minute = now[4]
     second =  now[5]
-    weekday = now[6]
 
     btn_a_pressed, btn_b_pressed, btn_c_pressed, btn_d_pressed, btn_power_pressed = getInputOptions()
 
@@ -80,7 +74,7 @@ def loop():
 
     if CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
-        canvas = getCountdownCanvas(canvas, year, month, day, hour, minute, second, weekday)
+        canvas = getCountdownCanvas(canvas)
     elif CURRENT_PAGE == 1:
         ALERT_NOTIFICATION = False
         markNotificationRead() 
@@ -88,7 +82,7 @@ def loop():
     else:
         CURRENT_PAGE = 0
         handleButtons_Clock(btn_b_pressed, btn_c_pressed, btn_d_pressed)
-        canvas = getClockCanvas(canvas, year, month, day, hour, minute, second, weekday)
+        canvas = getClockCanvas(canvas)
 
     if ALERT_NOTIFICATION and second % 2 == 0:
         canvas = getAlertCanvas(canvas)

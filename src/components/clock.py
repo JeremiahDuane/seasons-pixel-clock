@@ -3,6 +3,7 @@ from PIL import Image
 from objects.scene import SCENES
 from system.config import config_matrix
 from datetime import datetime, timedelta
+import time
 
 FONT_TITLE = graphics.Font()
 FONT_SUBTITLE = graphics.Font()
@@ -20,6 +21,7 @@ COUNT_HOUR = 0
 
 CALENDAR_FORMAT = 0
 SELECTED_OPTION = 0
+TIMEZONE_OPTION = 0
 
 IMAGE_INDEX = 0
 TICK = 1
@@ -45,7 +47,9 @@ def getImage(scene, second):
     LAST_TICK = second
     return image
 
-def getClockCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
+def getClockCanvas(cvsClock):
+    year, month, day, hour, minute, second, weekday = getTimezone()
+
     strHour, strColon, strMinute = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
     scene = getScene(year, month, day, weekday)
@@ -143,11 +147,21 @@ def getPeriodString(hours):
 
 def handleButtons_Clock(B, C, D):
     global CALENDAR_FORMAT
+    global TIMEZONE_OPTION
+
     if B:
         CALENDAR_FORMAT = CALENDAR_FORMAT+1 if CALENDAR_FORMAT < 2 else 0
+    if C:
+        TIMEZONE_OPTION = TIMEZONE_OPTION+1 if TIMEZONE_OPTION < 1 else 0
+    
+    global TESTER
+    
+    if D:
+        TESTER = TESTER+1 if TESTER < 9 else 0
 
 #---------- Countdown ----------#
-def getCountdownCanvas(cvsClock, year, month, day, hour, minute, second, weekday):
+def getCountdownCanvas(cvsClock):
+    year, month, day, hour, minute, second, weekday = getTimezone()
     global BLINK
     #Clock
     strDay, strHour, strMinute = getCountdownString()
@@ -253,6 +267,16 @@ def handleButtons_Countdown(B, C, D):
             COUNT_END = datetime(datetime.now().year, datetime.now().month, datetime.now().day, datetime.now().hour, datetime.now().minute) + timedelta(days=COUNT_DAY, hours=COUNT_HOUR, minutes=COUNT_MINUTE)
 
 #---------- Shared ----------#
+def getTimezone():
+    now = None
+    global TIMEZONE_OPTION
+    if TIMEZONE_OPTION == 0:
+        now = time.localtime() 
+    else:
+        now = time.gmtime()
+
+    now[0], now[1], now[2], now[3], now[4], now[5], now[6]
+
 def getScene(year, month, day, weekday): 
     christmas = False
     thanksgiving = False
@@ -290,3 +314,9 @@ def getScene(year, month, day, weekday):
         return SCENES[7]
     else:
         return SCENES[0]
+
+#---------- Shared ----------#
+TESTER = 0
+def TEST():
+    global TESTER
+    return SCENES[TESTER]
