@@ -93,7 +93,7 @@ SCENES = [
     ),
     # -7-  Daffodil
     Scene(
-        RGB(255,251,162), RGB(255,218,15), RGB(50,230,0), RGB(255,180,255)
+        RGB(255,251,162), RGB(255,218,15), RGB(50,230,0), RGB(255,180,255),
         ["./bmps/daffodil_1.bmp", "./bmps/daffodil_2.bmp"], 
         4
     ),
