@@ -64,7 +64,7 @@ SCENES = [
     ),
     # -3-  Egg
     Scene(
-        RGB(255,255,255), RGB(245,160,255), RGB(255,255,120), RGB(160,245,255),
+        RGB(255,255,255), RGB(245,160,255), RGB(160,245,255), RGB(255,255,120),
         [
                 "./bmps/egg_1.bmp", "./bmps/egg_1.bmp", "./bmps/egg_2.bmp", "./bmps/egg_3.bmp", 
                 "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", 
