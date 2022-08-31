@@ -64,7 +64,7 @@ SCENES = [
     ),
     # -3-  Egg
     Scene(
-        RGB(255,255,255), RGB(245,160,255), RGB(160,245,255), RGB(255,255,120),
+        RGB(255,255,255), RGB(245,160,255), RGB(255,255,120), RGB(160,245,255),
         [
                 "./bmps/egg_1.bmp", "./bmps/egg_1.bmp", "./bmps/egg_2.bmp", "./bmps/egg_3.bmp", 
                 "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", "./bmps/egg_4.bmp", 
@@ -74,7 +74,7 @@ SCENES = [
     ),
     # -4- Independance Day
     Scene(
-        RGB(255,0,0), RGB(255,255,255), RGB(0,0,255), RGB(255,255,255),
+        RGB(255,0,0), RGB(255,255,255), RGB(255,255,255), RGB(0,0,255),
         [
             "./bmps/blank.bmp", "./bmps/firework_1.bmp", "./bmps/firework_2.bmp", "./bmps/firework_3.bmp", 
             "./bmps/firework_4.bmp", "./bmps/firework_5.bmp", "./bmps/firework_6.bmp", "./bmps/firework_7.bmp", 
