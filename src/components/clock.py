@@ -282,7 +282,7 @@ def getScene():
     thanksgiving = month == 11 and day == 24
     birthday = month == 10 and day == 3
     halloween = month == 10 and day == 31
-    anniversary = False
+    independance = month == 7 and day == 4
 
     def isEaster(year, month, day):
         a = year % 19
@@ -315,9 +315,9 @@ def getScene():
         return SCENES[2]
     elif easter:
         return SCENES[3]
-    elif halloween:
+    elif independance:
         return SCENES[4]    
-    elif anniversary:
+    elif halloween:
         return SCENES[5]  
     elif birthday:
         return SCENES[6]    
