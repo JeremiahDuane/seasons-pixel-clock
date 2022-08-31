@@ -74,7 +74,7 @@ SCENES = [
     ),
     # -4- Independance Day
     Scene(
-        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
+        RGB(255,0,0), RGB(255,255,255), RGB(0,0,255), RGB(255,255,255),
         [
             "./bmps/blank.bmp", "./bmps/firework_1.bmp", "./bmps/firework_2.bmp", "./bmps/firework_3.bmp", 
             "./bmps/firework_4.bmp", "./bmps/firework_5.bmp", "./bmps/firework_6.bmp", "./bmps/firework_7.bmp", 
@@ -85,7 +85,7 @@ SCENES = [
     ),
     # -5-  Halloween
     Scene(
-        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
+        RGB(200,150,0), RGB(200,105,0),RGB(80,50,23), RGB(140,77,0), 
         ["./bmps/lantern_1.bmp", "./bmps/lantern_2.bmp"], 
         4
     ),
