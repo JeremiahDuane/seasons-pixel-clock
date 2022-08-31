@@ -78,7 +78,7 @@ SCENES = [
         [
             "./bmps/blank.bmp", "./bmps/firework_1.bmp", "./bmps/firework_2.bmp", "./bmps/firework_3.bmp", 
             "./bmps/firework_4.bmp", "./bmps/firework_5.bmp", "./bmps/firework_6.bmp", "./bmps/firework_7.bmp", 
-            "./bmps/firework_8.bmp", "./bmps/firework_9.bmp", "./bmps/firework_10.bmp", "./bmps/firework_11.bmp", 
+            "./bmps/firework_8.bmp", "./bmps/firework_9.bmp", "./bmps/firework_10.bmp", "./bmps/firework_10-2.bmp", "./bmps/firework_11.bmp", 
             "./bmps/firework_12.bmp", "./bmps/firework_13.bmp", "./bmps/firework_14.bmp", "./bmps/firework_15.bmp"
         ], 
         1
