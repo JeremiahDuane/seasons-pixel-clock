@@ -81,7 +81,7 @@ SCENES = [
             "./bmps/firework_8.bmp", "./bmps/firework_9.bmp", "./bmps/firework_10.bmp", "./bmps/firework_11.bmp", 
             "./bmps/firework_12.bmp", "./bmps/firework_13.bmp", "./bmps/firework_14.bmp", "./bmps/firework_15.bmp"
         ], 
-        4
+        1
     ),
     # -5-  Halloween
     Scene(
