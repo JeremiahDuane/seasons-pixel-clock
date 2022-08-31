@@ -52,7 +52,7 @@ SCENES = [
     ),
     # -1-  Wreath
     Scene(
-        RGB(0,180,0), RGB(255,0,0),RGB(255, 0, 0), RGB(255,200,0), 
+        RGB(255,0,0), RGB(0,180,0), RGB(255, 0, 0), RGB(255,200,0), 
         ["./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp"], 
         4
     ),
@@ -93,7 +93,7 @@ SCENES = [
     ),
     # -7-  Daffodil
     Scene(
-        RGB(255,255,255), RGB(255,180,255), RGB(150,255,150), RGB(255,218,15),
+        RGB(255,255,255), RGB(255,180,255), RGB(50,230,0), RGB(255,218,15),
         ["./bmps/daffodil_1.bmp", "./bmps/daffodil_2.bmp"], 
         4
     ),
