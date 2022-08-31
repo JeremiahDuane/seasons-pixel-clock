@@ -46,13 +46,13 @@ def BirthdayAction(graphics, canvas, font, clrPrimary, clrSecondary, year):
 SCENES = [
     # -0-  Notification 
     Scene(
-        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
+        RGB(125,79,36), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
         ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
         4
     ),
     # -1-  Wreath
     Scene(
-        RGB(255,0,0), RGB(0,180,0), RGB(255, 0, 0), RGB(255,200,0), 
+        RGB(255,0,0), RGB(0,180,0), RGB(255, 0, 0), RGB(0,180,0), 
         ["./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp"], 
         4
     ),
