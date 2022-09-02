@@ -95,7 +95,7 @@ last_check = None
 try:
     print("Press CTRL-C to stop.")
     while ON:
-        debugger()
+        #debugger()
         loop()
         time.sleep(.25)
         if last_check is None:
