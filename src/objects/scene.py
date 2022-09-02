@@ -87,9 +87,10 @@ SCENES = [
     Scene(
         RGB(255,222,0), RGB(223,223,223), RGB(255,222,0), RGB(223,223,223),
         [
+            "./bmps/champagne_1.bmp", "./bmps/champagne_1.bmp", "./bmps/champagne_1.bmp", "./bmps/champagne_1.bmp",
             "./bmps/champagne_1.bmp", "./bmps/champagne_2.bmp", "./bmps/champagne_3.bmp", "./bmps/champagne_4.bmp",
-            "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp","./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp",
-            "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp","./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp",
+            "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp", "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp",
+            "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp", "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp",
             "./bmps/champagne_5.bmp", "./bmps/champagne_6.bmp", "./bmps/champagne_7.bmp", "./bmps/champagne_8.bmp"
         ], 
         1
