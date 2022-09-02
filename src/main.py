@@ -96,7 +96,6 @@ try:
     print("Press CTRL-C to stop.")
     while ON:
         #debugger()
-        print("djdjjdjjd")
         loop()
         time.sleep(.25)
         if last_check is None:
