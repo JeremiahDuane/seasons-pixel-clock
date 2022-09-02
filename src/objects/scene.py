@@ -56,7 +56,7 @@ SCENES = [
         ["./bmps/wreath_1.bmp", "./bmps/wreath_2.bmp"], 
         4
     ),
-    # -2-  Turkey
+    # -2- Turkey
     Scene(
         RGB(125,79,36), RGB(255,150,0), RGB(255,50,80) ,RGB(255,190,0), 
         ["./bmps/turkey_1.bmp", "./bmps/turkey_2.bmp", "./bmps/turkey_3.bmp"], 
