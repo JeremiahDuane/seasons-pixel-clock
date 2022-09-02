@@ -83,44 +83,73 @@ SCENES = [
         ], 
         1
     ),
-    # -5-  Halloween
+    # -5- New Years Eve
+    Scene(
+        RGB(255,222,0), RGB(223,223,223), RGB(223,223,223), RGB(255,222,0),
+        [
+            "./bmps/champagne_1.bmp", "./bmps/champagne_2.bmp", "./bmps/champagne_3.bmp", "./bmps/champagne_4.bmp",
+            "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp","./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp",
+            "./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp","./bmps/champagne_4.bmp", "./bmps/champagne_5.bmp",
+            "./bmps/champagne_5.bmp", "./bmps/champagne_6.bmp", "./bmps/champagne_7.bmp", "./bmps/champagne_8.bmp"
+        ], 
+        1
+    ),
+    # -6-  New Years Day
+    Scene(
+        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
+        ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
+        4
+    ),   
+    # -7-  Valentines
+    Scene(
+        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
+        ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
+        4
+    ),
+    # -8-  St. Patricks
+    Scene(
+        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
+        ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
+        4
+    ),
+    # -9-  Halloween
     Scene(
         RGB(200,150,0), RGB(200,105,0),RGB(80,50,23), RGB(140,77,0), 
         ["./bmps/lantern_1.bmp", "./bmps/lantern_2.bmp"], 
         4
     ),
-    # -6-  Birthday
+    # -10-  Birthday
     Scene(
         RGB(255,230,230), RGB(199,84,193),RGB(237,28,36), RGB(199,84,193), 
         ["./bmps/pinkcake_1.bmp", "./bmps/pinkcake_2.bmp", "./bmps/pinkcake_3.bmp", "./bmps/pinkcake_4.bmp"], 
         1, 
         BirthdayAction
     ),
-    # -7-  Daffodil
+    # -11-  Daffodil
     Scene(
         RGB(255,251,162), RGB(255,218,15), RGB(255,180,255), RGB(50,230,0), 
         ["./bmps/daffodil_1.bmp", "./bmps/daffodil_2.bmp"], 
         4
     ),
-    # -8-  Sunflowers
+    # -12-  Sunflowers
     Scene(
         RGB(200,190,0), RGB(255,150,0),RGB(128,64,0), RGB(0,96,0),  
         ["./bmps/sunflower_1.bmp", "./bmps/sunflower_2.bmp"], 
         4
     ),
-    # -9-  Pumpkin
+    # -13-  Pumpkin
     Scene(
         RGB(255,190,0), RGB(255,130,0),RGB(107,68,31), RGB(175,96,0), 
         ["./bmps/pumpkin_1.bmp", "./bmps/pumpkin_2.bmp"], 
         4
     ),
-    # -10-  Snowman
+    # -14-  Snowman
     Scene(
         RGB(255,255,255), RGB(0,255,255), RGB(255,255,255), RGB(94,40,0), 
         ["./bmps/snowman_1.bmp", "./bmps/snowman_2.bmp"], 
         4
     ),
-    # -11-  Scarecrow
+    # -15-  Scarecrow
     Scene(
         RGB(255,190,0), RGB(255,100,0), RGB(255,190,0), RGB(255,190,0), 
         ["./bmps/scarecrow_1.bmp", "./bmps/scarecrow_2.bmp"], 
