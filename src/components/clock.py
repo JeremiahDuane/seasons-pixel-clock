@@ -158,7 +158,7 @@ def handleButtons_Clock(B, C, D):
 
     if D:
         IMAGE_INDEX = 0
-        TESTER = TESTER+1 if TESTER < 9 else 0
+        TESTER = TESTER+1 if TESTER < 14 else 0
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock):
