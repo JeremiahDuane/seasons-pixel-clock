@@ -98,7 +98,7 @@ SCENES = [
     # -6-  New Years Day
     Scene(
         RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
-        ["./bmps/sparkler_1.bmp", "./bmps/sparkler_2.bmp", "./bmps/sparkler_3.bmp", "./bmps/sparkler_4.bmp",], 
+        ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
         1
     ),   
     # -7-  Valentines
