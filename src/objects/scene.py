@@ -103,14 +103,14 @@ SCENES = [
     ),   
     # -7-  Valentines
     Scene(
-        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
-        ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
+        RGB(255,0,0), RGB(155,0,0), RGB(255,0,50), RGB(255,255,255),
+        ["./bmps/heart_1.bmp", "./bmps/heart_2.bmp", "./bmps/heart_3.bmp", "./bmps/heart_4.bmp"], 
         4
     ),
     # -8-  St. Patricks
     Scene(
-        RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), RGB(255,255,255),
-        ["./bmps/blank.bmp", "./bmps/blank.bmp"], 
+        RGB(0,255, 0), RGB(0 ,155, 0), RGB(0,255,50), RGB(255,255,255),
+        ["./bmps/clover_1.bmp", "./bmps/clover_2.bmp", "./bmps/clover_3.bmp", "./bmps/clover_4.bmp", "./bmps/clover_5.bmp"], 
         4
     ),
     # -9-  Halloween
