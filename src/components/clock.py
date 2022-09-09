@@ -51,7 +51,7 @@ def getClockCanvas(cvsClock):
 
     strHour, strColon, strMinute = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
-    scene = TEST() #getScene(year, month, day, weekday)
+    scene = getScene(year, month, day, weekday)
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
@@ -154,11 +154,11 @@ def handleButtons_Clock(B, C, D):
         TIMEZONE_OPTION = TIMEZONE_OPTION+1 if TIMEZONE_OPTION < len(config_timezone["offsets"])-1 else 0
         
     global IMAGE_INDEX
-    global TESTER
+    #global TESTER
 
     if D:
         IMAGE_INDEX = 0
-        TESTER = TESTER+1 if TESTER <= 14 else 0
+        #TESTER = TESTER+1 if TESTER <= 14 else 0
 
 #---------- Countdown ----------#
 def getCountdownCanvas(cvsClock):
@@ -246,7 +246,7 @@ def handleButtons_Countdown(B, C, D):
         if C:
             COUNT_DAY = COUNT_DAY+1
         if D:
-            COUNT_DAY = COUNT_DAY-1
+            COUNT_DAY = COUNT_DAY-1 if COUNT_DAY >= 1 else 0
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 1:
@@ -260,7 +260,7 @@ def handleButtons_Countdown(B, C, D):
         if C:
             COUNT_MINUTE = COUNT_MINUTE+1
         if D:
-            COUNT_MINUTE = COUNT_MINUTE-1
+            COUNT_MINUTE = COUNT_MINUTE-1 if COUNT_DAY >= 1 else 0
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 3:
@@ -279,6 +279,7 @@ def getTimezone():
 def getScene(): 
     year, month, day, hour, minute, second, weekday = getTimezone()
     christmas = month == 12 and day == 25
+    christmasEve = month == 12 and day == 24
     thanksgiving = month == 11 and day == 24
     birthday = month == 10 and day == 3
     halloween = month == 10 and day == 31
@@ -313,7 +314,7 @@ def getScene():
 
     if False:
         pass
-    elif christmas:
+    elif christmas or christmasEve:
         return SCENES[1]
     elif thanksgiving:
         return SCENES[2]
@@ -345,7 +346,7 @@ def getScene():
         return SCENES[0]
 
 #---------- Shared ----------#
-TESTER = 0
-def TEST():
-    global TESTER
-    return SCENES[TESTER]
+# TESTER = 0
+# def TEST():
+#     global TESTER
+#     return SCENES[TESTER]
