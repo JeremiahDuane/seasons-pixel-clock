@@ -51,7 +51,7 @@ def getClockCanvas(cvsClock):
 
     strHour, strColon, strMinute = getTimeString(hour, minute, second)
     strPeriod = getPeriodString(hour)
-    scene = getScene(year, month, day, weekday)
+    scene = getScene()
 
     clrPrimary = graphics.Color(scene.getPrimaryColor().R,scene.getPrimaryColor().G,scene.getPrimaryColor().B) 
     clrSecondary = graphics.Color(scene.getSecondaryColor().R,scene.getSecondaryColor().G,scene.getSecondaryColor().B) 
