@@ -253,14 +253,14 @@ def handleButtons_Countdown(B, C, D):
         if C:
             COUNT_HOUR = COUNT_HOUR+1
         if D:
-            COUNT_HOUR = COUNT_HOUR-1
+            COUNT_HOUR = COUNT_HOUR-1 if COUNT_HOUR >= 1 else 0
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 2:
         if C:
             COUNT_MINUTE = COUNT_MINUTE+1
         if D:
-            COUNT_MINUTE = COUNT_MINUTE-1 if COUNT_DAY >= 1 else 0
+            COUNT_MINUTE = COUNT_MINUTE-1 if COUNT_MINUTE >= 1 else 0
         COUNT_START = None
         COUNT_END = None    
     elif SELECTED_OPTION == 3:
