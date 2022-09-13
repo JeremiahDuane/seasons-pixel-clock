@@ -115,7 +115,7 @@ SCENES = [
     ),
     # -9-  St. Martin's Day
     Scene(
-        RGB(110,70,0), RGB(170,0,0), RGB(255,150,0) ,RGB(255,190,0), 
+        RGB(110,70,0), RGB(255,150,0),  RGB(170,0,0), RGB(255,190,0), 
         ["./bmps/paper-lantern_1.bmp", "./bmps/paper-lantern_2.bmp", "./bmps/paper-lantern_3.bmp", "./bmps/paper-lantern_2.bmp", ], 
         2
     ),
