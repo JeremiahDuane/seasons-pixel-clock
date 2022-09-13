@@ -288,6 +288,7 @@ def getScene():
     newYearsEve = month == 12 and day == 31
     newYearsDay = month == 1 and day == 1
     stPatricks = month == 3 and day == 17
+    stMartins = month == 11 and day == 11
 
     def isEaster(year, month, day):
         a = year % 19
@@ -312,9 +313,7 @@ def getScene():
     fall = today >= startOfFall and today < startOfWinter
     winter = today >= startOfWinter or today < startOfSpring
 
-    if False:
-        pass
-    elif christmas or christmasEve:
+    if christmas or christmasEve:
         return SCENES[1]
     elif thanksgiving:
         return SCENES[2]
@@ -329,19 +328,21 @@ def getScene():
     elif valentines:
         return SCENES[7]        
     elif stPatricks:
-        return SCENES[8]    
+        return SCENES[8]        
+    elif stMartins:
+        return SCENES[9]    
     elif halloween:
-        return SCENES[9]  
+        return SCENES[10]  
     elif birthday:
-        return SCENES[10]    
+        return SCENES[11]    
     elif spring:
-        return SCENES[11]
-    elif summer:
         return SCENES[12]
+    elif summer:
+        return SCENES[9]
     elif fall:
-        return SCENES[13]
-    elif winter:
         return SCENES[14]
+    elif winter:
+        return SCENES[15]
     else:
         return SCENES[0]
 
