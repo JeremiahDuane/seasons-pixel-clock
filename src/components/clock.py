@@ -338,7 +338,7 @@ def getScene():
     elif spring:
         return SCENES[12]
     elif summer:
-        return SCENES[1]
+        return SCENES[13]
     elif fall:
         return SCENES[14]
     elif winter:
