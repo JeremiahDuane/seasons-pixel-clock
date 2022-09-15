@@ -1,3 +1,4 @@
+#! /bin/sh
 cd /home/jgage/code/seasons-pixel-clock
 sudo git fetch
 sudo git pull
