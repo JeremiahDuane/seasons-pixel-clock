@@ -2,6 +2,7 @@
 import time
 import sys
 import RPi.GPIO as GPIO
+from components.blank import getBlankCanvas
 
 from rgbmatrix import RGBMatrix, RGBMatrixOptions
 from components.notification import fetchNotification, getNotificationCanvas, getAlertCanvas, markNotificationRead
@@ -73,7 +74,7 @@ def loop():
         CURRENT_PAGE+=1
 
     if CURRENT_PAGE == 3:
-        canvas = None
+        canvas = getBlankCanvas(canvas)
     elif CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
         canvas = getCountdownCanvas(canvas)

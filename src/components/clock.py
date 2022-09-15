@@ -26,26 +26,6 @@ IMAGE_INDEX = 0
 TICK = 1
 BLINK = False
 
-def getImage(scene, second):
-    global IMAGE_INDEX
-    global TICK
-    global BLINK
-
-    if TICK >= 4:
-        TICK = 1 
-        BLINK = not BLINK
-    else:
-        TICK = TICK + 1 
- 
-    if TICK % scene.getTempo() == 0:
-        IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
-
-    strImagePath = scene.getBMPs()[IMAGE_INDEX] 
-    image = Image.open(strImagePath)
-    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
-    LAST_TICK = second
-    return image
-
 def getClockCanvas(cvsClock):
     year, month, day, hour, minute, second, weekday = getTimezone()
 
@@ -275,6 +255,26 @@ def getTimezone():
     now = datetime.utcnow() + timedelta(hours=offset)
 
     return now.year, now.month, now.day, now.hour, now.minute, now.second, now.weekday()
+
+def getImage(scene, second):
+    global IMAGE_INDEX
+    global TICK
+    global BLINK
+
+    if TICK >= 4:
+        TICK = 1 
+        BLINK = not BLINK
+    else:
+        TICK = TICK + 1 
+ 
+    if TICK % scene.getTempo() == 0:
+        IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
+
+    strImagePath = scene.getBMPs()[IMAGE_INDEX] 
+    image = Image.open(strImagePath)
+    image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
+    LAST_TICK = second
+    return image
 
 def getScene(): 
     year, month, day, hour, minute, second, weekday = getTimezone()
