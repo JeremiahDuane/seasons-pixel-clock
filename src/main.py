@@ -72,7 +72,9 @@ def loop():
     if btn_a_pressed:
         CURRENT_PAGE+=1
 
-    if CURRENT_PAGE == 2:
+    if CURRENT_PAGE == 3:
+        canvas = None
+    elif CURRENT_PAGE == 2:
         handleButtons_Countdown(btn_b_pressed, btn_c_pressed, btn_d_pressed)    
         canvas = getCountdownCanvas(canvas)
     elif CURRENT_PAGE == 1:
