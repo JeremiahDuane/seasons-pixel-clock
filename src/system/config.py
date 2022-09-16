@@ -7,7 +7,7 @@ config_matrix = {
 }
 
 config_notification= {
-    'alert_icon' : "O" #O for a circle, Q for a heart
+    'alert_icon' : "Q" #O for a circle, Q for a heart
 }
 
 secrets = {
