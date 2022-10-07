@@ -102,7 +102,7 @@ def getContentString():
         bitCount = 0
         result = ""
         for char in CURRENT_NOTIFICATION.getContent():
-            if (bitCount + getBitWidth(char)) < 62:
+            if (bitCount + getBitWidth(char)) < 64:
                 bitCount += getBitWidth(char)
                 result += char
             else:
