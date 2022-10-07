@@ -270,6 +270,9 @@ def getImage(scene, second):
     if TICK % scene.getTempo() == 0:
         IMAGE_INDEX = 0 if IMAGE_INDEX >= len(scene.getBMPs()) - 1 else IMAGE_INDEX + 1
 
+    if IMAGE_INDEX > len(scene.getBMPs()) - 1:
+        IMAGE_INDEX = 0
+        
     strImagePath = scene.getBMPs()[IMAGE_INDEX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
