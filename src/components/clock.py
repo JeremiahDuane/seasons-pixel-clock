@@ -316,7 +316,7 @@ def getScene():
     if christmas or christmasEve:
         return SCENES[1]
     elif summer2:
-        return SCENES[13]
+        return SCENES[11]
     elif thanksgiving:
         return SCENES[2]
     elif easter:
