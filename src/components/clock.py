@@ -312,9 +312,11 @@ def getScene():
     summer = today >= startOfSummer and today < startOfFall
     fall = today >= startOfFall and today < startOfWinter
     winter = today >= startOfWinter or today < startOfSpring
-
+    summer2 = month == 10 and day == 7
     if christmas or christmasEve:
         return SCENES[1]
+    elif summer2:
+        return SCENES[13]
     elif thanksgiving:
         return SCENES[2]
     elif easter:
