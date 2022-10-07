@@ -272,7 +272,7 @@ def getImage(scene, second):
 
     if IMAGE_INDEX > len(scene.getBMPs()) - 1:
         IMAGE_INDEX = 0
-        
+
     strImagePath = scene.getBMPs()[IMAGE_INDEX] 
     image = Image.open(strImagePath)
     image.thumbnail((config_matrix["width"], config_matrix["height"]), Image.ANTIALIAS)
@@ -315,11 +315,9 @@ def getScene():
     summer = today >= startOfSummer and today < startOfFall
     fall = today >= startOfFall and today < startOfWinter
     winter = today >= startOfWinter or today < startOfSpring
-    summer2 = month == 10 and day == 7
+
     if christmas or christmasEve:
         return SCENES[1]
-    elif summer2:
-        return SCENES[11]
     elif thanksgiving:
         return SCENES[2]
     elif easter:
