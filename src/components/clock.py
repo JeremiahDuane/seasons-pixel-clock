@@ -280,7 +280,6 @@ def getScene():
     year, month, day, hour, minute, second, weekday = getTimezone()
     christmas = month == 12 and day == 25
     christmasEve = month == 12 and day == 24
-    thanksgiving = month == 11 and day == 24
     birthday = month == 10 and day == 3
     halloween = month == 10 and day == 31
     independance = month == 7 and day == 4
@@ -290,6 +289,7 @@ def getScene():
     stPatricks = month == 3 and day == 17
     stMartins = month == 11 and day == 11
 
+    thanksgiving = month == 11 and day == 28 - datetime(year, 7, 1).weekday()
     def isEaster(year, month, day):
         a = year % 19
         b = year // 100
